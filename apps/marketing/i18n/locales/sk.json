@@ -1,0 +1,247 @@
+{
+  "seo": {
+    "title": "Asylia.io - Bitcoinová pevnosť",
+    "description": "Asylia.io je Bitcoinová pevnosť postavená na multisignature, ktorá dáva používateľom plnú kontrolu nad ich kľúčmi a zároveň ponúka spoľahlivého spolupodpisovateľa pre kritické situácie. Model Collaborative Partial Custody (CPC) minimalizuje dôveru v tretie strany, poplatky sú dobrovoľné a otvorený kód garantuje auditovateľnosť."
+  },
+  "copy_address": "Kopírovať adresu",
+  "hello_world": "Ahoj svet !",
+  "arx_imperium_ostium": "Pevnosť, moc, brána.",
+  "white_paper": "Whitepaper",
+  "roadmap": "Roadmap",
+  "your_keys_your_kingdom": "Vaše Kľúče. Vaše Bitcoiny. Vaše kráľovstvo.",
+  "immortal_legacy": "Nemeniteľná istota.",
+  "read_white_paper": "Prečítať whitepaper",
+  "introMessage": "„<b class=\"text-primary dark:text-white\">Bitcoinová pevnosť</b>, kde <b class=\"text-slate-600 dark:text-gray-200\">suverenita</b> stretáva <b class=\"text-slate-600 dark:text-gray-200\">bezpečnosť.</b> <b class=\"text-primary dark:text-white\">Ochránte</b> vaše digitálne <b class=\"text-slate-600 dark:text-gray-200\">bohatstvo</b> pomocou overenej <b class=\"text-primary dark:text-white\">multisignature technológie.</b> Pretože skutočné <b class=\"text-slate-600 dark:text-gray-200\">vlastníctvo</b> znamená <b class=\"text-slate-600 dark:text-gray-200\">zodpovednosť</b> – dnes aj pre <b class=\"text-slate-600 dark:text-gray-200\">generácie</b>, ktoré prídu po nás.“",
+  "white_paper_content": {
+    "toc": {
+      "wp0": "Zhrnutie",
+      "wp1": "1. Úvod",
+      "wp2": "2. Prečo Asylia.io",
+      "wp3": "3. Vízia a hodnoty",
+      "wp4": "4. Technická architektúra",
+      "wp5": "5. Pre koho",
+      "wp6": "6. Biznis model",
+      "wp7": "7. Budúce rozšírenia",
+      "wp8": "8. Analýza rizík",
+      "wp9": "9. Výzva na spoluprácu",
+      "wp10": "10. Naše sľuby",
+      "wp11": "11. Zodpovednosť",
+      "wp12": "12. Záver"
+    },
+    "title": "Asylia.ia — Whitepaper",
+    "wp0": {
+      "title": "Zhrnutie",
+      "p1": "Asylia.io je <strong>bitcoinová pevnosť</strong> postavená na multisignature, ktorá dáva používateľom plnú kontrolu nad ich kľúčmi a zároveň ponúka spoľahlivého spolupodpisovateľa pre kritické situácie. Model <em>Collaborative Partial Custody (CPC)</em> minimalizuje dôveru v tretie strany, poplatky sú dobrovoľné a otvorený kód garantuje auditovateľnosť.",
+      "table": {
+        "item1": {
+          "key": "GitHub",
+          "value": "github.com/Asylia"
+        },
+        "item2": {
+          "key": "PoC demo",
+          "value": "poc.asylia.io"
+        },
+        "item3": {
+          "key": "Licencia kódu",
+          "value": "MIT"
+        }
+      }
+    },
+    "wp1": {
+      "title": "1. Úvod: Bitcoinová pevnosť",
+      "p1": "Žijeme v dobe, kedy súkromie, suverenita a bezpečnosť nie sú len frázy, ale nevyhnutné piliere finančnej slobody a stability. <strong>Asylia.io</strong> predstavuje Bitcoinovú pevnosť, vybudovanú s jediným cieľom: zabezpečiť vaše Bitcoiny prostredníctvom osvedčenej technológie <em>multisignature</em> – transakcií vyžadujúcich viacero nezávislých podpisov."
+    },
+    "wp2": {
+      "title": "2. Prečo Asylia.io ?",
+      "p1": " Názov „<strong>Asylia</strong>“ pochádza z gréčtiny a znamená „územnú nedotknuteľnosť“, čo symbolizuje bezpečné miesto, kde sú vaše digitálne aktíva chránené pred akýmkoľvek neoprávneným zásahom. Doména <strong>.io</strong> odkazuje na <em>input‑output</em>, čím zvýrazňuje spoľahlivosť, transparentnosť a nepretržitý prístup k vašim Bitcoinom."
+    },
+    "wp3": {
+      "title": "3. Vízia a hodnoty",
+      "list1": {
+        "title": "Čo veríme",
+        "point_1": "Suverenita a sebestačnosť – kľúče sú vždy vo vašich rukách.",
+        "point_2": "Bezpečnosť nad všetko – <em>security first</em>.",
+        "point_3": "Interoperabilita – dodržiavame Bitcoin štandardy.",
+        "point_4": "Kvalita a integrita – robíme veci správne, aj keď sa nikto nepozerá."
+      },
+      "list2": {
+        "title": "Čomu nikdy nepodľahneme:",
+        "point_1": "Korupcii a kompromisom v bezpečnosti.",
+        "point_2": "Rýchlosti na úkor kvality.",
+        "point_3": "Centralizovaným praktikám či narušovaniu súkromia."
+      }
+    },
+    "wp4": {
+      "title": "4. Technická architektúra",
+      "list1": {
+        "title": "4.1 Multisignature model",
+        "point_1": "<em>Collaborative Partial Custody (CPC)</em>",
+        "point_2": "Konfigurácie 2‑of‑3, 3‑of‑5→<em>n‑of‑T</em>",
+        "point_3": "Asylia drží len minoritný počet kľúčov (nikdy kvórum)"
+      },
+      "list2": {
+        "title": "4.2 Kľúče &amp; hardware",
+        "point_1": "HW peňaženky + <em>Shamir's Secret Sharing (SSS)</em>",
+        "point_2": "Offline Cold‑Storage pre Asylia kľúče"
+      },
+      "list3": {
+        "title": "4.3 Transakčný tok",
+        "point_1": "PSBT (BIP‑174) + QR/NFC prenos",
+        "point_2": "<strong>Knižnice:</strong> bitcoinjs‑lib, bip*, TS ...",
+        "point_3": "P2SH‑P2WSH dnes, Taproot v roadmape"
+      },
+      "list4": {
+        "title": "4.4 Recovery režimy",
+        "point_1": "NeKYC recovery: social recovery, záložné podpisy, timelocks",
+        "point_2": "Dobrovoľné KYC recovery (neskoršia fáza)"
+      },
+      "list5": {
+        "title": "4.5 Infraštruktúra",
+        "point_1": "Serverless Supabase + IPFS redundancia",
+        "point_2": "Kompletný open‑source stack (MIT licencia)"
+      }
+    },
+    "wp5": {
+      "title": "5. Pre koho je Asylia.io určená?",
+      "point_1": "Bitcoin hodleri s dlhodobým horizontom",
+      "point_2": "Bezpečnostne orientovaní profesionáli a nadšenci",
+      "point_3": "Zodpovední vlastníci digitálnych aktív"
+    },
+    "wp6": {
+      "title": "6. Biznis model &amp; poplatky",
+      "p1": "Asylia.io funguje bez vstupných poplatkov alebo pravidelných mesačných platieb. Používateľ môže <strong>dobrovoľne</strong> pridať podporu vo forme Bitcoin outputu počas odosielania transakcie.",
+      "table": {
+        "th1": "Položka",
+        "th2": "Model",
+        "row1": {
+          "td1": "Základné používanie",
+          "td2": "<strong>0% poplatok</strong> – dobrovoľný tip v transakcii"
+        },
+        "row2": {
+          "td1": "Obnova klúča",
+          "td2": "2,1 % z preposielanej sumy<sup>1</sup> (output v PSBT)"
+        },
+        "row3": {
+          "td1": "Open‑source kód",
+          "td2": "MIT licencia, komunitné príspevky"
+        }
+      },
+      "poc": {
+        "title": "Proof‑of‑Concept (PoC) ⚠",
+        "text": " Funkčný, ale <em>neprodukčný</em> kód je dostupný na <a href=\"https://poc.asylia.io\" target=\"_blank\">poc.asylia.io</a> a GitHub repo <a href=\"https://github.com/Asylia/poc\" target=\"_blank\">Asylia/poc</a>.\n                  <strong>NEPOUŽÍVAŤ na reálne prostriedky.</strong>"
+      },
+      "legal": {
+        "title": "Právny rámec",
+        "point1": "<strong>MiCA:</strong> Non‑custodial software, mimo registrácie CASP (Art. 4).",
+        "point2": "<strong>GDPR:</strong> IP logy &amp; timestampy držíme 30 dní, pseudonymizované"
+      }
+    },
+    "wp7": {
+      "title": "7. Budúce rozšírenia &amp; roadmapa",
+      "point1": "<strong>MVP mainnet</strong> 2‑of‑3 CPC, web klient",
+      "point2": "<strong>Audit kódu</strong> externý security audit + penetration",
+      "point3": "<strong>Mobilná app</strong> iOS&amp; Android, Bluetooth + NFC PSBT signing",
+      "point4": "<strong>Private instance guide</strong> Docker / Ansible, CLI API",
+      "next": " Ďalšie &amp;D: Taproot migrácia, Web3 redundancia, zero‑knowledge proof of reserves."
+    },
+    "wp8": {
+      "title": "8. Analýza rizík (Threat Model)",
+      "point1": "<strong>Ukradnutie&nbsp;&lt;&nbsp;kvóra kľúčov:</strong> n‑of‑T multisig – minoritný kľúč nestačí",
+      "point2": "<strong>Insider v Asylia:</strong> open‑source, code‑review, HSM – insider má len minoritný kľúč",
+      "point3": "<strong>Supply‑chain útok&nbsp;(firmware):</strong> overené zdroje HW wallet, checksum verify",
+      "point4": "<strong>Ľudský faktor / phishing:</strong> edukačné materiály, FIDO2‑U2F login, two‑man recovery",
+      "point5": "<strong>Výpadok infraštruktúry:</strong> offline PSBT, fallback Web3 nód",
+      "point6": "<strong>Regulácia / KYC tlak:</strong> voliteľné KYC, PDF‑backup pravidiel podpisovania"
+    },
+    "wp9": {
+      "title": "9. Výzva na spoluprácu",
+      "point1": "Konzultanti na Bitcoin, multisig a BIP štandardy",
+      "point2": "Vývojári s open‑source zameraním",
+      "point3": "Bezpečnostní experti a audítori",
+      "point4": "Beta testeri UX a bezpečnosti",
+      "point5": "Sponzori podporujúci bezpečný Bitcoin ekosystém",
+      "email": "- <a href=\"mailto:info{'@'}asylia.io\">info{'@'}asylia.io</a>"
+    },
+    "wp10": {
+      "title": "10. Naše sľuby",
+      "point1": "Nezávislosť – slobodná migrácia na inú platformu",
+      "point2": "Bezpečnosť – žiadne kompromisy",
+      "point3": "Transparentnosť – otvorené, auditovateľné riešenia"
+    },
+    "wp11": {
+      "title": "11. Zrieknutie sa zodpovednosti",
+      "p1": "Asylia.io poskytuje nástroje na zabezpečenie Bitcoinov, avšak nenesie zodpovednosť za stratu privátnych kľúčov ani za škody spôsobené nesprávnym používaním platformy. Používateľ je plne zodpovedný za správu svojich aktív."
+    },
+    "wp12": {
+      "title": "12. Záver: Budúcnosť je bezpečná",
+      "p1": "Ako kedysi pevnosti chránili mestá pred nájazdmi, Asylia chráni vaše digitálne bohatstvo pred rizikami modernej doby.",
+      "q1": "„Fiat castrum securitatis, et portae fluctuum non praevalebunt.“ <br/> (Nech povstane pevnosť bezpečia a brány búrok ju nepremôžu.)",
+      "q2": "„Asylia nie je tu preto, aby rýchlo vyrástla. Asylia je tu preto, aby pretrvala.“"
+    }
+  },
+  "team": {
+    "title": "Náš tím.",
+    "q1": "„Opus tam validum est quam artifices eius.“ - Dielo je také silné, akí sú jeho tvorcovia",
+    "member1": {
+      "p": "Zakladateľom ,autorom a core vývojarom projektu Asylia.io je dlhoročný technologický profesionál s viac než desaťročnou praxou v oblasti vývoja webových a mobilných aplikácií, bezpečnostných riešení a decentralizovaných technológií. <br/> Poháňaný osobným presvedčením o význame suverenity, súkromia a bezpečnosti, spojil skúsenosti z technológie a hlboké pochopenie princípov Bitcoinu do projektu, ktorého cieľom je poskytnúť skutočne bezpečné a nezávislé custody riešenie.<br/> Asylia vznikla z jednoduchej, ale pevnej viery:",
+      "q": "„Skutočné vlastníctvo znamená aj skutočnú zodpovednosť.",
+      "p2": "Projekt Asylia.io nie je marketingový experiment, ale dlhodobý záväzok k budovaniu bezpečnejšieho Bitcoin ekosystému, postaveného na čestnosti, tradičných hodnotách a technickej precíznosti."
+    }
+  },
+  "email_form": {
+    "title": "Získajte informácie o <b>štarte Asylie</b> medzi prvými.",
+    "placeholder": "Zadajte váš email",
+    "send": "Odoslať",
+    "success": "Váš email bol úspešne odoslaný.",
+    "error": "Niečo sa pokazilo. Skúste to znova."
+  },
+  "support": {
+    "title": "Podporte Asyliu v jej začiatkoch. Ďakujeme za vašu dôveru.",
+    "current_balance": "Aktuálny stav adresy",
+    "success": "Adresa bola skopírovaná do schránky.",
+    "error": "Adresu sa nepodarilo skopírovať do schránky, skúste manualne."
+  },
+  "footer": {
+    "motto": "Stavia na dôvere a stabilite"
+  },
+  "road_map": {
+    "title": "Roadmap",
+    "p1": {
+      "title": "Q1 2025 — Výskum a Proof of Concept (PoC)",
+      "point1": "Dôkladný výskum bezpečnostných štandardov a technologických možností.",
+      "point2": "Vývoj interného Proof of Concept.",
+      "point3": "Analýza existujúcich riešení a identifikácia ich slabín."
+    },
+    "p2": {
+      "title": "Q2 2025 — Zverejnenie Whitepaperu a Validácia Konceptu",
+      "point1": "Oficiálne zverejnenie Asylia.io whitepaperu.",
+      "point2": "Zber spätnej väzby od Bitcoin komunity a odborníkov.",
+      "point3": "Interná validácia projektu a rozhodnutie o prechode do vývoja."
+    },
+    "p3": {
+      "title": "Q3 2025 — Prípravy a Začiatok Vývoja",
+      "point1": "Vypracovanie technických návrhov a architektonických sketchov.",
+      "point2": "Výber nástrojov a definovanie bezpečnostných protokolov.",
+      "point3": "Začiatok vývoja core systému Asylia.io"
+    },
+    "p4": {
+      "title": "Q4 2025 — Spustenie Beta Verzie",
+      "point1": "Uvedenie uzavretej beta verzie platformy.",
+      "point2": "Podpora hardvérových peňaženiek Ledger a Trezor.",
+      "point3": "Testovanie bezpečnosti a UX v reálnych podmienkach."
+    },
+    "p5": {
+      "title": "Q1 2026 — Spustenie Ostrej Verzie",
+      "point1": "Oficiálne spustenie Asylia.io platformy",
+      "point2": "Implementácia pokročilých recovery mechanizmov a bezpečnostných funkcií."
+    },
+    "p6": {
+      "title": "Q2 2027 — Rozšírenie Funkcionalít",
+      "point1": "Podpora hardvérových peňaženiek Coldcard.",
+      "point2": "Uvedenie mobilnej aplikácie Asylia.io pre iOS a Android."
+    },
+    "p7": {
+      "title": "Čas ukáže ..."
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Asylia.io",
+  "private": true,
+  "workspaces": [
+    "apps/marketing",
+    "packages/*"
+  ],
+  "packageManager": "pnpm@10.8.1",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "dev:marketing": "turbo run dev --filter=@asylia/marketing",
+    "build:marketing": "turbo run build --filter=@asylia/marketing"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-pro": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/pro-duotone-svg-icons": "^6.7.2",
+    "@fortawesome/pro-light-svg-icons": "^6.7.2",
+    "@fortawesome/pro-solid-svg-icons": "^6.7.2",
+    "@nuxt/fonts": "^0.11.1",
+    "@nuxt/image": "^1.10.0",
+    "@nuxt/ui": "^3.0.2",
+    "@nuxtjs/device": "^3.2.4",
+    "@nuxtjs/i18n": "^9.5.3",
+    "@nuxtjs/supabase": "^1.5.0",
+    "@tailwindcss/postcss": "^4.1.4",
+    "@tailwindcss/vite": "^4.1.4",
+    "@vesp/nuxt-fontawesome": "^1.2.1",
+    "@vueuse/motion": "^3.0.3",
+    "@vueuse/nuxt": "^13.0.0",
+    "nuxt": "^3.16.2",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0"
+  }
+}

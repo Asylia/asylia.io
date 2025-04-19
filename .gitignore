@@ -1,0 +1,10 @@
+.npmrc
+!.npmrc.example
+
+.env
+.env.*
+!.env.example
+
+.idea
+.turbo
+node_modules
