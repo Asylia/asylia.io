@@ -1,8 +1,20 @@
 <template>
-  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-       y="0px"
-       width="100%" viewBox="0 0 352 464" enable-background="new 0 0 352 464" xml:space="preserve">
-<path fill="currentColor" opacity="1.000000" stroke="none"
+  <svg
+    id="Layer_1"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="0px"
+    y="0px"
+    width="100%"
+    viewBox="0 0 352 464"
+    enable-background="new 0 0 352 464"
+    xml:space="preserve"
+  >
+    <path
+      fill="currentColor"
+      opacity="1.000000"
+      stroke="none"
       d="
 M336.472107,245.299454
 	C329.783997,271.463348 320.003906,295.979919 307.960785,319.668091
@@ -142,6 +154,7 @@ M162.406448,183.070633
 	C205.502457,182.838287 202.732269,180.318787 195.985046,180.205475
 	C186.194534,180.041061 176.398605,180.185852 166.605103,180.226654
 	C164.955673,180.233521 163.182846,180.127014 162.406448,183.070633
-z"/>
-</svg>
+z"
+    />
+  </svg>
 </template>

@@ -12,6 +12,14 @@
       "outputs": [
         ".output/**"
       ]
+    },
+    "generate": {
+      "dependsOn": [
+        "^generate"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
     }
   }
 }

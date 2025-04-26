@@ -1,0 +1,12 @@
+.light body {
+    background-color: var(--color-light-bg);
+
+    .master-intro b:hover {
+        @apply text-primary opacity-75 transition-colors duration-300;
+    }
+
+    .bg-light-850 {
+        background-color: var(--color-light-bg-550);
+    }
+
+}

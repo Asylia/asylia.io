@@ -1,5 +1,9 @@
 {
   "name": "Asylia.io",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
   "private": true,
   "workspaces": [
     "apps/marketing",
@@ -9,18 +13,31 @@
   "scripts": {
     "dev": "turbo run dev --parallel",
     "dev:marketing": "turbo run dev --filter=@asylia/marketing",
-    "build:marketing": "turbo run build --filter=@asylia/marketing"
+    "build:marketing": "turbo run build --filter=@asylia/marketing",
+    "generate:marketing": "turbo run generate --filter=@asylia/marketing",
+    "postinstall:marketing": "turbo run postinstall --filter=@asylia/marketing",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write \"{apps,packages}/**/*.{js,ts,vue,json,css,md}\"",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "{apps,packages,shared}/**/*.{js,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@fortawesome/fontawesome-pro": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/pro-duotone-svg-icons": "^6.7.2",
     "@fortawesome/pro-light-svg-icons": "^6.7.2",
     "@fortawesome/pro-solid-svg-icons": "^6.7.2",
-    "@nuxt/fonts": "^0.11.1",
+    "@nuxt/fonts": "^0.11.2",
     "@nuxt/image": "^1.10.0",
-    "@nuxt/ui": "^3.0.2",
+    "@nuxt/ui": "^3.1.0",
     "@nuxtjs/device": "^3.2.4",
     "@nuxtjs/i18n": "^9.5.3",
     "@nuxtjs/supabase": "^1.5.0",
@@ -28,14 +45,34 @@
     "@tailwindcss/vite": "^4.1.4",
     "@vesp/nuxt-fontawesome": "^1.2.1",
     "@vueuse/motion": "^3.0.3",
-    "@vueuse/nuxt": "^13.0.0",
-    "nuxt": "^3.16.2",
+    "@vueuse/nuxt": "^13.1.0",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "eslint-define-config": "^2.1.0",
+    "nuxt": "^3.17.1",
     "tailwindcss": "^4.1.4",
-    "typescript": "^5.8.3",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "turbo": "^2.5.0"
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@nuxt/eslint-plugin": "^1.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^4.3.4",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^5.4.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "eslint-plugin-vue": "^9.33.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.2",
+    "typescript": "^5.8.3"
   }
 }

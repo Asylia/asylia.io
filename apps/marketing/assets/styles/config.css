@@ -1,0 +1,42 @@
+:root {
+    /*
+     * MASTER COLORS
+     * - brand colors
+     */
+    --primary: var(--color-primary-500);
+    --color-primary-100: #FAE9B9;
+    --color-primary-200: #F5DD97;
+    --color-primary-300: #F2D077;
+    --color-primary-400: #ECC25A;
+    --color-primary-500: #E4B236;
+    --color-primary-600: #C9962E;
+    --color-primary-700: #AE7A26;
+    --color-primary-800: #935F1E;
+    --color-primary-900: #7A4A16;
+
+    /*
+     * Background colors
+     */
+    --color-slate-850: oklch(24.35% 0.0415 262.893);
+    --color-light-bg: #EAE6DF;
+    --color-light-bg-550: color-mix(in srgb, #EAE6DF 95%, black 5%);
+    --color-dark-bg: var(--color-slate-900);
+
+    /*
+     * other
+     */
+    --color-btc: #F7931A;
+
+    --ui-radius: .6rem
+}
+
+@theme staic {
+    --ui-primary: var(--primary);
+    --ui-secondary: var(--ui-color-secondary-700);
+    --ui-success: var(--ui-color-success-500);
+    --ui-info: var(--ui-color-info-600);
+    --ui-warning: var(--ui-color-warning-600);
+    --ui-error: var(--ui-color-error-500);
+    --ui-neutral: var(--ui-color-neutral-400);
+}
+

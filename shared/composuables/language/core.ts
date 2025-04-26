@@ -1,8 +1,13 @@
-import {watch, computed} from 'vue'
-import {useStorage} from '@vueuse/core'
-import {LANGUAGES_LIST, FALLBACK_LANGUAGE, LOCALE_STORAGE_KEY} from './config'
-import type {LanguagesListOption} from './config'
-import {useI18n} from '#i18n'
+import { watch, computed } from 'vue';
+import { useStorage } from '@vueuse/core';
+import { useI18n } from '#i18n';
+import {
+  LANGUAGES_LIST,
+  FALLBACK_LANGUAGE,
+  LOCALE_STORAGE_KEY,
+  type SupportedLanguages,
+  type LanguagesListOption,
+} from './config';
 
 /**
  * Detects the user’s preferred language by inspecting the browser settings.
@@ -10,23 +15,30 @@ import {useI18n} from '#i18n'
  *
  * @returns {string} The detected or fallback language code.
  */
-function detectBrowserLang(): string {
-    // Read the browser’s primary language setting, or use the fallback
-    const navLang = navigator?.language || (navigator as any)?.userLanguage || FALLBACK_LANGUAGE
+function detectBrowserLang(): SupportedLanguages {
+  // Read the browser’s primary language setting, or use the fallback
+  function getBrowserLang(): string {
+    if (typeof navigator === 'undefined') return FALLBACK_LANGUAGE;
 
-    // Try to find a supported language whose prefix matches the browser setting
-    const match = LANGUAGES_LIST.find(l => navLang.startsWith(l.value.split('-')[0]))
+    const nav = navigator as Navigator & { userLanguage?: string };
+    return nav.language ?? nav.userLanguage ?? FALLBACK_LANGUAGE;
+  }
 
-    // If a supported language was found, return its full code
-    if (match !== undefined) return match.value
+  const navLang = getBrowserLang();
 
-    // Otherwise return the configured fallback language
-    return FALLBACK_LANGUAGE
+  // Try to find a supported language whose prefix matches the browser setting
+  const match = LANGUAGES_LIST.find((l) => navLang.startsWith(l.value.split('-')[0] ?? ''));
+
+  // If a supported language was found, return its full code
+  if (match !== undefined) return match.value;
+
+  // Otherwise return the configured fallback language
+  return FALLBACK_LANGUAGE;
 }
 
 // Persist the current language in localStorage under the given key.
 // The initial value is derived from detectBrowserLang().
-const lang = useStorage<string>(LOCALE_STORAGE_KEY, detectBrowserLang())
+const lang = useStorage<SupportedLanguages>(LOCALE_STORAGE_KEY, detectBrowserLang());
 
 /**
  * A computed reference that always holds the full language object
@@ -34,13 +46,15 @@ const lang = useStorage<string>(LOCALE_STORAGE_KEY, detectBrowserLang())
  * If the stored code isn’t in the list, we return a minimal fallback object.
  */
 const selectedLang = computed<LanguagesListOption>(() => {
-    return LANGUAGES_LIST.find(l => l.value === lang.value) ?? {
-        label: lang.value,
-        value: lang.value,
-        icon: '',
-        file: ''
+  return (
+    LANGUAGES_LIST.find((l) => l.value === lang.value) ?? {
+      label: lang.value,
+      value: lang.value,
+      icon: '',
+      file: '',
     }
-})
+  );
+});
 
 /**
  * Updates the current language code if it’s supported.
@@ -48,9 +62,9 @@ const selectedLang = computed<LanguagesListOption>(() => {
  *
  * @param {string} value - The language code to switch to.
  */
-function setLang(value: string) {
-    if (LANGUAGES_LIST.some(l => l.value === value)) lang.value = value
-    else console.warn(`Unsupported language: ${value}`)
+function setLang(value: SupportedLanguages) {
+  if (LANGUAGES_LIST.some((l) => l.value === value)) lang.value = value;
+  else console.warn(`Unsupported language: ${value}`);
 }
 
 /**
@@ -61,20 +75,18 @@ function setLang(value: string) {
  * - `languages`: list of all supported languages
  */
 export function useLanguage() {
+  const { setLocale } = useI18n();
 
-    const {setLocale} = useI18n()
+  // Whenever `lang` changes, ensure it’s valid and stored consistently
+  watch(lang, (v) => {
+    setLang(v);
+    setLocale(v);
+  });
 
-    // Whenever `lang` changes, ensure it’s valid and stored consistently
-    watch(lang, (v) => {
-        setLang(v)
-        // @ts-ignore
-        setLocale(v)
-    })
-
-    return {
-        lang,
-        selectedLang,
-        setLang,
-        languages: LANGUAGES_LIST,
-    }
+  return {
+    lang,
+    selectedLang,
+    setLang,
+    languages: LANGUAGES_LIST,
+  };
 }

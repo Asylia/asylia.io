@@ -1,3 +1,4 @@
+
 .npmrc
 !.npmrc.example
 
@@ -8,3 +9,5 @@
 .idea
 .turbo
 node_modules
+.DS_Store
+apps/.DS_Store

@@ -1,64 +1,27 @@
+/*
+ * Library imports
+ */
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-/*#d08700*/
-@theme{
-    --color-primary: var(--color-yellow-600);
-    --color-ne: #3ab7bf;
-    --color-ne-100: #3ab7bf;
-}
+/*
+ * Config
+ *  - colors
+ *  - nuxt/ui
+ */
+@import "./config.css";
 
-:root {
-    --ui-radius: var(--radius-xl);
-}
+/*
+ * Light / Dark mode
+ */
+@import "./color-modes/light.css";
+@import "./color-modes/dark.css";
 
-/* Light režim - vnútri @theme static */
-@theme static {
-
-    --primary-600: var(--color-slate-700);
-
-    --ui-primary: var(--color-yellow-600);
-    --ui-secondary: var(--color-slate-700);  /* serióznejšia tmavo-sivá */
-    --ui-success: var(--color-emerald-600);  /* stále svieža zelená, ale nie príliš svetlá */
-    --ui-info: var(--color-indigo-700);      /* hlboká modrofialová pre seriózny dojem */
-    --ui-warning: var(--color-amber-600);    /* sýtejší odtieň ambry */
-    --ui-error: var(--color-rose-600);       /* výraznejšia červená pre chyby */
-    --ui-neutral: var(--color-gray-200);
-}
-
-.dark {
-
-    --primary-600: var(--color-yellow-600);
-
-    --ui-primary: var(--color-yellow-600);
-    --ui-secondary: var(--color-slate-500);
-    --ui-success: var(--color-emerald-400);
-    --ui-info: var(--color-indigo-500);
-    --ui-warning: var(--color-amber-400);
-    --ui-error: var(--color-rose-500);
-    --ui-neutral: var(--color-gray-200);
-}
-
-.dark {
-    body {
-        @apply bg-slate-900;
-
-        .master-intro b:hover {
-            @apply text-yellow-600 opacity-75 transition-colors duration-300;
-        }
-
-    }
-}
-
-.light {
-    body {
-        @apply bg-slate-50;
-
-        .master-intro b:hover {
-            @apply text-yellow-700 opacity-75 transition-colors duration-300;
-        }
-
-    }
+/*
+ * Global styles
+ */
+.text-btc {
+    color: var(--color-btc);
 }
 
 #cursor-glow {
