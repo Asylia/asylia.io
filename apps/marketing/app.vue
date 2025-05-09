@@ -10,24 +10,20 @@
       <UContainer class="min-h-screen flex flex-col justify-between w-screen">
         <AppHeader :active-tab="activeTab" @update:tab="activeTab = $event" />
         <keep-alive>
-          <client-only>
-            <IntroSection v-if="isMainTab" />
-          </client-only>
+          <IntroSection v-if="isMainTab" />
         </keep-alive>
         <LazyRoadMap v-if="!isMainTab" />
       </UContainer>
 
-      <client-only>
-        <template v-if="isMainTab">
-          <LazyWhitePaper />
-          <MultisigSchema />
-        </template>
-        <UContainer>
-          <LazyTeamSection />
-          <ContactAndSupport />
-          <LazyFooterSection />
-        </UContainer>
-      </client-only>
+      <template v-if="isMainTab">
+        <LazyWhitePaper />
+        <MultisigSchema />
+      </template>
+      <UContainer>
+        <LazyTeamSection />
+        <ContactAndSupport />
+        <LazyFooterSection />
+      </UContainer>
     </UApp>
 
     <template #fallback>
