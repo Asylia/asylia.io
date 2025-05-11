@@ -182,7 +182,7 @@
       },
       "poc": {
         "title": "Proof-of-Concept (PoC) ⚠",
-        "text": "Funkční, ale <em>neprodukční</em> kód je dostupný na <a href=\"https://poc.asylia.io\" target=\"_blank\">poc.asylia.io</a> a v repozitáři <a href=\"https://github.com/Asylia/poc\" target=\"_blank\">Asylia/poc</a>.<br/><strong>NEPOUŽÍVEJTE pro reálné prostředky.</strong>"
+        "text": "Funkční, ale <em>neprodukční</em> kód je dostupný na <a href=\"https://poc.asylia.io\" class=\"text-primary hover:cursor-pointer hover:opacity-75\"  target=\"_blank\">poc.asylia.io</a> a v repozitáři <a href=\"https://github.com/Asylia/poc\" target=\"_blank\">Asylia/poc</a>.<br/><strong>NEPOUŽÍVEJTE pro reálné prostředky.</strong>"
       },
       "legal": {
         "title": "Právní rámec",

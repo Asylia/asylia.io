@@ -182,7 +182,7 @@
       },
       "poc": {
         "title": "Proof-of-Concept (PoC) ⚠",
-        "text": "Functional but <em>non-production</em> code available at <a href=\"https://poc.asylia.io\" target=\"_blank\">poc.asylia.io</a> and <a href=\"https://github.com/Asylia/poc\" target=\"_blank\">Asylia/poc</a>.<br/><strong>DO NOT USE with real funds.</strong>"
+        "text": "Functional but <em>non-production</em> code available at <a href=\"https://poc.asylia.io\" class=\"text-primary hover:cursor-pointer hover:opacity-75\"  target=\"_blank\">poc.asylia.io</a> and <a href=\"https://github.com/Asylia/poc\" target=\"_blank\">Asylia/poc</a>.<br/><strong>DO NOT USE with real funds.</strong>"
       },
       "legal": {
         "title": "Legal framework",

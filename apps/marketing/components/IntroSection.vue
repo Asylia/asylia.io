@@ -57,7 +57,7 @@ const introText = computed(() => t('introMessage'));
 const textTyped = ref(false);
 const displayedHtml = ref('');
 const { isAtTop } = useScrollPosition(60);
-const { isAtTop: isAsTop2 } = useScrollPosition(window.innerHeight / 2);
+const { isAtTop: isAsTop2 } = useScrollPosition(window?.innerHeight / 2);
 
 function typeEffect() {
   const fullHtml = introText.value;
