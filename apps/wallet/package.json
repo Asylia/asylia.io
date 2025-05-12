@@ -1,0 +1,17 @@
+{
+  "name": "@asylia/wallet",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "1.3.0",
+    "eslint": "^9.0.0",
+    "nuxt": "*"
+  }
+}
