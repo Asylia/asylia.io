@@ -1,17 +1,21 @@
 <template>
-  <div
-    :style="{ width: progress + '%' }"
-    class="fixed bottom-0 left-0 h-[2px] bg-gradient-to-r from-slate-500 to-slate-900 dark:from-primary-100 dark:to-primary-500 overflow-visible transition-[width] duration-100 ease-out z-50"
-  >
+  <teleport to="body">
     <div
-      class="absolute right-[-6px] top-[-2px] h-[calc(100%+4px)] w-[12px] bg-[radial-gradient(circle_at_center,rgba(29,41,61,0.8)_0%,rgba(29,41,61,0)_30%)] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.8)_0%,rgba(255,255,255,0)_70%)] pointer-events-none"
-    />
-  </div>
+      :style="progressBarStyle"
+      class="fixed bottom-0 left-0 h-[2px] overflow-visible transition-[width] duration-100 ease-out z-50"
+    >
+      <div
+        class="absolute right-[-6px] top-[-2px] h-[calc(100%+4px)] w-[12px] pointer-events-none"
+        :style="glowStyle"
+      />
+    </div>
+  </teleport>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import appColorMode from '@shared/composuables/ui/colorMode';
 
+const { isDark } = appColorMode();
 const progress = ref(0);
 
 function updateProgress() {
@@ -24,8 +28,24 @@ onMounted(() => {
   updateProgress();
   window.addEventListener('scroll', updateProgress, { passive: true });
 });
-
 onUnmounted(() => {
   window.removeEventListener('scroll', updateProgress);
+});
+
+const progressBarStyle = computed(() => {
+  const from = 'var(--color-primary-100)';
+  const to = 'var(--color-primary-500)';
+  return {
+    width: `${progress.value}%`,
+    background: `linear-gradient(to right, ${from}, ${to})`,
+  };
+});
+
+const glowStyle = computed(() => {
+  const color = isDark.value ? '255,255,255' : '29,41,61';
+  const alpha = isDark.value ? 0.8 : 0.8;
+  return {
+    background: `radial-gradient(circle at center, rgba(${color},${alpha}) 0%, rgba(${color},0) 70%)`,
+  };
 });
 </script>

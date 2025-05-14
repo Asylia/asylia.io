@@ -10,7 +10,7 @@
                   :href="`#${item.id}`"
                   :class="[
                     'block  md:text-lg transition-colors duration-150 hover:text-primary',
-                    activeSection === item.id ? 'text-primary-700 ' : '',
+                    activeSection === item.id ? 'text-primary' : '',
                   ]"
                   @click.prevent="scrollToSection(item.id)"
                 >
