@@ -1,4 +1,3 @@
-
 :root {
   /*
    * MASTER COLORS
@@ -23,17 +22,13 @@
 
   /* slate-850 = slate-800 + 5% black */
   --color-slate-850: color-mix(in oklch, black 5%, var(--color-slate-800) 95%);
-  /*--color-slate-850: oklch(24.35% 0.0415 262.893);*/
-
   --color-light-bg: #EAE6DF;
   --color-light-bg-550: color-mix(in srgb, #EAE6DF 95%, black 5%);
-  /*--color-dark-bg: var(--color-slate-900);*/
 
   /*
    * other
    */
   --color-btc: #F7931A;
-
   --ui-radius: .6rem
 }
 

@@ -1,5 +1,8 @@
 <template>
-  <UContainer class="mx-auto flex flex-col h-screen items-center justify-center">
+  <div class="mx-auto flex flex-col h-screen items-center justify-center">
+    <TowerImage
+      class="fixed right-0 bottom-[-32px] max-h-[70vh] opacity-4 text-slate-900 dark:text-white"
+    />
     <div class="max-w-lg w-full mx-auto">
       <div class="flex space-x-4 bg-slate-850 p-5 rounded-md">
         <div class="">
@@ -19,17 +22,24 @@
         <AuthBox />
       </div>
 
-      <div class="w-full flex items-center justify-between">
+      <div class="w-full flex mt-4 items-center justify-between">
         <GitStatus git-commit-hash="0afa9c0" />
+        <div class="flex space-x-2">
+          <ColorModeButton />
+          <SelectLanguage />
+        </div>
       </div>
     </div>
 
-    <div class="w-full border-t mt-5 border-gray-700"></div>
-  </UContainer>
+    <div class="max-w-lg mx-auto w-full border-t mt-5 border-gray-700"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import Logo from '@shared/images/logo/AppLogo.vue';
 import AuthBox from '~/components/authBox/AuthBox.vue';
 import GitStatus from '@shared/components/GitStatus.vue';
+import ColorModeButton from '@shared/components/ColorModeButton.vue';
+import SelectLanguage from '@shared/components/SelectLanguage.vue';
+import TowerImage from '@shared/images/TowerImage.vue';
 </script>
