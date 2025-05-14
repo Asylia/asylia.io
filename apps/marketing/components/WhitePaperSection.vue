@@ -12,24 +12,9 @@
 <script setup lang="ts">
 import AnimationWrapper from '~/components/AnimationWrapper.vue';
 
-import { useMotion } from '@vueuse/motion';
-
 const props = defineProps<{
   title: string;
   id: string;
 }>();
 
-const el = ref(null);
-const { stop } = useMotion(el, {
-  initial: { y: 100, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: 'tween',
-      duration: 300,
-      onComplete: () => stop(),
-    },
-  },
-});
 </script>

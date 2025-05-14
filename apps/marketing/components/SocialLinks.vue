@@ -30,7 +30,7 @@ const openGithub = () => {
 };
 
 const openX = () => {
-  window.open('https://github.com/Asylia', '_blank');
+  window.open('https://x.com/AsyliaMedia', '_blank');
 };
 
 const openMedium = () => {
