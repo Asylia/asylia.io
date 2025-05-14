@@ -79,9 +79,10 @@ export default defineNuxtConfig({
       'import.meta.env.VITE_BUILD_DATE': JSON.stringify(new Date().toISOString()),
     },
   },
-  css: [
-    '~/assets/styles/main.css'
-  ],
+  css: ['~/assets/styles/main.css'],
+  tailwindcss: {
+    configPath: './tailwind.config.ts',
+  },
   colorMode: {
     preference: 'dark',
     fallback: 'dark',
@@ -155,5 +156,4 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
-
 });
