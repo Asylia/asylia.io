@@ -1,6 +1,6 @@
 .dark body {
 
-    background-color: var(--color-dark-bg);
+    background-color: var(--color-slate-900);
 
     .master-intro b:hover {
         @apply text-primary opacity-75 transition-colors duration-300;

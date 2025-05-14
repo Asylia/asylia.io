@@ -1,15 +1,7 @@
 /*
- * Library imports
+ * Import global style guide
  */
-@import "tailwindcss";
-@import "@nuxt/ui";
-
-/*
- * Config
- *  - colors
- *  - nuxt/ui
- */
-@import "./config.css";
+@import "../../../../shared/theme/theme.css";
 
 /*
  * Light / Dark mode
@@ -21,22 +13,22 @@
  * Global styles
  */
 .text-btc {
-    color: var(--color-btc);
+  color: var(--color-btc);
 }
 
 #cursor-glow {
-    transition: background 0.21s ease;
+  transition: background 0.21s ease;
 }
 
 @keyframes bounce-slow {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-3px);
-    }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
 }
 
 .animate-bounce-slow {
-    animation: bounce-slow 2s infinite;
+  animation: bounce-slow 2s infinite;
 }

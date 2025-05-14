@@ -1,0 +1,17 @@
+/*
+ * Library imports
+ */
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/*
+ * Config
+ *  - colors
+ *  - nuxt/ui
+ */
+@import "./config.css";
+
+
+.text-btc {
+  color: var(--color-btc);
+}

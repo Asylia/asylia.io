@@ -2,7 +2,7 @@
   <UContainer>
     <AnimationWrapper id="multisig-table-explain" class="w-full mt-30">
       <div class="grid w-full lg:grid-cols-[240px_1fr] gap-2 lg:gap-8">
-        <div/>
+        <div />
         <div class="min-w-0">
           <div class="flex items-center justify-center md:justify-start space-x-2">
             <h2
@@ -73,7 +73,8 @@ import {
   WalletBackupAnCosignerKeyVariants,
   WalletBackupAnCosignerKeyVariantsQuorum,
   WalletMultiSignatureTypes,
-  SCENARIO_ACTIVE_INACTIVE, type customSchemaType,
+  SCENARIO_ACTIVE_INACTIVE,
+  type customSchemaType,
 } from '~/utils/constants/ui/wallet';
 import {
   autoScrolledToMultisig,

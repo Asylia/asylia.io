@@ -46,10 +46,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  alias: {
-    '@content': resolve(__dirname, '../../content'),
-    '@shared': resolve(__dirname, '../../shared'),
-  },
+
   modules: [
     '@nuxt/ui',
     '@nuxt/fonts',
@@ -75,6 +72,10 @@ export default defineNuxtConfig({
       enabled: debug,
     },
   },
+  alias: {
+    '@content': resolve(__dirname, '../../content'),
+    '@shared': resolve(__dirname, '../../shared'),
+  },
   vite: {
     define: {
       'import.meta.env.VITE_GIT_COMMIT_HASH': JSON.stringify(
@@ -83,6 +84,10 @@ export default defineNuxtConfig({
       'import.meta.env.VITE_BUILD_DATE': JSON.stringify(new Date().toISOString()),
     },
   },
+  css: [
+    // "@shared/theme/config.css",
+    '~/assets/styles/main.css'
+  ],
   colorMode: {
     preference: 'dark',
     fallback: 'dark',
@@ -156,5 +161,5 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
-  css: ['~/assets/styles/main.css'],
+
 });
