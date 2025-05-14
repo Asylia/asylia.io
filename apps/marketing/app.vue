@@ -32,7 +32,7 @@
     </UApp>
 
     <template #fallback>
-      <div class="w-screen h-screen flex items-center justify-center">
+      <div class="w-screen  h-screen flex items-center justify-center">
         <Logo class="w-auto max-h-[20vh] text-slate-700 dark:text-primary" />
         <h1 class="text-3xl md:text-6xl text-primary dark:text-gray-300 font-bold">Asylia.io</h1>
         <p class="mt-1 text-xs sm:text-sm italic text-slate-800 dark:text-gray-400">
@@ -41,7 +41,7 @@
         <!--  afe list - because of broken nuxt/ui with tailwind4 -->
         <div
           style="display: none"
-          class="row-span-1 row-span-2 row-span-3 row-span-4 row-span-5 row-span-6 row-span-7"
+          class="row-span-1 bg-emerald-600 text-slate-600 text-slate-800 border-slate-700 border-gray-300 bg-slate-900 text-gray-300 row-span-2 row-span-3 row-span-4 row-span-5 row-span-6 row-span-7"
         />
       </div>
     </template>
@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '~/components/images/logo/AppLogo.vue';
+import Logo from '@shared/images/logo/AppLogo.vue';
 import ContactAndSupport from '~/components/ContactAndSupport.vue';
 import AppHeader from '~/components/AppHeader.vue';
 

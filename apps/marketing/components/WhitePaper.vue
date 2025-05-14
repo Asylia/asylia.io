@@ -487,7 +487,7 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '~/components/images/logo/AppLogo.vue';
+import Logo from '@shared/images/logo/AppLogo.vue';
 import JoinBetaButton from '~/components/JoinBetaButton.vue';
 import EmailLink from '~/components/EmailLink.vue';
 import AnimationWrapper from '~/components/AnimationWrapper.vue';
