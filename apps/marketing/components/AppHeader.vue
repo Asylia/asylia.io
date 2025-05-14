@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { useBreakPoints } from '@shared/composuables/ui/breakPoints';
 
-import Logo from '~/components/images/logo/AppLogo.vue';
+import Logo from '@shared/images/logo/AppLogo.vue';
 import ColorModeButton from '~/components/ColorModeButton.vue';
 
 const props = defineProps<{

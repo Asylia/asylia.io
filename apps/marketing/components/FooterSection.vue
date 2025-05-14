@@ -2,7 +2,7 @@
   <div class="w-full z-100 mt-21">
     <div class="grid lg:grid-cols-[240px_1fr] gap-2 lg:gap-8 z-20">
       <div class="flex items-center justify-center md:justify-start !w-full md:!w-auto">
-        <GitStatus />
+        <GitStatus :git-commit-hash="GIT_COMMIT_HASH" />
       </div>
       <div class="flex items-center justify-between mt-8 md:mt-0">
         <SocialLinks />
@@ -48,5 +48,6 @@ import SocialLinks from '~/components/SocialLinks.vue';
 import SelectLanguage from '~/components/SelectLanguage.vue';
 import ColorModeButton from '~/components/ColorModeButton.vue';
 import EmailLink from '~/components/EmailLink.vue';
-import GitStatus from '~/components/GitStatus.vue';
+import GitStatus from '@shared/components/GitStatus.vue';
+import { GIT_COMMIT_HASH } from '~/utils/gitInfo.js';
 </script>
