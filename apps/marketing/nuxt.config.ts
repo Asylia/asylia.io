@@ -49,7 +49,6 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/ui',
-    '@nuxt/fonts',
     '@nuxtjs/supabase',
     '@nuxtjs/i18n',
     '@nuxtjs/device',
@@ -80,9 +79,6 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/styles/main.css'],
-  tailwindcss: {
-    configPath: './tailwind.config.ts',
-  },
   colorMode: {
     preference: 'dark',
     fallback: 'dark',
