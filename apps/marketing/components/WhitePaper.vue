@@ -243,13 +243,13 @@
               </p>
               <ul class="list-disc ml-4 lg:ml-6 my-3 lg:my-4">
                 <li>
-                  {{ t('white_paper_content.wp3.list2.p1') }}
+                  {{ t('white_paper_content.wp3.list3.p1') }}
                 </li>
                 <li>
-                  {{ t('white_paper_content.wp3.list2.p2') }}
+                  {{ t('white_paper_content.wp3.list3.p2') }}
                 </li>
                 <li>
-                  {{ t('white_paper_content.wp3.list2.p3') }}
+                  {{ t('white_paper_content.wp3.list3.p3') }}
                 </li>
               </ul>
             </WhitePaperSection>
