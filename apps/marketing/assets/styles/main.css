@@ -12,10 +12,6 @@
 /*
  * Global styles
  */
-.text-btc {
-  color: var(--color-btc);
-}
-
 #cursor-glow {
   transition: background 0.21s ease;
 }

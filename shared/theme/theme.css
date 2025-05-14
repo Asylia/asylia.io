@@ -11,6 +11,11 @@
  */
 @import "./config.css";
 
+/*
+ * Light / Dark mode
+ */
+@import "./color-modes/light.css";
+@import "./color-modes/dark.css";
 
 .text-btc {
   color: var(--color-btc);

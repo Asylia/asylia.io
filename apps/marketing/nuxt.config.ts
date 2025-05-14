@@ -58,11 +58,6 @@ export default defineNuxtConfig({
     '@vueuse/motion/nuxt',
     '@nuxt/eslint',
   ],
-
-  compatibilityDate: '2024-11-01',
-  // experimental: {
-  // payloadExtraction: false
-  // },
   future: {
     compatibilityVersion: 4,
   },
@@ -85,7 +80,6 @@ export default defineNuxtConfig({
     },
   },
   css: [
-    // "@shared/theme/config.css",
     '~/assets/styles/main.css'
   ],
   colorMode: {
