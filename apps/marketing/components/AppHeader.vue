@@ -27,10 +27,10 @@
 </template>
 
 <script setup lang="ts">
+import Logo from '@shared/images/logo/AppLogo.vue';
+import ColorModeButton from '@shared/components/ColorModeButton.vue';
 import { useBreakPoints } from '@shared/composuables/ui/breakPoints';
 
-import Logo from '@shared/images/logo/AppLogo.vue';
-import ColorModeButton from '~/components/ColorModeButton.vue';
 
 const props = defineProps<{
   activeTab: string;

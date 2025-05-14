@@ -45,8 +45,8 @@
 
 <script setup lang="ts">
 import SocialLinks from '~/components/SocialLinks.vue';
-import SelectLanguage from '~/components/SelectLanguage.vue';
-import ColorModeButton from '~/components/ColorModeButton.vue';
+import SelectLanguage from '@shared/components/SelectLanguage.vue';
+import ColorModeButton from '@shared/components/ColorModeButton.vue';
 import EmailLink from '~/components/EmailLink.vue';
 import GitStatus from '@shared/components/GitStatus.vue';
 import { GIT_COMMIT_HASH } from '~/utils/gitInfo.js';

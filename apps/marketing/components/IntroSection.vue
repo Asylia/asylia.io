@@ -48,8 +48,8 @@
 <script setup lang="ts">
 import { useScrollPosition } from '~/composables/useScrollPosition';
 import SocialLinks from '~/components/SocialLinks.vue';
-import SelectLanguage from '~/components/SelectLanguage.vue';
-import TowerImage from '~/components/images/TowerImage.vue';
+import SelectLanguage from '@shared/components/SelectLanguage.vue';
+import TowerImage from '@shared/images/TowerImage.vue';
 
 const { t, locale } = useI18n();
 const introText = computed(() => t('introMessage'));
