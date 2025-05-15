@@ -77,9 +77,7 @@ export default defineNuxtConfig({
       'import.meta.env.VITE_BUILD_DATE': JSON.stringify(new Date().toISOString()),
     },
   },
-  css: [
-    '~/assets/styles/main.css'
-  ],
+  css: ['~/assets/styles/main.css'],
   colorMode: {
     preference: 'dark',
     fallback: 'dark',
@@ -100,6 +98,18 @@ export default defineNuxtConfig({
       },
       NUXT_PUBLIC_CONTACT_EMAIL: process.env.NUXT_PUBLIC_CONTACT_EMAIL,
       NUXT_PUBLIC_WALLET_ADDRESS: process.env.NUXT_PUBLIC_WALLET_ADDRESS,
+    },
+  },
+  fontawesome: {
+    icons: {
+      solid: [],
+      brands: ['github', 'x-twitter', 'medium'],
+    },
+    proIcons: {
+      solid: ['shield-plus','file-import','globe'],
+      light: [],
+      thin: [],
+      duotone: [],
     },
   },
   supabase: {
