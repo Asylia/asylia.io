@@ -45,9 +45,9 @@
 <script setup lang="ts">
 import Logo from '@shared/images/logo/AppLogo.vue';
 import AuthBox from '~/components/authBox/AuthBox.vue';
-import GitStatus from '@shared/components/GitStatus.vue';
-import ColorModeButton from '@shared/components/ColorModeButton.vue';
-import SelectLanguage from '@shared/components/SelectLanguage.vue';
+import GitStatus from '@shared/components/marketing/GitStatus.vue';
+import ColorModeButton from '@shared/components/ui/ColorModeButton.vue';
+import SelectLanguage from '@shared/components/ui/SelectLanguage.vue';
 import TowerImage from '@shared/images/TowerImage.vue';
-import SocialLinks from '@shared/components/SocialLinks.vue';
+import SocialLinks from '@shared/components/marketing/SocialLinks.vue';
 </script>

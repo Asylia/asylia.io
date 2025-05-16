@@ -1,17 +1,4 @@
-export const WalletMultiSignatureTypes = Object.freeze({
-  BACKUP: 'BACKUP',
-  CONSIGNER: 'CONSIGNER',
-  MULTISIG: 'MULTISIG',
-} as const);
-
-export type WalletMultiSignatureType = keyof typeof WalletMultiSignatureTypes;
-
-export const WalletBackupAnCosignerKeyVariants = Object.freeze({
-  '2of3': '2of3',
-  '3of5': '3of5',
-});
-
-export type WalletBackupAnCosignerKeyVariants =  keyof typeof WalletBackupAnCosignerKeyVariants;
+import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/types/WalletStructure';
 
 export type customSchemaType = {
   enabled: boolean;
@@ -25,11 +12,11 @@ export type Quorum = {
 };
 
 export const WalletBackupAnCosignerKeyVariantsQuorum = Object.freeze({
-  [WalletBackupAnCosignerKeyVariants['2of3']]: {
+  [WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['2of3']]: {
     m: 2,
     n: 3,
   },
-  [WalletBackupAnCosignerKeyVariants['3of5']]: {
+  [WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['3of5']]: {
     m: 3,
     n: 5,
   },

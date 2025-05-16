@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import Logo from '@shared/images/logo/AppLogo.vue';
-import ColorModeButton from '@shared/components/ColorModeButton.vue';
+import ColorModeButton from '@shared/components/ui/ColorModeButton.vue';
 import { useBreakPoints } from '@shared/composuables/ui/breakPoints';
 
 

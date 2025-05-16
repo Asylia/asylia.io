@@ -30,11 +30,9 @@
       />
     </div>
 
-    <UTabs
+    <WalletQuorumPreSetSchemeOptions
       v-if="!hidePredefinedSchemas"
       v-model="keyVariant"
-      color="neutral"
-      :items="keyVariantsList"
       :disabled="!customSchema.enabled"
       class="w-full mt-4 max-w-full"
     />
@@ -68,37 +66,23 @@
 
 <script setup lang="ts">
 import NumVerticalCounter from '~/components/multisigSchema/sidebar/numVerticalCounter/VerticalCounter.vue';
-import type { TabsItem } from '@nuxt/ui';
+import WalletQuorumPreSetSchemeOptions from '@shared/components/wallet/setup/quorum/WalletQuorumPreSetSchemeOptions.vue';
 import appColorMode from '@shared/composuables/ui/colorMode';
-import {
-  type customSchemaType,
-  WalletBackupAnCosignerKeyVariants,
-  WalletMultiSignatureTypes,
-} from '~/utils/constants/ui/wallet.js';
+import { type customSchemaType } from '~/utils/constants/ui/wallet.js';
+import { WALLET_STRUCTURE_TYPE } from '@shared/types/WalletStructure';
+import { type WalletQuorumPreSetSchemaOptionsType } from '@shared/types/WalletStructure';
 
 const props = defineProps<{
   walletType: string;
 }>();
 
-const keyVariant = defineModel<WalletBackupAnCosignerKeyVariants>();
+const keyVariant = defineModel<WalletQuorumPreSetSchemaOptionsType>();
 const customSchema = defineModel<customSchemaType>('customSchema');
-const { t } = useI18n();
 const { isDark } = appColorMode();
 
-const isMultisig = computed(() => props.walletType === WalletMultiSignatureTypes.MULTISIG);
-const isBackup = computed(() => props.walletType === WalletMultiSignatureTypes.BACKUP);
-const isCosign = computed(() => props.walletType === WalletMultiSignatureTypes.CONSIGNER);
-
-const keyVariantsList = ref<TabsItem[]>([
-  {
-    value: WalletBackupAnCosignerKeyVariants['2of3'],
-    label: '2 ' + t('of') + ' 3',
-  },
-  {
-    value: WalletBackupAnCosignerKeyVariants['3of5'],
-    label: '3 ' + 'of' + ' 5',
-  },
-]);
+const isMultisig = computed(() => props.walletType === WALLET_STRUCTURE_TYPE.MULTISIG);
+const isBackup = computed(() => props.walletType === WALLET_STRUCTURE_TYPE.BACKUP);
+const isCosign = computed(() => props.walletType === WALLET_STRUCTURE_TYPE.CONSIGNER);
 
 const hidePredefinedSchemas = computed(
   () => customSchema.value && customSchema.value.enabled && isMultisig.value,

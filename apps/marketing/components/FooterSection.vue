@@ -44,10 +44,10 @@
 </template>
 
 <script setup lang="ts">
-import SocialLinks from '@shared/components/SocialLinks.vue';
-import SelectLanguage from '@shared/components/SelectLanguage.vue';
-import ColorModeButton from '@shared/components/ColorModeButton.vue';
+import SocialLinks from '@shared/components/marketing/SocialLinks.vue';
+import SelectLanguage from '@shared/components/ui/SelectLanguage.vue';
+import ColorModeButton from '@shared/components/ui/ColorModeButton.vue';
 import EmailLink from '~/components/EmailLink.vue';
-import GitStatus from '@shared/components/GitStatus.vue';
+import GitStatus from '@shared/components/marketing/GitStatus.vue';
 import { GIT_COMMIT_HASH } from '~/utils/gitInfo.js';
 </script>

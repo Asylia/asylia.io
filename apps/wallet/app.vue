@@ -1,7 +1,8 @@
 <template>
   <UApp class="w-fit">
+    <CreateNewWalletModal v-model="createNewWallet"/>
     <CursorGlow />
-    <div class="mx-auto w-full max-w-6xl pt-8 px-8 flex flex-col h-screen justify-between">
+    <div class="mx-auto w-full max-w-6xl pt-4 px-8 flex flex-col h-screen justify-between">
       <div class="w-full flex-1">
         <div class="w-full flex items-center justify-between">
           <div class="flex space-x-4 items-center">
@@ -24,13 +25,13 @@
         </div>
 
         <div class="flex flex-col h-full justify-center">
-          <div class="text-gray-300 text-center text-5xl font-bold leading-snug">
+          <div class="text-gray-300 text-center pb-14 text-5xl font-bold leading-snug">
             Ultimate Bitcoin Wallet <br />
             security standards guaranteed
           </div>
 
-          <div class="flex text-gray-200 mt-14 items-center justify-evenly">
-            <CtaBox :icon="['fas', 'shield-plus']">
+          <div class="flex text-gray-200  items-center justify-evenly">
+            <CtaBox @click="createNewWallet = true" :icon="['fas', 'shield-plus']">
               Create <br />
               wallet
             </CtaBox>
@@ -74,10 +75,14 @@
 
 <script setup lang="ts">
 import Logo from '@shared/images/logo/AppLogo.vue';
-import GitStatus from '@shared/components/GitStatus.vue';
-import ColorModeButton from '@shared/components/ColorModeButton.vue';
-import SelectLanguage from '@shared/components/SelectLanguage.vue';
-import SocialLinks from '@shared/components/SocialLinks.vue';
-import CursorGlow from '@shared/components/CursorGlow.vue';
+import GitStatus from '@shared/components/marketing/GitStatus.vue';
+import ColorModeButton from '@shared/components/ui/ColorModeButton.vue';
+import SelectLanguage from '@shared/components/ui/SelectLanguage.vue';
+import SocialLinks from '@shared/components/marketing/SocialLinks.vue';
+import CursorGlow from '@shared/components/ui/CursorGlow.vue';
 import CtaBox from '~/components/intro/CtaBox.vue';
+import CreateNewWalletModal from "~/components/intro/actions/CreateNewWalletModal.vue";
+
+const createNewWallet = ref(false)
+
 </script>

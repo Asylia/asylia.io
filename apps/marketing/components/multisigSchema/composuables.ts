@@ -3,8 +3,9 @@ import { computed, ref } from 'vue';
 import {
   SCENARIO_ACTIVE_INACTIVE,
   type ScenarioActiveInactiveType,
-  WalletBackupAnCosignerKeyVariants,
+
 } from '~/utils/constants/ui/wallet';
+import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/types/WalletStructure';
 
 export const SCROLLED_FROM = Object.freeze({
   INTRO: {
@@ -123,8 +124,8 @@ type walletRowHelpers = {
   activeInactive: ScenarioActiveInactiveType;
 };
 export const walletRowHelpers = ({ keyVariant, activeInactive }: walletRowHelpers) => {
-  const is2of3 = computed(() => keyVariant === WalletBackupAnCosignerKeyVariants['2of3']);
-  const is3of5 = computed(() => keyVariant === WalletBackupAnCosignerKeyVariants['3of5']);
+  const is2of3 = computed(() => keyVariant === WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['2of3']);
+  const is3of5 = computed(() => keyVariant === WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['3of5']);
   const isActive = computed(() => activeInactive === SCENARIO_ACTIVE_INACTIVE.ACTIVE);
 
   return {

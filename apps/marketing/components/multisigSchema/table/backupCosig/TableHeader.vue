@@ -30,7 +30,8 @@
 </template>
 
 <script setup lang="ts">
-import { WalletBackupAnCosignerKeyVariants } from '~/utils/constants/ui/wallet';
+
+import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/types/WalletStructure';
 
 const props = defineProps<{
   title?: string;
@@ -38,6 +39,6 @@ const props = defineProps<{
 }>();
 
 const variantTitle = computed(() =>
-  props.keyVariant === WalletBackupAnCosignerKeyVariants['3of5'] ? '3 of 5' : '2 of 3',
+  props.keyVariant === WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['3of5'] ? '3 of 5' : '2 of 3',
 );
 </script>

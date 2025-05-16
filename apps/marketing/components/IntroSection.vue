@@ -47,8 +47,8 @@
 </template>
 <script setup lang="ts">
 import { useScrollPosition } from '~/composables/useScrollPosition';
-import SocialLinks from '@shared/components/SocialLinks.vue';
-import SelectLanguage from '@shared/components/SelectLanguage.vue';
+import SocialLinks from '@shared/components/marketing/SocialLinks.vue';
+import SelectLanguage from '@shared/components/ui/SelectLanguage.vue';
 import TowerImage from '@shared/images/TowerImage.vue';
 
 const { t, locale } = useI18n();

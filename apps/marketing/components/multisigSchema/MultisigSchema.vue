@@ -70,9 +70,7 @@ import MultisigRowMultisigType from '~/components/multisigSchema/table/multisigT
 import MultisigRowCoSignerType from '~/components/multisigSchema/table/backupCosig/cosignerType/CosignerType.vue';
 import AnimationWrapper from '~/components/AnimationWrapper.vue';
 import {
-  WalletBackupAnCosignerKeyVariants,
   WalletBackupAnCosignerKeyVariantsQuorum,
-  WalletMultiSignatureTypes,
   SCENARIO_ACTIVE_INACTIVE,
   type customSchemaType,
 } from '~/utils/constants/ui/wallet';
@@ -81,12 +79,14 @@ import {
   autoScrolledToMultisigFrom,
   SCROLLED_FROM,
 } from '~/components/multisigSchema/composuables';
+import { WALLET_STRUCTURE_TYPE } from '@shared/types/WalletStructure'
+import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/types/WalletStructure';
 
 const { isDark } = appColorMode();
 
-const walletType = ref(WalletMultiSignatureTypes.BACKUP);
+const walletType = ref(WALLET_STRUCTURE_TYPE.BACKUP);
 const activeInactive = ref(SCENARIO_ACTIVE_INACTIVE.ACTIVE);
-const keyVariant = ref(WalletBackupAnCosignerKeyVariants['2of3']);
+const keyVariant = ref(WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['2of3']);
 const customSchema = ref<customSchemaType>({
   enabled: false,
   m: 2,
@@ -94,9 +94,9 @@ const customSchema = ref<customSchemaType>({
 });
 
 const walletTypesTables = {
-  [WalletMultiSignatureTypes.BACKUP]: MultisigRowBackupType,
-  [WalletMultiSignatureTypes.CONSIGNER]: MultisigRowCoSignerType,
-  [WalletMultiSignatureTypes.MULTISIG]: MultisigRowMultisigType,
+  [WALLET_STRUCTURE_TYPE.BACKUP]: MultisigRowBackupType,
+  [WALLET_STRUCTURE_TYPE.CONSIGNER]: MultisigRowCoSignerType,
+  [WALLET_STRUCTURE_TYPE.MULTISIG]: MultisigRowMultisigType,
 };
 
 const walletTypeTableComponent = computed(() => walletTypesTables[walletType.value]);
