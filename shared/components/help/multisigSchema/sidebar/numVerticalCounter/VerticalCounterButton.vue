@@ -6,11 +6,13 @@
       'opacity-25': props.disabled,
     }"
   >
-    <font-awesome :icon="props.icon" class="text-xs text-gray-200" />
+    <FontAwesomeIcon :icon="props.icon" class="text-xs text-gray-200" />
   </div>
 </template>
 
 <script setup lang="ts">
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
+
 const props = defineProps<{
   icon: string[];
   disabled?: boolean;

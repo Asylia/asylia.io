@@ -3,6 +3,8 @@
     "title": "Asylia.io – Bitcoinová pevnost",
     "description": "Asylia.io je bitcoinová pevnost postavená na Multisignature, která uživatelům poskytuje plnou kontrolu nad jejich klíči a zároveň nabízí spolehlivého spolupodpisovatele pro kritické situace. Model Collaborative Partial Custody (CPC) minimalizuje důvěru ve třetí stranu, poplatky jsou dobrovolné a otevřený kód zaručuje auditovatelnost."
   },
+  "2of3": "2of3",
+  "3of5": "3of5",
   "of": "z",
   "copy_address": "Kopírovat",
   "hello_world": "Ahoj, světe!",
@@ -223,54 +225,7 @@
   "multisig_schema": {
     "title": "Multisig schéma",
     "p": "Backup, Co-sig a multisig jsou prakticky to samé a odpovídají bitcoin multisig standardu. Jediný rozdíl je v tom, jak se používají v peněžence.",
-    "backToWhitePaper": "Zpět na whitepaper",
-    "aside": {
-      "backup": {
-        "title": "Záloha",
-        "p": "Záloha je typ peněženky, kde podle schématu drží majoritní část klíčů uživatel a minoritní část klíčů platforma Asylia. Uživatel v případě ztráty jednoho klíče může použít záložní klíč platformy."
-      },
-      "cosig": {
-        "title": "Co-sig",
-        "p": "Collaborative signature je typ peněženky, kde podle schématu drží majoritní část klíčů jeden nebo více vlastníků a záloha může být distribuována mezi více stran."
-      },
-      "multisig": {
-        "title": "Multisig",
-        "p": "Multisignature je typ, kde je struktura podepisování řízena definovaným schématem."
-      },
-      "custom": {
-        "title": "Pozor",
-        "p": "Doporučený bezpečnostní standard je 2-z-3 nebo 3-z-5.",
-        "button": "Vlastní schéma",
-        "required": "Požadované",
-        "total": "Celkem"
-      }
-    },
-    "filter": {
-      "p1": "Záloha",
-      "p2": "Co-sig",
-      "p3": "Multisig"
-    },
-    "header": {
-      "title": "Multisig schéma",
-      "key": "Klíč",
-      "owner": "Vlastník",
-      "operational": "Funkční"
-    },
-    "show_more": "Zobrazit další",
-    "hide": "Skrýt",
-    "body": {
-      "key": "Klíč",
-      "user": "Uživatel",
-      "scenario": "Scénář",
-      "main_holder": "Hlavní držitel",
-      "majority": "Majorita",
-      "key_holder": "Držitel klíče",
-      "minority": "Minorita",
-      "backup": "Záloha",
-      "custom": "Vlastní",
-      "one_account": "Jeden účet",
-      "wallet_owner": "Majitel peněženky"
-    }
+    "backToWhitePaper": "Zpět na whitepaper"
   },
   "team": {
     "title": "Náš tým",

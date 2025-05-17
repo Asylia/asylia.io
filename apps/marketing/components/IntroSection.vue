@@ -18,7 +18,7 @@
       class="p-4 transition-opacity duration-200 border-l-4 border-primary italic text-sm md:text-lg text-slate-600 dark:text-gray-300"
       :class="{ 'opacity-0': !textTyped }"
     >
-      &ldquo;{{ $t('your_keys_your_kingdom') }}&rdquo; <br >
+      &ldquo;{{ $t('your_keys_your_kingdom') }}&rdquo; <br />
       – {{ $t('immortal_legacy') }}
     </div>
 
@@ -40,7 +40,6 @@
           class="opacity-50 dark:text-primary animate-bounce-slow"
         />
       </div>
-
       <SelectLanguage />
     </div>
   </section>

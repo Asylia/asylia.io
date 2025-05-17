@@ -1,7 +1,6 @@
 <template>
   <div class="w-full md:flex items-center mt-5 justify-between">
     <WalletTypePicker v-model="walletType" class="w-full md:max-w-[360px]" />
-    <!--    <UTabs v-model="walletType" :items="walletTypeOptions" class="w-full md:max-w-[360px] w-full" />-->
     <UTabs
       v-model="activeInactive"
       :items="activeInactiveOptions"
@@ -13,39 +12,13 @@
 
 <script setup lang="ts">
 import WalletTypePicker from '@shared/components/wallet/setup/WalletTypePicker.vue';
+import { SCENARIO_ACTIVE_INACTIVE } from './types';
 import type { TabsItem } from '@nuxt/ui';
-
-import {SCENARIO_ACTIVE_INACTIVE} from './types'
-import {
-  // WALLET_STRUCTURE_TYPE,
-
-  type ScenarioActiveInactiveType,
-} from '@shared/types/WalletStructure';
-import type { WalletStructureType } from '@shared/types/WalletStructure'
-
+import type { ScenarioActiveInactiveType } from '@shared/types/WalletStructure';
+import type { WalletStructureType } from '@shared/types/WalletStructure';
 
 const walletType = defineModel<WalletStructureType>('walletType');
 const activeInactive = defineModel<ScenarioActiveInactiveType>('activeInactive');
-
-// const { t } = useI18n();
-
-// const walletTypeOptions = ref<TabsItem[]>([
-//   {
-//     value: WALLET_STRUCTURE_TYPE.BACKUP,
-//     label: t('multisig_schema.filter.p1'),
-//     icon: 'ic:outline-shield',
-//   },
-//   {
-//     value: WALLET_STRUCTURE_TYPE.CONSIGNER,
-//     label: t('multisig_schema.filter.p2'),
-//     icon: 'fluent:person-passkey-16-regular',
-//   },
-//   {
-//     value: WALLET_STRUCTURE_TYPE.MULTISIG,
-//     label: t('multisig_schema.filter.p3'),
-//     icon: 'bitcoin-icons:two-keys-outline',
-//   },
-// ]);
 
 const activeInactiveOptions = ref<TabsItem[]>([
   {

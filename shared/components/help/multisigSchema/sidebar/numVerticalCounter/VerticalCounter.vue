@@ -7,7 +7,7 @@
       :title="textF('multisig_schema.aside.custom.required')"
     />
     <div class="text-gray-400 font-semibold no-select text-lg">
-      {{ textF('of') }}
+      {{ textF('multisig_schema.of') }}
     </div>
     <SingleCounter
       v-model="n"

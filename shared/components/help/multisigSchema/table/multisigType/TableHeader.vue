@@ -10,7 +10,7 @@
     >
       <div class="flex flex-wrap items-center justify-center gap-1">
         {{ textF('multisig_schema.header.title') }}
-        <font-awesome :icon="['fas', 'shield-keyhole']" class="text-info" />
+        <FontAwesomeIcon :icon="['fas', 'shield-keyhole']" class="text-info" />
       </div>
     </div>
     <div
@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import { textF } from '@shared/composuables/language';
 
 </script>

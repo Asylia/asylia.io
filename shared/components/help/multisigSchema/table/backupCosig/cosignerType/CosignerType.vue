@@ -1,7 +1,6 @@
 <template>
   <div class="w-full">
     <TableHeader title="Co-sig" :key-variant="props.keyVariant" />
-
     <CollapsibleTable
       :table-row-component="TableRow"
       :table-rows="tableRows"

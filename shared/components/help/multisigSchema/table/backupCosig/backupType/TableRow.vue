@@ -33,8 +33,8 @@
       ]"
       class="hidden md:flex md:col-span-1 py-2 px-2 items-center justify-center border-r border-b border-gray-300 dark:border-gray-700"
     >
-      <font-awesome v-if="isActive" :icon="['fas', 'circle-check']" class="text-success" />
-      <font-awesome v-else :icon="['fas', 'circle-xmark']" class="text-base text-error" />
+      <FontAwesomeIcon v-if="isActive" :icon="['fas', 'circle-check']" class="text-success" />
+      <FontAwesomeIcon v-else :icon="['fas', 'circle-xmark']" class="text-base text-error" />
     </div>
 
     <KeyCheckCol :active="props.scheme[1]" :bb="is2of3" />
@@ -60,7 +60,7 @@
       :class="{ 'row-span-2': is3of5, 'rounded-br-md': props.isLast }"
       class="hidden md:flex md:col-span-1 row-span-1 py-2 px-2 border-b border-r items-center justify-center border-gray-300 dark:border-gray-700"
     >
-      <font-awesome :icon="['fas', 'circle-xmark']" class="text-base text-error" />
+      <FontAwesomeIcon :icon="['fas', 'circle-xmark']" class="text-base text-error" />
     </div>
 
     <KeyCheckCol v-if="is3of5" :active="props.scheme[14]" bb />
@@ -87,8 +87,8 @@
             </div>
           </div>
           <div class="ml-2">
-            <font-awesome v-if="isActive" :icon="['fas', 'circle-check']" class="text-success" />
-            <font-awesome v-else :icon="['fas', 'circle-xmark']" class="text-base text-error" />
+            <FontAwesomeIcon v-if="isActive" :icon="['fas', 'circle-check']" class="text-success" />
+            <FontAwesomeIcon v-else :icon="['fas', 'circle-xmark']" class="text-base text-error" />
           </div>
         </div>
         <div class="flex flex-wrap gap-2">
@@ -96,29 +96,29 @@
             class="bg-gray-800 px-3 py-1 rounded-md flex items-center gap-2"
             :class="{ 'bg-opacity-50': !props.scheme[0] }"
           >
-            <font-awesome :icon="['fas', 'key']" class="text-primary" />
+            <FontAwesomeIcon :icon="['fas', 'key']" class="text-primary" />
             <span>{{ textF('multisig_schema.body.key') }} 1</span>
-            <font-awesome v-if="props.scheme[0]" :icon="['fas', 'check']" class="text-success" />
-            <font-awesome v-else :icon="['fas', 'xmark']" class="text-error" />
+            <FontAwesomeIcon v-if="props.scheme[0]" :icon="['fas', 'check']" class="text-success" />
+            <FontAwesomeIcon v-else :icon="['fas', 'xmark']" class="text-error" />
           </div>
           <div
             class="bg-gray-800 px-3 py-1 rounded-md flex items-center gap-2"
             :class="{ 'bg-opacity-50': !props.scheme[1] }"
           >
-            <font-awesome :icon="['fas', 'key']" class="text-primary" />
+            <FontAwesomeIcon :icon="['fas', 'key']" class="text-primary" />
             <span>{{ textF('multisig_schema.body.key') }} 2</span>
-            <font-awesome v-if="props.scheme[1]" :icon="['fas', 'check']" class="text-success" />
-            <font-awesome v-else :icon="['fas', 'xmark']" class="text-error" />
+            <FontAwesomeIcon v-if="props.scheme[1]" :icon="['fas', 'check']" class="text-success" />
+            <FontAwesomeIcon v-else :icon="['fas', 'xmark']" class="text-error" />
           </div>
           <div
             v-if="is3of5"
             class="bg-gray-800 px-3 py-1 rounded-md flex items-center gap-2"
             :class="{ 'bg-opacity-50': !props.scheme[2] }"
           >
-            <font-awesome :icon="['fas', 'key']" class="text-primary" />
+            <FontAwesomeIcon :icon="['fas', 'key']" class="text-primary" />
             <span>{{ textF('multisig_schema.body.key') }} 3</span>
-            <font-awesome v-if="props.scheme[2]" :icon="['fas', 'check']" class="text-success" />
-            <font-awesome v-else :icon="['fas', 'xmark']" class="text-error" />
+            <FontAwesomeIcon v-if="props.scheme[2]" :icon="['fas', 'check']" class="text-success" />
+            <FontAwesomeIcon v-else :icon="['fas', 'xmark']" class="text-error" />
           </div>
         </div>
       </div>
@@ -136,7 +136,7 @@
             </div>
           </div>
           <div class="ml-2">
-            <font-awesome :icon="['fas', 'circle-xmark']" class="text-base text-error" />
+            <FontAwesomeIcon :icon="['fas', 'circle-xmark']" class="text-base text-error" />
           </div>
         </div>
         <div class="flex flex-wrap gap-2">
@@ -144,24 +144,24 @@
             class="bg-gray-800 px-3 py-1 rounded-md flex items-center gap-2"
             :class="{ 'bg-opacity-50': !props.scheme[is2of3 ? 2 : 3] }"
           >
-            <font-awesome :icon="['fas', 'key']" class="text-primary" />
+            <FontAwesomeIcon :icon="['fas', 'key']" class="text-primary" />
             <span>{{ textF('multisig_schema.body.key') }} {{ is2of3 ? 3 : 4 }}</span>
-            <font-awesome
+            <FontAwesomeIcon
               v-if="props.scheme[is2of3 ? 2 : 3]"
               :icon="['fas', 'check']"
               class="text-success"
             />
-            <font-awesome v-else :icon="['fas', 'xmark']" class="text-error" />
+            <FontAwesomeIcon v-else :icon="['fas', 'xmark']" class="text-error" />
           </div>
           <div
             v-if="is3of5"
             class="bg-gray-800 px-3 py-1 rounded-md flex items-center gap-2"
             :class="{ 'bg-opacity-50': !props.scheme[14] }"
           >
-            <font-awesome :icon="['fas', 'key']" class="text-primary" />
+            <FontAwesomeIcon :icon="['fas', 'key']" class="text-primary" />
             <span>{{ textF('multisig_schema.body.key') }} 5</span>
-            <font-awesome v-if="props.scheme[14]" :icon="['fas', 'check']" class="text-success" />
-            <font-awesome v-else :icon="['fas', 'xmark']" class="text-error" />
+            <FontAwesomeIcon v-if="props.scheme[14]" :icon="['fas', 'check']" class="text-success" />
+            <FontAwesomeIcon v-else :icon="['fas', 'xmark']" class="text-error" />
           </div>
         </div>
       </div>
@@ -172,6 +172,7 @@
 <script setup lang="ts">
 import TableRowWrapper from '@shared/components/help/multisigSchema/table/backupCosig/TableRowWrapper.vue';
 import KeyCheckCol from '@shared/components/help/multisigSchema/table/KeyCheckCol.vue';
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import { walletRowHelpers } from '@shared/components/help/multisigSchema/composuables';
 import { textF } from '@shared/composuables/language';
 

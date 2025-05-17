@@ -69,7 +69,9 @@ export default defineNuxtConfig({
     '@content': resolve(__dirname, '../../content'),
     '@shared': resolve(__dirname, '../../shared'),
   },
+  // assetsInclude: ['**/*.json'],
   vite: {
+    // assetsInclude: ['**/*.json'],
     define: {
       'import.meta.env.VITE_GIT_COMMIT_HASH': JSON.stringify(
         execSync('git rev-parse --short HEAD').toString().trim(),
@@ -110,6 +112,23 @@ export default defineNuxtConfig({
       light: [],
       thin: [],
       duotone: [],
+    },
+  },
+  i18n: {
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
+    defaultLocale: 'en',
+    // locales: [...config.MAPPED_LANGUAGES_LIST_FOR_NUXT_CONFIG_I18N] // todo
+    locales: [
+      { name: 'Cs', code: 'cs', file: 'cs.json', icon: 'flagpack:cz' },
+      { name: 'Sk', code: 'sk', file: 'sk.json', icon: 'flagpack:sk' },
+      { name: 'En', code: 'en', file: 'en.json', icon: 'flagpack:gb-ukm' },
+    ],
+    lazy: true,
+    compilation: {
+      strictMessage: false,
+      escapeHtml: false,
     },
   },
   supabase: {

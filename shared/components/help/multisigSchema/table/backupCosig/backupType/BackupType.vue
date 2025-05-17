@@ -1,7 +1,6 @@
 <template>
   <div class="w-full">
-    <TableHeader title="Záloha" :key-variant="props.keyVariant" />
-
+    <TableHeader :title="$t('multisig_schema.backup')" :key-variant="props.keyVariant" />
     <CollapsibleTable
       :table-row-component="TableRow"
       :table-rows="tableRows"

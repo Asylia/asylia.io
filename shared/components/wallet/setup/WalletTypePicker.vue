@@ -17,12 +17,12 @@ const walletTypeOptions = ref<TabsItem[]>([
   },
   {
     value: WALLET_STRUCTURE_TYPE.CONSIGNER,
-    label: textF('multisig_schema.filter.p1', 'Co-sig'),
+    label: textF('multisig_schema.filter.p2', 'Co-sig'),
     icon: 'fluent:person-passkey-16-regular',
   },
   {
     value: WALLET_STRUCTURE_TYPE.MULTISIG,
-    label: textF('multisig_schema.filter.p1', 'Multisig'),
+    label: textF('multisig_schema.filter.p3', 'Multisig'),
     icon: 'bitcoin-icons:two-keys-outline',
   },
 ]);

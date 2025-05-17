@@ -1,27 +1,28 @@
 <template>
-  <div>
-    <AsideContent
-      v-model="keyVariant"
-      v-model:custom-schema="customSchema"
-      :wallet-type="walletType"
-      :class="props.asideClass"
-    />
-
-    <div class="w-full text-gray-100 rounded min-w-0 text-sm">
-      <FilterBar v-model:active-inactive="activeInactive" v-model:wallet-type="walletType" />
-
-      <DisplayTable
-        :walletType="walletType"
-        :keyVariant="keyVariant"
-        :customSchema="customSchema"
-        :active-inactive="activeInactive"
-        class="mt-4"
+  <suspense>
+    <div v-bind="$attrs">
+      <AsideContent
+        v-model="keyVariant"
+        v-model:custom-schema="customSchema"
+        :wallet-type="walletType"
+        :class="props.asideClass"
       />
 
-      <slot name="under-table" />
+      <div class="w-full text-gray-100 rounded min-w-0 text-sm">
+        <FilterBar v-model:active-inactive="activeInactive" v-model:wallet-type="walletType" />
 
+        <DisplayTable
+          :walletType="walletType"
+          :keyVariant="keyVariant"
+          :customSchema="customSchema"
+          :active-inactive="activeInactive"
+          class="mt-4"
+        />
+
+        <slot name="under-table" />
+      </div>
     </div>
-  </div>
+  </suspense>
 </template>
 
 <script setup lang="ts">
@@ -36,8 +37,12 @@ import {
 import { SCENARIO_ACTIVE_INACTIVE } from '@shared/components/help/multisigSchema/types';
 
 const props = defineProps<{
-  asideClass?:string
-}>()
+  asideClass?: string;
+}>();
+
+import { useLocalI18n } from '@shared/composuables/language';
+
+await useLocalI18n(() => import('./locales.json'));
 
 const walletType = ref(WALLET_STRUCTURE_TYPE.BACKUP);
 const activeInactive = ref(SCENARIO_ACTIVE_INACTIVE.ACTIVE);
@@ -47,5 +52,4 @@ const customSchema = ref<customSchemaType>({
   m: 2,
   n: 3,
 });
-
 </script>

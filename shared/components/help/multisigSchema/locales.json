@@ -1,0 +1,161 @@
+{
+  "cs": {
+    "multisig_schema": {
+      "backup": "Záloha",
+      "of": "z",
+      "aside": {
+        "backup": {
+          "title": "Záloha",
+          "p": "Záloha je typ peněženky, kde podle schématu drží majoritní část klíčů uživatel a minoritní část klíčů platforma Asylia. Uživatel v případě ztráty jednoho klíče může použít záložní klíč platformy."
+        },
+        "cosig": {
+          "title": "Co-sig",
+          "p": "Collaborative signature je typ peněženky, kde podle schématu drží majoritní část klíčů jeden nebo více vlastníků a záloha může být distribuována mezi více stran."
+        },
+        "multisig": {
+          "title": "Multisig",
+          "p": "Multisignature je typ, kde je struktura podepisování řízena definovaným schématem."
+        },
+        "custom": {
+          "title": "Pozor",
+          "p": "Doporučený bezpečnostní standard je 2-z-3 nebo 3-z-5.",
+          "button": "Vlastní schéma",
+          "required": "Požadované",
+          "total": "Celkem"
+        }
+      },
+      "filter": {
+        "p1": "Záloha",
+        "p2": "Co-sig",
+        "p3": "Multisig"
+      },
+      "header": {
+        "title": "Multisig schéma",
+        "key": "Klíč",
+        "owner": "Vlastník",
+        "operational": "Funkční"
+      },
+      "show_more": "Zobrazit další",
+      "hide": "Skrýt",
+      "body": {
+        "key": "Klíč",
+        "user": "Uživatel",
+        "scenario": "Scénář",
+        "main_holder": "Hlavní držitel",
+        "majority": "Majorita",
+        "key_holder": "Držitel klíče",
+        "minority": "Minorita",
+        "backup": "Záloha",
+        "custom": "Vlastní",
+        "one_account": "Jeden účet",
+        "wallet_owner": "Majitel peněženky"
+      }
+    }
+  },
+  "en": {
+    "multisig_schema": {
+      "backup": "Backup",
+      "of": "of",
+      "aside": {
+        "backup": {
+          "title": "Backup",
+          "p": "A backup wallet scheme where the user holds the majority of keys and Asylia holds a minority key. If the user loses one key, the Asylia backup key can be used."
+        },
+        "cosig": {
+          "title": "Co-sig",
+          "p": "Collaborative signature wallet where one or more owners hold majority keys and the backup is distributed among multiple parties."
+        },
+        "multisig": {
+          "title": "Multi-sig",
+          "p": "A multi-signature wallet where the signing structure follows a defined scheme."
+        },
+        "custom": {
+          "title": "Note",
+          "p": "Recommended security standard is 2-of-3 or 3-of-5.",
+          "button": "Custom scheme",
+          "required": "Required",
+          "total": "Total"
+        }
+      },
+      "filter": {
+        "p1": "Backup",
+        "p2": "Co-sig",
+        "p3": "Multi-sig"
+      },
+      "header": {
+        "title": "Multi-sig scheme",
+        "key": "Key",
+        "owner": "Owner",
+        "operational": "Operational"
+      },
+      "show_more": "Show more",
+      "hide": "Hide",
+      "body": {
+        "key": "Key",
+        "user": "User",
+        "scenario": "Scenario",
+        "main_holder": "Main holder",
+        "majority": "Majority",
+        "key_holder": "Key holder",
+        "minority": "Minority",
+        "backup": "Backup",
+        "custom": "Custom",
+        "one_account": "Single account",
+        "wallet_owner": "Wallet owner"
+      }
+    }
+  },
+  "sk": {
+    "multisig_schema": {
+      "backup": "Záloha",
+      "of": "z",
+      "aside": {
+        "backup": {
+          "title": "Záloha",
+          "p": "Záloha je typ peňaženky, kde podľa schémy drží majoritnú časť kľúčov používateľ a minoritnú časť kľúčov platforma Asylia. Používateľ v prípade straty jedného kľúča vie použiť záložný kľúč platformy."
+        },
+        "cosig": {
+          "title": "Co-sig",
+          "p": "Collaborative signature je typ peňaženky, kde podľa schémy drží majoritnú časť kľúčov jeden alebo viac majiteľov a záloha môže byť distribuovaná medzi viaceré strany."
+        },
+        "multisig": {
+          "title": "Multisig",
+          "p": "Multisignature je typ, kde je štruktúra podpisovania riadená definovanou schémou."
+        },
+        "custom": {
+          "title": "Pozor",
+          "p": "Odporúčaný bezpečnostný štandard je 2-z-3 alebo 3-z-5.",
+          "button": "Vlastná schéma",
+          "required": "Potrebné",
+          "total": "Celkovo"
+        }
+      },
+      "filter": {
+        "p1": "Záloha",
+        "p2": "Co-sig",
+        "p3": "Multisig"
+      },
+      "header": {
+        "title": "Multisig schéma",
+        "key": "Kľúč",
+        "owner": "Vlastník",
+        "operational": "Funkčný"
+      },
+      "show_more": "Zobraziť ďalšie",
+      "hide": "Skryť",
+      "body": {
+        "key": "Kľúč",
+        "user": "Používateľ",
+        "scenario": "Scenár",
+        "main_holder": "Hlavný držiteľ",
+        "majority": "Majorita",
+        "key_holder": "Držiteľ kľúča",
+        "minority": "Minoria",
+        "backup": "Záloha",
+        "custom": "Vlastné",
+        "one_account": "Jeden účet",
+        "wallet_owner": "Majiteľ peňaženky"
+      }
+    }
+  }
+}

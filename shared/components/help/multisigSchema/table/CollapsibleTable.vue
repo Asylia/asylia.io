@@ -20,14 +20,14 @@
         @click="toggleExpand"
       >
         <span class>{{ textF('multisig_schema.show_more') }} {{ remainingRowsCount }}</span>
-        <font-awesome :icon="['fas', 'angle-down']" class="mt-1" />
+        <FontAwesomeIcon :icon="['fas', 'angle-down']" class="mt-1" />
       </div>
       <div
         v-else
         class="flex flex-col items-center justify-center text-gray-200 mt-5 hover:cursor-pointer hover:opacity-70"
         @click="toggleExpand"
       >
-        <font-awesome :icon="['fas', 'angle-up']" class="" />
+        <FontAwesomeIcon :icon="['fas', 'angle-up']" class="" />
         <span class="mt-1">{{ textF('multisig_schema.hide') }}</span>
       </div>
     </template>
@@ -35,6 +35,7 @@
 </template>
 
 <script setup lang="ts">
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import type { Quorum } from '@shared/types/WalletStructure';
 import { textF } from '@shared/composuables/language';
 

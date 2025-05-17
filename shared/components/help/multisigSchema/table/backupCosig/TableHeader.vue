@@ -13,7 +13,7 @@
       >
         <span>{{ textF('multisig_schema.header.title') }} {{ props.title }}</span> -
         <span class="text-slate-500 dark:text-gray-300">{{ variantTitle }}</span>
-        <font-awesome :icon="['fas', 'shield-keyhole']" class="text-info" />
+        <FontAwesomeIcon :icon="['fas', 'shield-keyhole']" class="text-info" />
       </div>
     </div>
     <div
@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/types/WalletStructure';
 import { textF } from '@shared/composuables/language';
 

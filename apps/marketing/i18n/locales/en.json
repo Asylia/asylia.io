@@ -3,6 +3,8 @@
     "title": "Asylia.io – Bitcoin Fortress",
     "description": "Asylia.io is a Bitcoin fortress built on multi-signature, giving users full control over their keys while offering a dependable co-signer for critical situations. The Collaborative Partial Custody (CPC) model minimises trust in third parties, fees are voluntary and open source guarantees auditability."
   },
+  "2of3": "2of3",
+  "3of5": "3of5",
   "of": "of",
   "copy_address": "Copy",
   "hello_world": "Hello, world!",
@@ -223,54 +225,7 @@
   "multisig_schema": {
     "title": "Multi-sig scheme",
     "p": "Backup, co-sig and multi-sig are effectively the same, adhering to the Bitcoin multi-sig standard. The only difference is how they’re used in your wallet.",
-    "backToWhitePaper": "Back to whitepaper",
-    "aside": {
-      "backup": {
-        "title": "Backup",
-        "p": "A backup wallet scheme where the user holds the majority of keys and Asylia holds a minority key. If the user loses one key, the Asylia backup key can be used."
-      },
-      "cosig": {
-        "title": "Co-sig",
-        "p": "Collaborative signature wallet where one or more owners hold majority keys and the backup is distributed among multiple parties."
-      },
-      "multisig": {
-        "title": "Multi-sig",
-        "p": "A multi-signature wallet where the signing structure follows a defined scheme."
-      },
-      "custom": {
-        "title": "Note",
-        "p": "Recommended security standard is 2-of-3 or 3-of-5.",
-        "button": "Custom scheme",
-        "required": "Required",
-        "total": "Total"
-      }
-    },
-    "filter": {
-      "p1": "Backup",
-      "p2": "Co-sig",
-      "p3": "Multi-sig"
-    },
-    "header": {
-      "title": "Multi-sig scheme",
-      "key": "Key",
-      "owner": "Owner",
-      "operational": "Operational"
-    },
-    "show_more": "Show more",
-    "hide": "Hide",
-    "body": {
-      "key": "Key",
-      "user": "User",
-      "scenario": "Scenario",
-      "main_holder": "Main holder",
-      "majority": "Majority",
-      "key_holder": "Key holder",
-      "minority": "Minority",
-      "backup": "Backup",
-      "custom": "Custom",
-      "one_account": "Single account",
-      "wallet_owner": "Wallet owner"
-    }
+    "backToWhitePaper": "Back to whitepaper"
   },
   "team": {
     "title": "Our team",

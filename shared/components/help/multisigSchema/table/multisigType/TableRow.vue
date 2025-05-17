@@ -11,7 +11,7 @@
         :class="{ 'border-t': props.index === 0 && userIndex === 0 }"
         class="flex text-slate-500 dark:text-gray-300 col-span-8 row-span-1 py-2 px-2 items-center justify-center border-b border-r border-gray-300 dark:border-gray-700"
       >
-        <font-awesome
+        <FontAwesomeIcon
           :icon="['fas', 'user']"
           class="text-sm mr-2 text-slate-500 dark:text-gray-300"
         />
@@ -35,8 +35,8 @@
         :style="{ 'grid-row': `span ${props.scheme.length}` }"
         class="flex col-span-2 md:col-span-1 border-b border-r py-2 px-2 text-slate-500 dark:text-gray-300 items-center justify-center border-gray-300 dark:border-gray-700"
       >
-        <font-awesome v-if="isActive" :icon="['fas', 'circle-check']" class="text-success" />
-        <font-awesome v-else :icon="['fas', 'circle-xmark']" class="text-base text-error" />
+        <FontAwesomeIcon v-if="isActive" :icon="['fas', 'circle-check']" class="text-success" />
+        <FontAwesomeIcon v-else :icon="['fas', 'circle-xmark']" class="text-base text-error" />
       </div>
     </template>
   </TableRowWrapper>
@@ -45,6 +45,7 @@
 <script setup lang="ts">
 import TableRowWrapper from '@shared/components/help/multisigSchema/table/backupCosig/TableRowWrapper.vue';
 import KeyCheckCol from '@shared/components/help/multisigSchema/table/KeyCheckCol.vue';
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import { SCENARIO_ACTIVE_INACTIVE } from '../../types';
 import { textF } from '@shared/composuables/language';
 
