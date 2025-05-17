@@ -20,8 +20,24 @@ import FasCircleXmark from '@shared/components/ui/font-awesome/solid/CircleXmark
 import FasCircleCheck from '@shared/components/ui/font-awesome/solid/CircleCheck.vue';
 import FasUser from '@shared/components/ui/font-awesome/solid/User.vue';
 import FasShieldKeyhole from '@shared/components/ui/font-awesome/solid/ShieldKeyhole.vue';
+/*
+ * LIGHT icon pack
+ */
+import FasComputerMouseScrollwheel from '@shared/components/ui/font-awesome/light/ComputerMouseScrollwheel.vue';
+import FalLockKeyhole from '@shared/components/ui/font-awesome/light/LockKeyhole.vue';
+import FalArrowUp from '@shared/components/ui/font-awesome/light/ArrowUp.vue';
+/*
+ * BRANDS icon pack
+ */
+import FabGithub from '@shared/components/ui/font-awesome/brands/Github.vue';
+import FabXTwitter from '@shared/components/ui/font-awesome/brands/XTwitter.vue';
+import FabMedium from '@shared/components/ui/font-awesome/brands/Medium.vue';
+import FabInstagram from '@shared/components/ui/font-awesome/brands/Instagram.vue';
+import FabGitlab from '@shared/components/ui/font-awesome/brands/Gitlab.vue';
+import FabLinkedin from '@shared/components/ui/font-awesome/brands/Linkedin.vue';
+import FabBitcoin from '@shared/components/ui/font-awesome/brands/Bitcoin.vue';
 
-type IconPack = 'fas' | 'fal';
+type IconPack = 'fas' | 'fal' | 'fab';
 type IconType = readonly [IconPack, string];
 
 const props = defineProps<{
@@ -50,6 +66,20 @@ const ICONS_LIST: IconListTyp = {
     'circle-check': FasCircleCheck,
     user: FasUser,
     'shield-keyhole': FasShieldKeyhole,
+  },
+  fal: {
+    'computer-mouse-scrollwheel': FasComputerMouseScrollwheel,
+    'lock-keyhole': FalLockKeyhole,
+    'arrow-up': FalArrowUp,
+  },
+  fab: {
+    github: FabGithub,
+    'x-twitter': FabXTwitter,
+    medium: FabMedium,
+    instagram: FabInstagram,
+    gitlab: FabGitlab,
+    linkedin: FabLinkedin,
+    bitcoin: FabBitcoin,
   },
 };
 

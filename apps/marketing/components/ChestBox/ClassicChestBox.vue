@@ -9,7 +9,7 @@
         <div
           class="w-[10px] h-[20px] border-l-3 border-r-3 border-b-3 z-20 bg-slate-900 rounded-b-full absolute mx-auto left-0 right-0 top-0"
         />
-        <font-awesome
+        <FontAwesomeIcon
           :icon="['fal', 'lock-keyhole']"
           style="z-index: 1"
           class="text-slate-500 dark:text-gray-300 text-5xl mx-auto absolute left-0 right-0 top-[10px]"
@@ -23,7 +23,7 @@
         :key="key"
         class="flex-1 flex items-center justify-center px-2"
       >
-        <font-awesome :icon="['fas', 'key']" class="text-base text-primary" />
+        <FontAwesomeIcon :icon="['fas', 'key']" class="text-base text-primary" />
       </div>
     </div>
 
@@ -32,6 +32,8 @@
 </template>
 
 <script setup lang="ts">
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
+
 const props = withDefaults(
   defineProps<{
     keys?: number;

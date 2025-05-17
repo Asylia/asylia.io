@@ -52,7 +52,6 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@nuxtjs/i18n',
     '@nuxtjs/device',
-    '@vesp/nuxt-fontawesome',
     '@vueuse/nuxt',
     '@vueuse/motion/nuxt',
     '@nuxt/eslint',
@@ -106,37 +105,6 @@ export default defineNuxtConfig({
     compilation: {
       strictMessage: false,
       escapeHtml: false,
-    },
-  },
-  fontawesome: {
-    icons: {
-      solid: [
-        'file-pdf',
-        'circle-check',
-        'circle-xmark',
-        'key',
-        'gear',
-        'check',
-        'xmark',
-        'user',
-        'plus',
-        'minus',
-        'angle-down',
-        'angle-up',
-      ],
-      brands: ['github', 'x-twitter', 'medium', 'instagram', 'linkedin', 'gitlab', 'bitcoin'],
-    },
-    proIcons: {
-      solid: ['scroll', 'shield-keyhole', 'lock-keyhole', 'lock-keyhole-open'],
-      light: [
-        'arrow-up',
-        'scroll',
-        'computer-mouse-scrollwheel',
-        'lock-keyhole',
-        'lock-keyhole-open',
-      ],
-      thin: [],
-      duotone: [],
     },
   },
   runtimeConfig: {

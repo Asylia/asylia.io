@@ -7,9 +7,9 @@
     >
       <span class="bg-emerald-600 rounded-full w-3 h-3" />
       <span class="text-sm group-hover:text-slate-800 dark:group-hover:text-white">
-      {{ gitCommitHash }}
-    </span>
-      <font-awesome
+        {{ gitCommitHash }}
+      </span>
+      <FontAwesomeIcon
         :icon="['fab', 'github']"
         class="text-sm group-hover:text-slate-800 dark:group-hover:text-white"
       />
@@ -18,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 
 const props = defineProps<{
   gitCommitHash?: string;

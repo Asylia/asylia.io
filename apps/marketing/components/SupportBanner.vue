@@ -11,7 +11,7 @@
         <div
           class="bg-gray-100 border border-slate-500 dark:bg-slate-800 w-full md:max-w-[400px] shrink-0 space-x-1 md:space-x-2 px-2 md:px-4 h-[42px] flex items-center justify-center md:justify-start rounded-md text-sm font-mono text-slate-700 dark:text-primary break-all"
         >
-          <font-awesome :icon="['fab', 'bitcoin']" class="text-sm md:text-xl text-btc" />
+          <FontAwesomeIcon :icon="['fab', 'bitcoin']" class="text-sm md:text-xl text-btc" />
           <span ref="addressEl" class="text-xs sm:text-base" @click="selectAddress">{{
             BTC_ADDRESS
           }}</span>
@@ -48,9 +48,10 @@
 </template>
 
 <script setup lang="ts">
-import { useIntervalFn, useStorage, type UseIntervalReturn } from '@vueuse/core';
-
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import WalletTag from '~/components/WalletTag.vue';
+
+import { useIntervalFn, useStorage, type UseIntervalReturn } from '@vueuse/core';
 
 /**
  * Refresh interval in milliseconds (60 seconds).

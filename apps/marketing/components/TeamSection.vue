@@ -1,7 +1,7 @@
 <template>
   <AnimationWrapper class="mt-20">
     <div class="grid w-full lg:grid-cols-[240px_1fr] gap-2 lg:gap-8">
-      <div/>
+      <div />
       <div class="">
         <div class="flex items-center justify-center md:justify-start space-x-2">
           <UIcon name="ant-design:team-outlined" class="text-primary text-3xl" />
@@ -29,23 +29,23 @@
             alt="Dávid Zita"
             loading="lazy"
             class="w-28 h-28 rounded-full object-cover md:w-48 md:h-48"
-          >
+          />
           <p class="text-xl mt-2 font-bold text-slate-600 dark:text-gray-100 md:text-2xl">
             <span>Dávid Zita</span>
           </p>
           <p class="text-sm text-slate-600 dark:text-gray-300">Founder & Cto - Core dev.</p>
           <div class="flex items-center mt-3 space-x-4">
-            <font-awesome
+            <FontAwesomeIcon
               :icon="['fab', 'linkedin']"
               class="text-slate-400 text-xl hover:cursor-pointer hover:text-primary"
               @click="openLinkedIn"
             />
-            <font-awesome
+            <FontAwesomeIcon
               :icon="['fab', 'gitlab']"
               class="text-slate-400 text-xl hover:cursor-pointer hover:text-primary"
               @click="openGitlab"
             />
-            <font-awesome
+            <FontAwesomeIcon
               :icon="['fab', 'instagram']"
               class="text-slate-400 text-xl hover:cursor-pointer hover:text-primary"
               @click="openInstagram"
@@ -57,12 +57,12 @@
       <div
         class="text-slate-600 dark:text-gray-400 leading-relaxed md:leading-loose text-base text-center md:text-left md:text-lg"
       >
-        <p class="m3-2" v-html="$t('team.member1.p')"/>
+        <p class="m3-2" v-html="$t('team.member1.p')" />
         <blockquote
           class="border-l-4 border-primary pl-4 italic my-4 text-slate-800 dark:text-gray-300"
           v-html="$t('team.member1.q')"
         />
-        <p class="mt-7" v-html="$t('team.member1.p2')"/>
+        <p class="mt-7" v-html="$t('team.member1.p2')" />
       </div>
     </div>
   </AnimationWrapper>
@@ -70,6 +70,7 @@
 
 <script setup lang="ts">
 import AnimationWrapper from '~/components/AnimationWrapper.vue';
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 
 const openInstagram = () => {
   window.open('https://www.instagram.com/davidzita.sk/', '_blank');

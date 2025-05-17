@@ -35,7 +35,7 @@
         <span class="opacity-75 group-hover:opacity-100">
           {{ $t('read_white_paper') }}
         </span>
-        <font-awesome
+        <FontAwesomeIcon
           :icon="['fal', 'computer-mouse-scrollwheel']"
           class="opacity-50 dark:text-primary animate-bounce-slow"
         />
@@ -49,6 +49,7 @@ import { useScrollPosition } from '~/composables/useScrollPosition';
 import SocialLinks from '@shared/components/marketing/SocialLinks.vue';
 import SelectLanguage from '@shared/components/ui/SelectLanguage.vue';
 import TowerImage from '@shared/images/TowerImage.vue';
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 
 const { t, locale } = useI18n();
 const introText = computed(() => t('introMessage'));

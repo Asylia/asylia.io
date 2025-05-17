@@ -52,7 +52,6 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@nuxtjs/i18n',
     '@nuxtjs/device',
-    '@vesp/nuxt-fontawesome',
     '@vueuse/nuxt',
     '@nuxt/eslint',
   ],
@@ -100,18 +99,6 @@ export default defineNuxtConfig({
       },
       NUXT_PUBLIC_CONTACT_EMAIL: process.env.NUXT_PUBLIC_CONTACT_EMAIL,
       NUXT_PUBLIC_WALLET_ADDRESS: process.env.NUXT_PUBLIC_WALLET_ADDRESS,
-    },
-  },
-  fontawesome: {
-    icons: {
-      solid: [],
-      brands: ['github', 'x-twitter', 'medium'],
-    },
-    proIcons: {
-      solid: ['shield-plus','file-import','globe'],
-      light: [],
-      thin: [],
-      duotone: [],
     },
   },
   i18n: {
