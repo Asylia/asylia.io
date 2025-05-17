@@ -18,7 +18,7 @@ import appColorMode from '@shared/composuables/ui/colorMode';
 import {
   autoScrolledToMultisig,
   autoScrolledToMultisigFrom,
-} from '~/components/multisigSchema/composuables';
+} from '@shared/components/help/multisigSchema/composuables';
 
 const props = defineProps<{
   scrolledFrom: string;

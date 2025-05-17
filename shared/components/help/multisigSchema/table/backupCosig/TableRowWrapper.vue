@@ -27,7 +27,7 @@
         {{ props.index + 1 }}
       </div>
       <div class="text-gray-400 mt-1 text-xs md:text-sm">
-        {{ $t('multisig_schema.body.scenario') }}
+        {{ textF('multisig_schema.body.scenario') }}
       </div>
     </div>
 
@@ -37,6 +37,7 @@
 
 <script setup lang="ts">
 import appColorMode from '@shared/composuables/ui/colorMode';
+import { textF } from '@shared/composuables/language';
 
 const props = defineProps<{
   index: number;

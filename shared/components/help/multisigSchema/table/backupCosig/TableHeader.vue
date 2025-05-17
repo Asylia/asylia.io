@@ -11,7 +11,7 @@
       <div
         class="flex flex-wrap items-center text-slate-500 dark:text-gray-300 justify-center gap-1"
       >
-        <span>{{ $t('multisig_schema.header.title') }} {{ props.title }}</span> -
+        <span>{{ textF('multisig_schema.header.title') }} {{ props.title }}</span> -
         <span class="text-slate-500 dark:text-gray-300">{{ variantTitle }}</span>
         <font-awesome :icon="['fas', 'shield-keyhole']" class="text-info" />
       </div>
@@ -19,19 +19,19 @@
     <div
       class="hidden md:flex md:col-span-2 text-slate-500 dark:text-gray-300 p-2 font-bold text-center border-r border-b border-t border-gray-300 dark:border-gray-700 items-center justify-center space-x-2"
     >
-      {{ $t('multisig_schema.header.key') }}
+      {{ textF('multisig_schema.header.key') }}
     </div>
     <div
       class="hidden md:flex md:col-span-1 text-slate-500 dark:text-gray-300 rounded-r-md p-2 font-bold text-center border-r border-b border-t border-gray-300 dark:border-gray-700 items-center justify-center space-x-2"
     >
-      {{ $t('multisig_schema.header.owner') }}
+      {{ textF('multisig_schema.header.owner') }}
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-
 import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/types/WalletStructure';
+import { textF } from '@shared/composuables/language';
 
 const props = defineProps<{
   title?: string;

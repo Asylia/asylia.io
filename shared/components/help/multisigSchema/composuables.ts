@@ -1,11 +1,15 @@
 import { computed, ref } from 'vue';
 
+import { SCENARIO_ACTIVE_INACTIVE, type ScenarioActiveInactiveType } from './types';
 import {
-  SCENARIO_ACTIVE_INACTIVE,
-  type ScenarioActiveInactiveType,
-
-} from '~/utils/constants/ui/wallet';
-import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/types/WalletStructure';
+  type customSchemaType,
+  WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS,
+  WALLET_STRUCTURE_TYPE, WalletBackupAnCosignerKeyVariantsQuorum,
+} from '@shared/types/WalletStructure';
+import MultisigRowBackupType from '@shared/components/help/multisigSchema/table/backupCosig/backupType/BackupType.vue';
+import MultisigRowCoSignerType
+  from '@shared/components/help/multisigSchema/table/backupCosig/cosignerType/CosignerType.vue';
+import MultisigRowMultisigType from '@shared/components/help/multisigSchema/table/multisigType/MultisigType.vue';
 
 export const SCROLLED_FROM = Object.freeze({
   INTRO: {
@@ -123,6 +127,7 @@ type walletRowHelpers = {
   keyVariant: string;
   activeInactive: ScenarioActiveInactiveType;
 };
+
 export const walletRowHelpers = ({ keyVariant, activeInactive }: walletRowHelpers) => {
   const is2of3 = computed(() => keyVariant === WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['2of3']);
   const is3of5 = computed(() => keyVariant === WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['3of5']);
@@ -134,3 +139,4 @@ export const walletRowHelpers = ({ keyVariant, activeInactive }: walletRowHelper
     isActive,
   };
 };
+

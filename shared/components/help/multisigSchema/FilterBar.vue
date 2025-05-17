@@ -15,11 +15,12 @@
 import WalletTypePicker from '@shared/components/wallet/setup/WalletTypePicker.vue';
 import type { TabsItem } from '@nuxt/ui';
 
+import {SCENARIO_ACTIVE_INACTIVE} from './types'
 import {
   // WALLET_STRUCTURE_TYPE,
-  SCENARIO_ACTIVE_INACTIVE,
+
   type ScenarioActiveInactiveType,
-} from '~/utils/constants/ui/wallet';
+} from '@shared/types/WalletStructure';
 import type { WalletStructureType } from '@shared/types/WalletStructure'
 
 

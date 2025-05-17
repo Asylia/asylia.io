@@ -4,22 +4,23 @@
       v-model="m"
       :min="mMin"
       :max="mMax"
-      :title="$t('multisig_schema.aside.custom.required')"
+      :title="textF('multisig_schema.aside.custom.required')"
     />
     <div class="text-gray-400 font-semibold no-select text-lg">
-      {{ $t('of') }}
+      {{ textF('of') }}
     </div>
     <SingleCounter
       v-model="n"
       :min="nMin"
       :max="nMax"
-      :title="$t('multisig_schema.aside.custom.total')"
+      :title="textF('multisig_schema.aside.custom.total')"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import SingleCounter from '~/components/multisigSchema/sidebar/numVerticalCounter/VerticalSingleCounter.vue';
+import SingleCounter from '@shared/components/help/multisigSchema/sidebar/numVerticalCounter/VerticalSingleCounter.vue';
+import { textF } from '@shared/composuables/language';
 
 const m = defineModel<number>('m');
 const n = defineModel<number>('n');

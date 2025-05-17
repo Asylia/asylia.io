@@ -19,7 +19,7 @@
         class="flex flex-col items-center justify-center text-gray-200 mt-5 hover:cursor-pointer hover:opacity-70"
         @click="toggleExpand"
       >
-        <span class>{{ $t('multisig_schema.show_more') }} {{ remainingRowsCount }}</span>
+        <span class>{{ textF('multisig_schema.show_more') }} {{ remainingRowsCount }}</span>
         <font-awesome :icon="['fas', 'angle-down']" class="mt-1" />
       </div>
       <div
@@ -28,14 +28,15 @@
         @click="toggleExpand"
       >
         <font-awesome :icon="['fas', 'angle-up']" class="" />
-        <span class="mt-1">{{ $t('multisig_schema.hide') }}</span>
+        <span class="mt-1">{{ textF('multisig_schema.hide') }}</span>
       </div>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Quorum } from '~/utils/constants/ui/wallet';
+import type { Quorum } from '@shared/types/WalletStructure';
+import { textF } from '@shared/composuables/language';
 
 const props = defineProps<{
   activeInactive: string;

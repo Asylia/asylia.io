@@ -25,9 +25,3 @@ export const WalletBackupAnCosignerKeyVariantsQuorum = Object.freeze({
 export type WalletBackupAnCosignerKeyVariantsQuorumType =
   keyof typeof WalletBackupAnCosignerKeyVariantsQuorum;
 
-export const SCENARIO_ACTIVE_INACTIVE = Object.freeze({
-  ACTIVE: 'ACTIVE',
-  INACTIVE: 'INACTIVE',
-});
-
-export type ScenarioActiveInactiveType = keyof typeof SCENARIO_ACTIVE_INACTIVE;

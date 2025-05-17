@@ -14,11 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import TableHeader from '~/components/multisigSchema/table/multisigType/TableHeader.vue';
-import TableRow from '~/components/multisigSchema/table/multisigType/TableRow.vue';
-import CollapsibleTable from '~/components/multisigSchema/table/CollapsibleTable.vue';
-import { generateTableRows } from '~/components/multisigSchema/composuables';
-import type { Quorum } from '~/utils/constants/ui/wallet';
+import TableHeader from '@shared/components/help/multisigSchema/table/multisigType/TableHeader.vue';
+import TableRow from '@shared/components/help/multisigSchema/table/multisigType/TableRow.vue';
+import CollapsibleTable from '@shared/components/help/multisigSchema/table/CollapsibleTable.vue';
+import { generateTableRows } from '@shared/components/help/multisigSchema/composuables';
+import type { Quorum } from '@shared/types/WalletStructure';
 
 const props = defineProps<{
   activeInactive: string;

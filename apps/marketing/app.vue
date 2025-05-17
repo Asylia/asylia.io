@@ -19,7 +19,7 @@
 
       <template v-if="isMainTab">
         <LazyWhitePaper />
-        <MultisigSchema />
+        <MultisigSchemaSection />
       </template>
 
       <UContainer>
@@ -32,7 +32,7 @@
     </UApp>
 
     <template #fallback>
-      <div class="w-screen  h-screen flex items-center justify-center">
+      <div class="w-screen h-screen flex items-center justify-center">
         <Logo class="w-auto max-h-[20vh] text-slate-700 dark:text-primary" />
         <h1 class="text-3xl md:text-6xl text-primary dark:text-gray-300 font-bold">Asylia.io</h1>
         <p class="mt-1 text-xs sm:text-sm italic text-slate-800 dark:text-gray-400">
@@ -52,6 +52,7 @@
 import Logo from '@shared/images/logo/AppLogo.vue';
 import ContactAndSupport from '~/components/ContactAndSupport.vue';
 import AppHeader from '~/components/AppHeader.vue';
+import MultisigSchemaSection from '~/components/MultisigSchemaSection.vue';
 
 const { t, locale } = useI18n();
 const MAIN_TAB = 'white-paper';

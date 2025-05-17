@@ -494,7 +494,7 @@ import AnimationWrapper from '~/components/AnimationWrapper.vue';
 import ClassicChestBox from '~/components/ChestBox/ClassicChestBox.vue';
 import MultiChestBox from '~/components/ChestBox/MultiChestBox.vue';
 import DetailInspectMultisigButton from '~/components/DetailInspectMultisigButton.vue';
-import { SCROLLED_FROM } from '~/components/multisigSchema/composuables';
+import { SCROLLED_FROM } from '@shared/components/help/multisigSchema/composuables';
 
 const { t } = useI18n();
 

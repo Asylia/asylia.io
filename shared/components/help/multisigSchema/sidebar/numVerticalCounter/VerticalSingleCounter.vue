@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import SingleButton from '~/components/multisigSchema/sidebar/numVerticalCounter/VerticalCounterButton.vue';
+import SingleButton from '@shared/components/help/multisigSchema/sidebar/numVerticalCounter/VerticalCounterButton.vue';
 
 const props = defineProps<{
   title: string;

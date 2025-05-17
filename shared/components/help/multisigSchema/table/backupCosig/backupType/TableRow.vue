@@ -12,11 +12,11 @@
       <div
         class="border-r w-[120px] shrink-0 grow-0 border-gray-300 dark:border-gray-700 py-1 flex items-center justify-center"
       >
-        {{ $t('multisig_schema.body.one_account') }}
+        {{ textF('multisig_schema.body.one_account') }}
       </div>
       <div class="py-1 flex-1 flex items-center justify-center">
-        <b>{{ $t('multisig_schema.body.wallet_owner') }}</b> -
-        {{ $t('multisig_schema.body.majority') }}
+        <b>{{ textF('multisig_schema.body.wallet_owner') }}</b> -
+        {{ textF('multisig_schema.body.majority') }}
       </div>
     </div>
 
@@ -50,7 +50,7 @@
         Asylia.io
       </div>
       <div class="flex-1 flex py-2 px-4 items-center justify-center">
-        <b>{{ $t('multisig_schema.body.backup') }}</b> - {{ $t('multisig_schema.body.minority') }}
+        <b>{{ textF('multisig_schema.body.backup') }}</b> - {{ textF('multisig_schema.body.minority') }}
       </div>
     </div>
 
@@ -79,11 +79,11 @@
         <div class="flex justify-between items-center mb-2">
           <div class="md:flex items-center">
             <div class="mr-2 text-sm font-semibold text-slate-500 dark:text-gray-300">
-              {{ $t('multisig_schema.body.one_account') }}
+              {{ textF('multisig_schema.body.one_account') }}
             </div>
             <div class="text-slate-500 dark:text-gray-300">
-              <b>{{ $t('multisig_schema.body.wallet_owner') }}</b> -
-              {{ $t('multisig_schema.body.majority') }}
+              <b>{{ textF('multisig_schema.body.wallet_owner') }}</b> -
+              {{ textF('multisig_schema.body.majority') }}
             </div>
           </div>
           <div class="ml-2">
@@ -97,7 +97,7 @@
             :class="{ 'bg-opacity-50': !props.scheme[0] }"
           >
             <font-awesome :icon="['fas', 'key']" class="text-primary" />
-            <span>{{ $t('multisig_schema.body.key') }} 1</span>
+            <span>{{ textF('multisig_schema.body.key') }} 1</span>
             <font-awesome v-if="props.scheme[0]" :icon="['fas', 'check']" class="text-success" />
             <font-awesome v-else :icon="['fas', 'xmark']" class="text-error" />
           </div>
@@ -106,7 +106,7 @@
             :class="{ 'bg-opacity-50': !props.scheme[1] }"
           >
             <font-awesome :icon="['fas', 'key']" class="text-primary" />
-            <span>{{ $t('multisig_schema.body.key') }} 2</span>
+            <span>{{ textF('multisig_schema.body.key') }} 2</span>
             <font-awesome v-if="props.scheme[1]" :icon="['fas', 'check']" class="text-success" />
             <font-awesome v-else :icon="['fas', 'xmark']" class="text-error" />
           </div>
@@ -116,7 +116,7 @@
             :class="{ 'bg-opacity-50': !props.scheme[2] }"
           >
             <font-awesome :icon="['fas', 'key']" class="text-primary" />
-            <span>{{ $t('multisig_schema.body.key') }} 3</span>
+            <span>{{ textF('multisig_schema.body.key') }} 3</span>
             <font-awesome v-if="props.scheme[2]" :icon="['fas', 'check']" class="text-success" />
             <font-awesome v-else :icon="['fas', 'xmark']" class="text-error" />
           </div>
@@ -131,8 +131,8 @@
               Asylia.io
             </div>
             <div class="text-slate-500 dark:text-gray-300">
-              <b>{{ $t('multisig_schema.body.backup') }}</b> -
-              {{ $t('multisig_schema.body.minority') }}
+              <b>{{ textF('multisig_schema.body.backup') }}</b> -
+              {{ textF('multisig_schema.body.minority') }}
             </div>
           </div>
           <div class="ml-2">
@@ -145,7 +145,7 @@
             :class="{ 'bg-opacity-50': !props.scheme[is2of3 ? 2 : 3] }"
           >
             <font-awesome :icon="['fas', 'key']" class="text-primary" />
-            <span>{{ $t('multisig_schema.body.key') }} {{ is2of3 ? 3 : 4 }}</span>
+            <span>{{ textF('multisig_schema.body.key') }} {{ is2of3 ? 3 : 4 }}</span>
             <font-awesome
               v-if="props.scheme[is2of3 ? 2 : 3]"
               :icon="['fas', 'check']"
@@ -159,7 +159,7 @@
             :class="{ 'bg-opacity-50': !props.scheme[14] }"
           >
             <font-awesome :icon="['fas', 'key']" class="text-primary" />
-            <span>{{ $t('multisig_schema.body.key') }} 5</span>
+            <span>{{ textF('multisig_schema.body.key') }} 5</span>
             <font-awesome v-if="props.scheme[14]" :icon="['fas', 'check']" class="text-success" />
             <font-awesome v-else :icon="['fas', 'xmark']" class="text-error" />
           </div>
@@ -170,9 +170,10 @@
 </template>
 
 <script setup lang="ts">
-import TableRowWrapper from '~/components/multisigSchema/table/backupCosig/TableRowWrapper.vue';
-import KeyCheckCol from '~/components/multisigSchema/table/KeyCheckCol.vue';
-import { walletRowHelpers } from '~/components/multisigSchema/composuables';
+import TableRowWrapper from '@shared/components/help/multisigSchema/table/backupCosig/TableRowWrapper.vue';
+import KeyCheckCol from '@shared/components/help/multisigSchema/table/KeyCheckCol.vue';
+import { walletRowHelpers } from '@shared/components/help/multisigSchema/composuables';
+import { textF } from '@shared/composuables/language';
 
 const props = defineProps<{
   activeInactive: string;

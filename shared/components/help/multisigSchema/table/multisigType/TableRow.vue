@@ -15,7 +15,7 @@
           :icon="['fas', 'user']"
           class="text-sm mr-2 text-slate-500 dark:text-gray-300"
         />
-        <span class="capitalize">{{ $t('multisig_schema.body.user') }} {{ userIndex + 1 }}</span>
+        <span class="capitalize">{{ textF('multisig_schema.body.user') }} {{ userIndex + 1 }}</span>
       </div>
 
       <!-- Key status -->
@@ -43,9 +43,10 @@
 </template>
 
 <script setup lang="ts">
-import TableRowWrapper from '~/components/multisigSchema/table/backupCosig/TableRowWrapper.vue';
-import KeyCheckCol from '~/components/multisigSchema/table/KeyCheckCol.vue';
-import { SCENARIO_ACTIVE_INACTIVE } from '~/utils/constants/ui/wallet';
+import TableRowWrapper from '@shared/components/help/multisigSchema/table/backupCosig/TableRowWrapper.vue';
+import KeyCheckCol from '@shared/components/help/multisigSchema/table/KeyCheckCol.vue';
+import { SCENARIO_ACTIVE_INACTIVE } from '../../types';
+import { textF } from '@shared/composuables/language';
 
 const props = defineProps<{
   activeInactive: string;

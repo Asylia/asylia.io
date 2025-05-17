@@ -10,10 +10,10 @@
       class="hidden md:flex flex-col items-stretch justify-center md:col-span-4 text-center text-slate-500 dark:text-gray-300 px-2 border-b border-r border-gray-300 dark:border-gray-700"
     >
       <div>
-        {{ $t('multisig_schema.body.main_holder') }}
+        {{ textF('multisig_schema.body.main_holder') }}
       </div>
       <span>
-        {{ $t('multisig_schema.body.majority') }}
+        {{ textF('multisig_schema.body.majority') }}
       </span>
     </div>
 
@@ -29,16 +29,16 @@
         :class="{ 'border-t dark:border-gray-700': props.index === 0 && is3of5 }"
         class="text-center h-full flex items-center justify-center border-b w-full border-gray-300 dark:border-gray-700"
       >
-        {{ $t('multisig_schema.body.key_holder') }} 1
+        {{ textF('multisig_schema.body.key_holder') }} 1
       </div>
       <div
         :class="{ 'border-t dark:border-gray-700': props.index === 0 && is2of3 }"
         class="border-b w-full text-center flex items-center justify-center h-full border-gray-300 dark:border-gray-700"
       >
-        {{ $t('multisig_schema.body.key_holder') }} {{ is3of5 ? 2 : 1 }}
+        {{ textF('multisig_schema.body.key_holder') }} {{ is3of5 ? 2 : 1 }}
       </div>
       <div class="h-full flex items-center justify-center">
-        {{ $t('multisig_schema.body.key_holder') }} {{ is3of5 ? 3 : 2 }}
+        {{ textF('multisig_schema.body.key_holder') }} {{ is3of5 ? 3 : 2 }}
       </div>
     </div>
 
@@ -70,10 +70,10 @@
       class="hidden md:flex items-center justify-center md:col-span-4 text-center text-slate-500 dark:text-gray-300 px-2 border-b border-r border-gray-300 dark:border-gray-700"
     >
       <div>
-        {{ $t('multisig_schema.body.backup') }}
+        {{ textF('multisig_schema.body.backup') }}
       </div>
       <span>
-        {{ $t('multisig_schema.body.minority') }}
+        {{ textF('multisig_schema.body.minority') }}
       </span>
     </div>
 
@@ -87,12 +87,12 @@
         v-if="is3of5"
         class="border-b w-full text-center flex items-center justify-center h-full border-gray-300 dark:border-gray-700"
       >
-        Asylia.io / {{ $t('multisig_schema.body.custom') }}
+        Asylia.io / {{ textF('multisig_schema.body.custom') }}
       </div>
       <div
         class="w-full text-center flex items-center justify-center h-full border-gray-300 dark:border-gray-700"
       >
-        Asylia.io / {{ $t('multisig_schema.body.custom') }}
+        Asylia.io / {{ textF('multisig_schema.body.custom') }}
       </div>
     </div>
 
@@ -124,10 +124,10 @@
         <div class="flex justify-between items-center mb-2">
           <div class="flex md:flex-col items-center">
             <div class="text-slate-500 dark:text-gray-300 font-semibold">
-              {{ $t('multisig_schema.body.main_holder') }}
+              {{ textF('multisig_schema.body.main_holder') }}
             </div>
             <div class="text-slate-500 dark:text-gray-300 text-sm ml-2 md:ml-0">
-              {{ $t('multisig_schema.body.majority') }}
+              {{ textF('multisig_schema.body.majority') }}
             </div>
           </div>
           <div class="ml-2">
@@ -143,7 +143,7 @@
             class="flex items-center justify-between p-2 border-b border-gray-200 dark:border-gray-700"
           >
             <div class="text-slate-500 dark:text-gray-300">
-              {{ $t('multisig_schema.body.key_holder') }} 1
+              {{ textF('multisig_schema.body.key_holder') }} 1
             </div>
             <div class="flex items-center gap-2">
               <font-awesome :icon="['fas', 'key']" class="text-primary" />
@@ -156,7 +156,7 @@
             class="flex items-center justify-between p-2 border-b border-gray-200 dark:border-gray-700"
           >
             <div class="text-slate-500 dark:text-gray-300">
-              {{ $t('multisig_schema.body.key_holder') }} {{ is3of5 ? 2 : 1 }}
+              {{ textF('multisig_schema.body.key_holder') }} {{ is3of5 ? 2 : 1 }}
             </div>
             <div class="flex items-center gap-2">
               <font-awesome :icon="['fas', 'key']" class="text-primary" />
@@ -171,7 +171,7 @@
 
           <div class="flex items-center justify-between p-2">
             <div class="text-slate-500 dark:text-gray-300">
-              {{ $t('multisig_schema.body.key_holder') }} {{ is3of5 ? 3 : 2 }}
+              {{ textF('multisig_schema.body.key_holder') }} {{ is3of5 ? 3 : 2 }}
             </div>
             <div class="flex items-center gap-2">
               <font-awesome :icon="['fas', 'key']" class="text-primary" />
@@ -191,10 +191,10 @@
         <div class="flex justify-between items-center mb-2">
           <div class="flex md:flex-col items-center">
             <div class="text-slate-500 dark:text-gray-300 font-semibold">
-              {{ $t('multisig_schema.body.backup') }}
+              {{ textF('multisig_schema.body.backup') }}
             </div>
             <div class="text-slate-500 dark:text-gray-300 text-sm ml-2 md:ml-0">
-              {{ $t('multisig_schema.body.minority') }}
+              {{ textF('multisig_schema.body.minority') }}
             </div>
           </div>
           <div class="ml-2">
@@ -209,7 +209,7 @@
             class="flex items-center justify-between p-2 border-b border-gray-200 dark:border-gray-700"
           >
             <div class="text-slate-500 dark:text-gray-300">
-              Asylia.io / {{ $t('multisig_schema.body.custom') }}
+              Asylia.io / {{ textF('multisig_schema.body.custom') }}
             </div>
             <div class="flex items-center gap-2">
               <font-awesome :icon="['fas', 'key']" class="text-primary" />
@@ -220,7 +220,7 @@
 
           <div class="flex items-center justify-between p-2">
             <div class="text-slate-500 dark:text-gray-300">
-              Asylia.io / {{ $t('multisig_schema.body.custom') }}
+              Asylia.io / {{ textF('multisig_schema.body.custom') }}
             </div>
             <div class="flex items-center gap-2">
               <font-awesome :icon="['fas', 'key']" class="text-primary" />
@@ -239,9 +239,10 @@
 </template>
 
 <script setup lang="ts">
-import TableRowWrapper from '~/components/multisigSchema/table/backupCosig/TableRowWrapper.vue';
-import KeyCheckCol from '~/components/multisigSchema/table/KeyCheckCol.vue';
-import { walletRowHelpers } from '~/components/multisigSchema/composuables';
+import TableRowWrapper from '@shared/components/help/multisigSchema/table/backupCosig/TableRowWrapper.vue';
+import KeyCheckCol from '@shared/components/help/multisigSchema/table/KeyCheckCol.vue';
+import { walletRowHelpers } from '@shared/components/help/multisigSchema/composuables';
+import { textF } from '@shared/composuables/language';
 
 const props = defineProps<{
   activeInactive: string;
