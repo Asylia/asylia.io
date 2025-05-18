@@ -6,16 +6,7 @@
     class="w-full max-w-5xl"
   >
     <template #body>
-      <USlideover
-        v-model:open="helpOpened"
-        title="Help book"
-        description="Explanation: What kind of wallet do you want to create?"
-        class="w-full max-w-[40vw]"
-      >
-        <template #body>
-          <MultisigSchema />
-        </template>
-      </USlideover>
+      <CreateNewWalletExplainWindow v-model="helpOpened" />
 
       <div class="flex items-center justify-between">
         <WalletTypePicker v-model="state.walletType" class="w-full max-w-[520px]" />
@@ -56,7 +47,7 @@
 <script setup lang="ts">
 import WalletTypePicker from '@shared/components/wallet/setup/WalletTypePicker.vue';
 import WalletQuorumPreSetSchemeOptions from '@shared/components/wallet/setup/quorum/WalletQuorumPreSetSchemeOptions.vue';
-import MultisigSchema from '@shared/components/help/multisigSchema/MultisigSchema.vue';
+import CreateNewWalletExplainWindow from '@shared/components/help/createNewWallet/ExplainWindow.vue';
 import {
   WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS,
   WALLET_STRUCTURE_TYPE,
@@ -67,7 +58,7 @@ import { type WalletQuorumPreSetSchemaOptionsType } from '@shared/types/WalletSt
 
 const show = defineModel<boolean>();
 
-const helpOpened = ref(true);
+const helpOpened = ref(false);
 
 type NewWalletType = {
   walletType: WalletStructureType;
