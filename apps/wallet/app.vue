@@ -1,6 +1,6 @@
 <template>
   <UApp class="w-fit">
-    <CreateNewWalletModal v-model="createNewWallet"/>
+    <CreateNewWalletModal v-model="createNewWallet" />
     <CursorGlow />
     <div class="mx-auto w-full max-w-6xl pt-4 px-8 flex flex-col h-screen justify-between">
       <div class="w-full flex-1">
@@ -30,7 +30,7 @@
             security standards guaranteed
           </div>
 
-          <div class="flex text-gray-200  items-center justify-evenly">
+          <div class="flex text-gray-200 items-center justify-evenly">
             <CtaBox @click="createNewWallet = true" :icon="['fas', 'shield-plus']">
               Create <br />
               wallet
@@ -52,14 +52,13 @@
       <div class="w-full shrink-0">
         <div class="w-full flex mt-4 items-center justify-end">
           <div
-            class="flex flex-col pr-4 text-slate-800 dark:text-gray-400 border-r-4 border-primary z-20"
+            class="flex flex-col italic pr-4 text-slate-800 dark:text-gray-400 border-r-4 border-primary z-20"
           >
             <div class="flex items-center justify-end">Secure your present and your</div>
             <div class="flex items-center justify-end space-x-1">
               <span>future will be secured.</span>
             </div>
           </div>
-
         </div>
         <div
           class="mx-auto w-full border-t pt-4 pb-4 mt-4 flex items-center justify-between border-white/5"
@@ -81,8 +80,7 @@ import SelectLanguage from '@shared/components/ui/SelectLanguage.vue';
 import SocialLinks from '@shared/components/marketing/SocialLinks.vue';
 import CursorGlow from '@shared/components/ui/CursorGlow.vue';
 import CtaBox from '~/components/intro/CtaBox.vue';
-import CreateNewWalletModal from "~/components/intro/actions/CreateNewWalletModal.vue";
+import CreateNewWalletModal from '~/components/actions/createNewWallet/CreateNewWalletModal.vue';
 
-const createNewWallet = ref(false)
-
+const createNewWallet = ref(false);
 </script>

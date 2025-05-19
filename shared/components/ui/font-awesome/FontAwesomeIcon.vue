@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang="ts">
+// todo lazy loading for icons components
 /*
  * SOLID icon pack
  */
@@ -20,12 +21,19 @@ import FasCircleXmark from '@shared/components/ui/font-awesome/solid/CircleXmark
 import FasCircleCheck from '@shared/components/ui/font-awesome/solid/CircleCheck.vue';
 import FasUser from '@shared/components/ui/font-awesome/solid/User.vue';
 import FasShieldKeyhole from '@shared/components/ui/font-awesome/solid/ShieldKeyhole.vue';
+import FasMobile from '@shared/components/ui/font-awesome/solid/Mobile.vue';
+import FasMobileScreenButton from '@shared/components/ui/font-awesome/solid/MobileScreenButton.vue';
+import SignatureLock from '@shared/components/ui/font-awesome/solid/SignatureLock.vue';
+import FasArrowLeft from '@shared/components/ui/font-awesome/solid/ArrowLeft.vue';
 /*
  * LIGHT icon pack
  */
 import FasComputerMouseScrollwheel from '@shared/components/ui/font-awesome/light/ComputerMouseScrollwheel.vue';
 import FalLockKeyhole from '@shared/components/ui/font-awesome/light/LockKeyhole.vue';
 import FalArrowUp from '@shared/components/ui/font-awesome/light/ArrowUp.vue';
+import FalKey from '@shared/components/ui/font-awesome/light/Key.vue';
+import FalWallet from '@shared/components/ui/font-awesome/light/Wallet.vue';
+import ShieldKeyhole from '@shared/components/ui/font-awesome/light/ShieldKeyhole.vue';
 /*
  * BRANDS icon pack
  */
@@ -34,10 +42,21 @@ import FabXTwitter from '@shared/components/ui/font-awesome/brands/XTwitter.vue'
 import FabMedium from '@shared/components/ui/font-awesome/brands/Medium.vue';
 import FabInstagram from '@shared/components/ui/font-awesome/brands/Instagram.vue';
 import FabGitlab from '@shared/components/ui/font-awesome/brands/Gitlab.vue';
-import FabLinkedin from '@shared/components/ui/font-awesome/brands/Linkedin.vue';
 import FabBitcoin from '@shared/components/ui/font-awesome/brands/Bitcoin.vue';
+import FabLinkedin from '@shared/components/ui/font-awesome/brands/LinkedIn.vue';
+/*
+ * DUOTONE - SOLID icon pack
+ */
+import FadsWallet from '@shared/components/ui/font-awesome/duotone/solid/Wallet.vue';
 
-type IconPack = 'fas' | 'fal' | 'fab';
+const ICON_PACKS = {
+  fas: 'fas',
+  fal: 'fal',
+  fab: 'fab',
+  fads: 'fads',
+};
+
+type IconPack = keyof typeof ICON_PACKS;
 type IconType = readonly [IconPack, string];
 
 const props = defineProps<{
@@ -51,35 +70,45 @@ type IconListTyp = {
 };
 
 const ICONS_LIST: IconListTyp = {
-  fas: {
-    'file-import': FasFileImport,
-    'shield-plus': FasShieldPlus,
+  [ICON_PACKS.fas]: {
     globe: FasGlobe,
     plus: FasPLus,
     minus: FasMinus,
     key: FasKey,
     check: FasCheck,
     xmark: FasXmark,
+    user: FasUser,
+    mobile: FasMobile,
     'angle-down': FasAngleDown,
     'angle-up': FasAngleUp,
     'circle-xmark': FasCircleXmark,
     'circle-check': FasCircleCheck,
-    user: FasUser,
     'shield-keyhole': FasShieldKeyhole,
+    'mobile-screen-button': FasMobileScreenButton,
+    'signature-lock': SignatureLock,
+    'file-import': FasFileImport,
+    'shield-plus': FasShieldPlus,
+    'arrow-left': FasArrowLeft,
   },
-  fal: {
+  [ICON_PACKS.fal]: {
+    key: FalKey,
+    'wallet': FalWallet,
     'computer-mouse-scrollwheel': FasComputerMouseScrollwheel,
     'lock-keyhole': FalLockKeyhole,
     'arrow-up': FalArrowUp,
+    'shield-keyhole': ShieldKeyhole,
   },
-  fab: {
+  [ICON_PACKS.fab]: {
     github: FabGithub,
-    'x-twitter': FabXTwitter,
     medium: FabMedium,
     instagram: FabInstagram,
     gitlab: FabGitlab,
     linkedin: FabLinkedin,
     bitcoin: FabBitcoin,
+    'x-twitter': FabXTwitter,
+  },
+  [ICON_PACKS.fads]: {
+    wallet: FadsWallet,
   },
 };
 
@@ -90,11 +119,23 @@ const iconComponent = computed(() => {
 
 const attrs = useAttrs();
 
+const allowedTextSizes = [
+  'text-xs',
+  'text-sm',
+  'text-base',
+  'text-md',
+  'text-lg',
+  'text-xl',
+  'text-2xl',
+  'text-3xl',
+  'text-4xl',
+  'text-5xl',
+];
+
 const iconSize = computed(() => {
   const classAttr = (attrs.class as string) ?? '';
   const classes = classAttr.split(/\s+/);
-  const regex = /^text-(\d+[a-zA-Z%]*)$/;
-  const found = classes.find((c) => regex.test(c));
+  const found = classes.find((c) => allowedTextSizes.includes(c));
   return found ?? 'text-base';
 });
 
