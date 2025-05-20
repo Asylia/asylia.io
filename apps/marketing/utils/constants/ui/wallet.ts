@@ -1,4 +1,4 @@
-import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/types/WalletStructure';
+import {WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS} from "@shared/components/wallet/setup/quorum/Types";
 
 export type customSchemaType = {
   enabled: boolean;

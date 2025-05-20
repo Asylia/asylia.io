@@ -29,11 +29,6 @@
 import FilterBar from '@shared/components/help/multisigSchema/FilterBar.vue';
 import AsideContent from '@shared/components/help/multisigSchema/sidebar/SideBar.vue';
 import DisplayTable from '@shared/components/help/multisigSchema/table/DisplayTable.vue';
-import {
-  type customSchemaType,
-  WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS,
-  WALLET_STRUCTURE_TYPE,
-} from '@shared/types/WalletStructure';
 import { SCENARIO_ACTIVE_INACTIVE } from '@shared/components/help/multisigSchema/types';
 
 const props = defineProps<{
@@ -41,6 +36,11 @@ const props = defineProps<{
 }>();
 
 import { useLocalI18n } from '@shared/composuables/language';
+import { WALLET_STRUCTURE_TYPE } from '@shared/types/Wallet';
+import {
+  type customSchemaType,
+  WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS,
+} from '@shared/components/wallet/setup/quorum/Types';
 
 await useLocalI18n(() => import('./locales.json'));
 
@@ -49,7 +49,7 @@ const activeInactive = ref(SCENARIO_ACTIVE_INACTIVE.ACTIVE);
 const keyVariant = ref(WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['2of3']);
 const customSchema = ref<customSchemaType>({
   enabled: false,
-  m: 2,
-  n: 3,
+  requiredSigners: 2,
+  totalSigners: 3,
 });
 </script>

@@ -15,7 +15,8 @@ import WalletTypePicker from '@shared/components/wallet/setup/WalletTypePicker.v
 import { SCENARIO_ACTIVE_INACTIVE } from './types';
 import type { TabsItem } from '@nuxt/ui';
 import type { ScenarioActiveInactiveType } from '@shared/types/WalletStructure';
-import type { WalletStructureType } from '@shared/types/WalletStructure';
+
+import type {WalletStructureType} from "@shared/types/Wallet";
 
 const walletType = defineModel<WalletStructureType>('walletType');
 const activeInactive = defineModel<ScenarioActiveInactiveType>('activeInactive');

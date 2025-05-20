@@ -31,8 +31,8 @@
 
 <script setup lang="ts">
 import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
-import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/types/WalletStructure';
 import { textF } from '@shared/composuables/language';
+import {WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS} from "@shared/components/wallet/setup/quorum/Types";
 
 const props = defineProps<{
   title?: string;

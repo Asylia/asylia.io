@@ -1,0 +1,36 @@
+{
+  "name": "asylia.io-sponzors",
+  "addressType": "P2SH_P2WSH",
+  "network": "mainnet",
+  "client": {
+    "type": "public"
+  },
+  "quorum": {
+    "requiredSigners": 2,
+    "totalSigners": 3
+  },
+  "extendedPublicKeys": [
+    {
+      "name": "Trezor Safe 3-0",
+      "bip32Path": "m/48'/0'/0'/1'",
+      "xpub": "xpub6EWAxFazVn3Cna3oM4t9EQpjQYkZLwEyDatZs9PVkbN2aLWPv8QZMkJW8vDXwNcnqgX4rUPASe9TpZDfn3j1LxZcqXMHmTZLDS3iZpFiVBx",
+      "xfp": "59322d2f",
+      "method": "trezor"
+    },
+    {
+      "name": "Trezor Safe 3-1",
+      "bip32Path": "m/48'/0'/0'/1'",
+      "xpub": "xpub6F8sJsDS3B9zMfue4aamPJQTMrS5Y2LBpspZbQCMjWYvFe9qdiZFFtdquakvc4KACdDiqWaDputmSFMv3XcTB6AiKWMvWF4N3g4HxrWogWs",
+      "xfp": "978b531f",
+      "method": "trezor"
+    },
+    {
+      "name": "Trezor Safe 3-2",
+      "bip32Path": "m/48'/0'/0'/1'",
+      "xpub": "xpub6Ehhqne9gLHAPgn57U4mgJdUntWUmxN87iVi5DwdPhS16m2QRHhUXwLUmRENfdfmBjskdy7JnCAjcmjPtEX9U8FtZiqKw2dCJHAZEJhTp6D",
+      "xfp": "74209ef9",
+      "method": "trezor"
+    }
+  ],
+  "startingAddressIndex": 0
+}

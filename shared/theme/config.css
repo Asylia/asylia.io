@@ -1,44 +1,52 @@
 :root {
-    /*
-     * MASTER COLORS
-     * - brand colors
-     */
-    --primary: #E4B236;
-    --color-primary-100: color-mix(in srgb, white 40%, var(--primary) 60%);
-    --color-primary-200: color-mix(in srgb, white 30%, var(--primary) 70%);
-    --color-primary-300: color-mix(in srgb, white 20%, var(--primary) 80%);
-    --color-primary-400: color-mix(in srgb, white 10%, var(--primary) 90%);
-    --color-primary-500: var(--primary);
-    --color-primary-600: color-mix(in srgb, black 10%, var(--primary) 90%);
-    --color-primary-700: color-mix(in srgb, black 20%, var(--primary) 80%);
-    --color-primary-800: color-mix(in srgb, black 30%, var(--primary) 70%);
-    --color-primary-900: color-mix(in srgb, black 40%, var(--primary) 60%);
+  /*
+   * MASTER COLORS
+   * - brand colors
+   */
+  --primary: #E4B236;
+  --color-primary-100: color-mix(in srgb, white 40%, var(--primary) 60%);
+  --color-primary-200: color-mix(in srgb, white 30%, var(--primary) 70%);
+  --color-primary-300: color-mix(in srgb, white 20%, var(--primary) 80%);
+  --color-primary-400: color-mix(in srgb, white 10%, var(--primary) 90%);
+  --color-primary-500: var(--primary);
+  --color-primary-600: color-mix(in srgb, black 10%, var(--primary) 90%);
+  --color-primary-700: color-mix(in srgb, black 20%, var(--primary) 80%);
+  --color-primary-800: color-mix(in srgb, black 30%, var(--primary) 70%);
+  --color-primary-900: color-mix(in srgb, black 40%, var(--primary) 60%);
 
-    /*
-     * Colors
-     * - colors
-     * - bg colors
-     */
+  .text-primary-100 {
+    color: var(--color-primary-300);
+  }
 
-    /* slate-850 = slate-800 + 5% black */
-    --color-slate-850: color-mix(in oklch, black 5%, var(--color-slate-800) 95%);
-    --color-slate-875: color-mix(in oklch, black 10%, var(--color-slate-800) 90%);
-    --color-light-bg: #EAE6DF;
-    --color-light-bg-550: color-mix(in srgb, #EAE6DF 95%, black 5%);
+  .hover-text-primary-100:hover {
+    color: var(--color-primary-100);
+  }
 
-    /*
-     * other
-     */
-    --color-btc: #F7931A;
-    --ui-radius: .6rem
+  /*
+   * Colors
+   * - colors
+   * - bg colors
+   */
+
+  /* slate-850 = slate-800 + 5% black */
+  --color-slate-850: color-mix(in oklch, black 5%, var(--color-slate-800) 95%);
+  --color-slate-875: color-mix(in oklch, black 10%, var(--color-slate-800) 90%);
+  --color-light-bg: #EAE6DF;
+  --color-light-bg-550: color-mix(in srgb, #EAE6DF 95%, black 5%);
+
+  /*
+   * other
+   */
+  --color-btc: #F7931A;
+  --ui-radius: .6rem
 }
 
 @theme staic {
-    --ui-primary: var(--primary);
-    --ui-secondary: var(--ui-color-secondary-700);
-    --ui-success: var(--ui-color-success-500);
-    --ui-info: var(--ui-color-info-600);
-    --ui-warning: var(--ui-color-warning-600);
-    --ui-error: var(--ui-color-error-500);
-    --ui-neutral: var(--ui-color-neutral-400);
+  --ui-primary: var(--primary);
+  --ui-secondary: var(--ui-color-secondary-700);
+  --ui-success: var(--ui-color-success-500);
+  --ui-info: var(--ui-color-info-600);
+  --ui-warning: var(--ui-color-warning-600);
+  --ui-error: var(--ui-color-error-500);
+  --ui-neutral: var(--ui-color-neutral-400);
 }

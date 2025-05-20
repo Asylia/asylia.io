@@ -14,20 +14,19 @@
 import MultisigRowBackupType from '@shared/components/help/multisigSchema/table/backupCosig/backupType/BackupType.vue';
 import MultisigRowCoSignerType from '@shared/components/help/multisigSchema/table/backupCosig/cosignerType/CosignerType.vue';
 import MultisigRowMultisigType from '@shared/components/help/multisigSchema/table/multisigType/MultisigType.vue';
+import { WALLET_STRUCTURE_TYPE, type WalletStructureType } from '@shared/types/Wallet';
 import {
-  WALLET_STRUCTURE_TYPE,
-  WalletBackupAnCosignerKeyVariantsQuorum,
+  WALLET_PRESET_QUORUM,
   type customSchemaType,
   type WalletQuorumPreSetSchemaOptionsType,
-  type WalletStructureType,
-} from '@shared/types/WalletStructure';
+} from '@shared/components/wallet/setup/quorum/Types';
 import type { ScenarioActiveInactiveType } from '@shared/components/help/multisigSchema/types';
 
 const props = defineProps<{
   walletType: WalletStructureType;
   keyVariant: WalletQuorumPreSetSchemaOptionsType;
-  customSchema:customSchemaType,
-  activeInactive:ScenarioActiveInactiveType
+  customSchema: customSchemaType;
+  activeInactive: ScenarioActiveInactiveType;
 }>();
 
 const walletTypesTables = {
@@ -37,5 +36,5 @@ const walletTypesTables = {
 };
 
 const walletTypeTableComponent = computed(() => walletTypesTables[props.walletType]);
-const walletQuorum = computed(() => WalletBackupAnCosignerKeyVariantsQuorum[props.keyVariant]);
+const walletQuorum = computed(() => WALLET_PRESET_QUORUM[props.keyVariant]);
 </script>

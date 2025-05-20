@@ -53,8 +53,8 @@
       />
 
       <NumVerticalCounter
-        v-model:m="customSchema.m"
-        v-model:n="customSchema.n"
+        v-model:m="customSchema.requiredSigners"
+        v-model:n="customSchema.totalSigners"
         class="mt-5"
         :class="{ 'opacity-25 pointer-events-none': !customSchema.enabled }"
       />
@@ -65,11 +65,13 @@
 <script setup lang="ts">
 import NumVerticalCounter from '@shared/components/help/multisigSchema/sidebar/numVerticalCounter/VerticalCounter.vue';
 import WalletQuorumPreSetSchemeOptions from '@shared/components/wallet/setup/quorum/WalletQuorumPreSetSchemeOptions.vue';
-import { WALLET_STRUCTURE_TYPE } from '@shared/types/WalletStructure';
-import { type customSchemaType } from '@shared/types/WalletStructure';
-import { type WalletQuorumPreSetSchemaOptionsType } from '@shared/types/WalletStructure';
 import { textF } from '@shared/composuables/language';
 import appColorMode from '@shared/composuables/ui/colorMode';
+import { WALLET_STRUCTURE_TYPE } from '@shared/types/Wallet';
+import type {
+  customSchemaType,
+  WalletQuorumPreSetSchemaOptionsType,
+} from '@shared/components/wallet/setup/quorum/Types';
 
 const props = defineProps<{
   walletType: string;

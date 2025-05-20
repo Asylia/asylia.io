@@ -3,9 +3,10 @@
 </template>
 
 <script setup lang="ts">
-import type { TabsItem } from '@nuxt/ui';
-import { WALLET_STRUCTURE_TYPE, type WalletStructureType } from '@shared/types/WalletStructure';
 import { textF } from '@shared/composuables/language';
+import { WALLET_STRUCTURE_TYPE } from '@shared/types/Wallet';
+import type { TabsItem } from '@nuxt/ui';
+import type { WalletStructureType } from '@shared/types/Wallet';
 
 const walletType = defineModel<WalletStructureType>();
 

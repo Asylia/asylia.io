@@ -12,8 +12,8 @@ import type { TabsItem } from '@nuxt/ui';
 import { textF } from '@shared/composuables/language';
 import {
   WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS,
-  type WalletQuorumPreSetSchemaOptionsType,
-} from '@shared/types/WalletStructure';
+  type WalletQuorumPreSetSchemaOptionsType
+} from "@shared/components/wallet/setup/quorum/Types";
 
 const props = withDefaults(
   defineProps<{
