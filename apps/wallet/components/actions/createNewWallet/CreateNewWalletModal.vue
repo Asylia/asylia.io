@@ -108,6 +108,7 @@ import type {
   WalletQuorumPreSetSchemaOptionsType,
   customSchemaType,
 } from '@shared/components/wallet/setup/quorum/Types';
+import { EMPTY_WALLET_CONFIG_STATE } from '@shared/consts/Wallet';
 
 const show = defineModel<boolean>();
 
@@ -143,20 +144,7 @@ const multisigQuorum = computed<Quorum>(() => {
  * - reactive getters for wallet structure to get data
  * - watch for multisig quorum to set extended public keys in reactive state
  */
-const state = reactive<WalletConfigType>({
-  name: '',
-  addressType: WALLET_ADDRESS_TYPES.P2SH_P2WSH,
-  network: BTC_NETWORK,
-  client: {
-    type: WALLET_CLIENT_TYPES.PUBLIC,
-  },
-  quorum: {
-    requiredSigners: 2,
-    totalSigners: 3,
-  },
-  extendedPublicKeys: [],
-  startingAddressIndex: 0,
-});
+const state = reactive<WalletConfigType>({ ...EMPTY_WALLET_CONFIG_STATE });
 
 const stateValue = computed<WalletConfigType>(() => ({
   name: state.name,
@@ -172,7 +160,7 @@ const stateValue = computed<WalletConfigType>(() => ({
 }));
 
 watch(
-  [multisigQuorum, walletType],
+  [multisigQuorum, walletType, show],
   () => {
     const q = multisigQuorum.value;
     const requiredSigners = q.requiredSigners;
@@ -220,5 +208,12 @@ const allKeysSelected = computed<boolean>(() => {
 });
 const canCreateWallet = computed<boolean>(() => {
   return walletNameValid.value && allKeysSelected.value;
+});
+
+// on close clear state
+watch(show, (v) => {
+  if (v) return;
+  Object.assign(state, { ...EMPTY_WALLET_CONFIG_STATE });
+  console.log('state', state);
 });
 </script>
