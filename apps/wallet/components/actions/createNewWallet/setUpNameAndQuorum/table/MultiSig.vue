@@ -5,15 +5,15 @@
         <div class="w-full flex items-stretch">
           <div class="flex flex-col items-center text-center justify-center shrink-0 grow flex-1">
             <KeyUser
-              v-for="(i, _) in keysCount"
-              v-model="props.extendedPublicKeys[_]"
+              v-for="(_, i) in keysCount"
+              v-model="props.extendedPublicKeys[i]"
               :border-l="true"
-              :border-b="i == keysCount"
-              :is-last="i === keysCount"
+              :border-b="_ == keysCount"
+              :is-last="_ === keysCount"
               :isBackupWalletType="false"
               :isBackupKey="i > props.customSchema.requiredSigners"
-              :rounTl="_ === 0"
-              :index="_"
+              :rounTl="i === 0"
+              :index="i"
             />
           </div>
         </div>
@@ -38,7 +38,7 @@
 </template>
 <script setup lang="ts">
 import NumVerticalCounter from '@shared/components/help/multisigSchema/sidebar/numVerticalCounter/VerticalCounter.vue';
-import KeyUser from '~/components/actions/createNewWallet/table/row/KeyUser.vue';
+import KeyUser from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/row/KeyUser.vue';
 import { textF } from '@shared/composuables/language';
 import type { Quorum } from '@shared/types/WalletStructure';
 import type { customSchemaType } from '@shared/components/wallet/setup/quorum/Types';

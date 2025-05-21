@@ -83,8 +83,8 @@
 </template>
 
 <script setup lang="ts">
-import KeyUser from '~/components/actions/createNewWallet/table/row/KeyUser.vue';
-import KeyAsylia from '~/components/actions/createNewWallet/table/row/KeyAsylia.vue';
+import KeyUser from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/row/KeyUser.vue';
+import KeyAsylia from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/row/KeyAsylia.vue';
 import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import { WALLET_STRUCTURE_TYPE } from '@shared/types/Wallet';
 import { WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS } from '@shared/components/wallet/setup/quorum/Types';

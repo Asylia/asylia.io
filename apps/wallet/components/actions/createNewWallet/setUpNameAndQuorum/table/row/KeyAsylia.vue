@@ -6,14 +6,15 @@
         'border-b': props.isLast,
       }"
     >
-      <div class="flex items-center space-x-2 grow">
+      <div class="flex items-center space-x-2 pl-2 grow">
         <FontAwesomeIcon :icon="['fas', 'key']" class="text-info text-base" />
-        <div class="font-semibold">
-          <span>Backup Key </span>
-          <span class="font-light">{{ props.index + 1 }}</span>
+        <div class="flex pl-2">
+          <div class="font-semibold">
+            <span>Backup Key </span>
+          </div>
         </div>
       </div>
-      <div class="pl-6 pr-2 text-xs text-left text-secondary-400">
+      <div class="pl-10 pr-2 text-xs text-left text-secondary-400">
         You can sign by exported backup.
       </div>
     </div>

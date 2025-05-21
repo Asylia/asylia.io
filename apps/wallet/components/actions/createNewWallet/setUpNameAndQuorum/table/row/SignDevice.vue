@@ -18,7 +18,7 @@
       :icon="['fas', 'mobile-screen-button']"
       class="text-2xl"
     />
-    <span class="text-xs mt-2 text-gray3200">{{ deviceName }}</span>
+    <span class="text-xs mt-2 text-gray3200">{{ title }}</span>
   </div>
 </template>
 

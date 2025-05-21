@@ -10,94 +10,48 @@
       <div class="w-full">
         <CreateNewWalletExplainWindow v-model="helpOpened" />
 
-        <div class="flex items-center justify-between w-full">
-          <WalletTypePicker v-model="walletType" class="w-full max-w-[60%]" />
-          <WalletQuorumPreSetSchemeOptions v-model="presetSchema" class="w-full max-w-[25%]" />
-        </div>
-
-        <div class="flex mt-5 items-center space-x-2">
-          <FontAwesomeIcon :icon="['fal', 'wallet']" class="text-primary text-lg" />
-          <span class="text-base text-gray-300">Wallet name <span class="text-error">*</span></span>
-        </div>
-        <UInput
-          v-model="state.name"
-          placeholder="Example name"
-          size="lg"
-          class="w-full mt-2 max-w-[30%]"
+        <TypeNameQuorumPicker
+          v-model:wallet-structure-type="walletType"
+          v-model:preset-schema="presetSchema"
+          v-model:name="state.name"
         />
 
-        <CreateWalletBackupAndCosig
-          v-if="
-            [WALLET_STRUCTURE_TYPE.BACKUP, WALLET_STRUCTURE_TYPE.CONSIGNER].includes(
-              walletType as any,
-            )
-          "
+        <component
+          :is="WalletComponent"
           :preset-schema="presetSchema"
           :wallet-type="walletType"
           :extendedPublicKeys="state.extendedPublicKeys"
           :allKeysSelected="allKeysSelected"
-        />
-
-        <CreateWalletMultiSig
-          v-if="walletType === WALLET_STRUCTURE_TYPE.MULTISIG"
           :quorum="multisigQuorum"
           :custom-schema="customSchema"
-          :extendedPublicKeys="state.extendedPublicKeys"
         />
+
       </div>
     </template>
 
     <template #footer>
-      <div class="flex w-full justify-between">
-        <div class="flex space-x-2">
-          <UButton
-            label="Help"
-            size="md"
-            color="neutral"
-            variant="subtle"
-            trailing-icon="material-symbols:info"
-            @click="helpOpened = true"
-          />
-        </div>
-        <div class="flex space-x-2">
-          <UButton
-            label="Cancel"
-            size="md"
-            color="neutral"
-            variant="outline"
-            @click="show = false"
-          />
-          <UButton
-            label="Create"
-            size="md"
-            color="primary"
-            trailing-icon="material-symbols:arrow-right-alt"
-            class="hover:cursor-pointer"
-            :disabled="!canCreateWallet"
-          />
-        </div>
-      </div>
+      <ModalActionBaseFooter
+        :actionDisabled="!canCreateWallet"
+        @cancel="show = false"
+        @help="helpOpened = true"
+      />
     </template>
   </UModal>
 </template>
 
 <script setup lang="ts">
-import WalletTypePicker from '@shared/components/wallet/setup/WalletTypePicker.vue';
-import WalletQuorumPreSetSchemeOptions from '@shared/components/wallet/setup/quorum/WalletQuorumPreSetSchemeOptions.vue';
 import CreateNewWalletExplainWindow from '@shared/components/help/createNewWallet/ExplainWindow.vue';
-import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
-import CreateWalletBackupAndCosig from '~/components/actions/createNewWallet/table/BackupAndCosig.vue';
-import CreateWalletMultiSig from '~/components/actions/createNewWallet/table/MultiSig.vue';
+import CreateWalletBackupAndCosig from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/BackupAndCosig.vue';
+import CreateWalletMultiSig from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/MultiSig.vue';
+import TypeNameQuorumPicker from '~/components/actions/createNewWallet/setUpNameAndQuorum/TypeNameQuorumPicker.vue';
+import ModalActionBaseFooter from '@shared/components/wallet/modal/ModalActionBaseFooter.vue';
 import {
   EMPTY_SIGN_DEVICE_METHOD,
   EMPTY_WALLET_ASYLIA_EXTENDED_PUBLIC_KEY,
   EMPTY_WALLET_EXTENDED_PUBLIC_KEY,
-  type EmptySignDeviceMethod,
 } from '@shared/types/SignKeys';
 import { WALLET_STRUCTURE_TYPE } from '@shared/types/Wallet';
-import { WALLET_ADDRESS_TYPES } from '@shared/types/WalletAddress';
-import { WALLET_CLIENT_TYPES } from '@shared/types/WalletStructure';
-import { BTC_NETWORK } from '@shared/Config';
+import { EMPTY_WALLET_CONFIG_STATE } from '@shared/consts/Wallet';
 import {
   WALLET_PRESET_QUORUM,
   WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS,
@@ -108,15 +62,23 @@ import type {
   WalletQuorumPreSetSchemaOptionsType,
   customSchemaType,
 } from '@shared/components/wallet/setup/quorum/Types';
-import { EMPTY_WALLET_CONFIG_STATE } from '@shared/consts/Wallet';
 
 const show = defineModel<boolean>();
-
 const helpOpened = ref<boolean>(false);
 const presetSchema = ref<WalletQuorumPreSetSchemaOptionsType>(
   WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS['2of3'],
 );
 const walletType = ref<WalletStructureType>(WALLET_STRUCTURE_TYPE.BACKUP);
+
+const WALLET_TYPES_COMPONENTS = {
+  [WALLET_STRUCTURE_TYPE.BACKUP]: CreateWalletBackupAndCosig,
+  [WALLET_STRUCTURE_TYPE.CONSIGNER]: CreateWalletBackupAndCosig,
+  [WALLET_STRUCTURE_TYPE.MULTISIG]: CreateWalletMultiSig,
+};
+
+const WalletComponent = computed(() => {
+  return WALLET_TYPES_COMPONENTS[walletType.value];
+});
 
 /*
  * Wallet Quorum
@@ -147,16 +109,11 @@ const multisigQuorum = computed<Quorum>(() => {
 const state = reactive<WalletConfigType>({ ...EMPTY_WALLET_CONFIG_STATE });
 
 const stateValue = computed<WalletConfigType>(() => ({
-  name: state.name,
-  addressType: state.addressType,
-  network: state.network,
-  client: state.client,
+  ...state,
   quorum: {
     requiredSigners: multisigQuorum.value.requiredSigners,
     totalSigners: multisigQuorum.value.totalSigners,
   },
-  extendedPublicKeys: state.extendedPublicKeys,
-  startingAddressIndex: 0,
 }));
 
 watch(
@@ -166,11 +123,6 @@ watch(
     const requiredSigners = q.requiredSigners;
     const totalSigners = q.totalSigners;
     state.extendedPublicKeys = [];
-
-    console.log('multisigQuorum', {
-      requiredSigners,
-      totalSigners,
-    });
 
     if (walletType.value === WALLET_STRUCTURE_TYPE.MULTISIG) {
       state.extendedPublicKeys = [];
@@ -201,11 +153,13 @@ watch(
 const walletNameValid = computed<boolean>(() => {
   return stateValue.value.name.length > 0;
 });
+
 const allKeysSelected = computed<boolean>(() => {
   return stateValue.value.extendedPublicKeys.every(
     (key) => key.method !== EMPTY_SIGN_DEVICE_METHOD,
   );
 });
+
 const canCreateWallet = computed<boolean>(() => {
   return walletNameValid.value && allKeysSelected.value;
 });
@@ -214,6 +168,5 @@ const canCreateWallet = computed<boolean>(() => {
 watch(show, (v) => {
   if (v) return;
   Object.assign(state, { ...EMPTY_WALLET_CONFIG_STATE });
-  console.log('state', state);
 });
 </script>

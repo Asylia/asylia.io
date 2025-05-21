@@ -1,6 +1,6 @@
 <template>
   <UApp class="w-fit">
-    <CreateNewWalletModal v-model="createNewWallet" />
+    <SetupNameAdnQuorum v-model="createNewWallet" />
     <CursorGlow />
     <div class="mx-auto w-full max-w-6xl pt-4 px-8 flex flex-col h-screen justify-between">
       <div class="w-full flex-1">
@@ -80,7 +80,7 @@ import SelectLanguage from '@shared/components/ui/SelectLanguage.vue';
 import SocialLinks from '@shared/components/marketing/SocialLinks.vue';
 import CursorGlow from '@shared/components/ui/CursorGlow.vue';
 import CtaBox from '~/components/intro/CtaBox.vue';
-import CreateNewWalletModal from '~/components/actions/createNewWallet/CreateNewWalletModal.vue';
+import SetupNameAdnQuorum from '~/components/actions/createNewWallet/setUpNameAndQuorum/SetupNameAdnQuorum.vue';
 
 const createNewWallet = ref(false);
 </script>
