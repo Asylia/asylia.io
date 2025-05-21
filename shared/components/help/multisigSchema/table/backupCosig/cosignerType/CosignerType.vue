@@ -17,15 +17,16 @@ import TableRow from '@shared/components/help/multisigSchema/table/backupCosig/c
 import CollapsibleTable from '@shared/components/help/multisigSchema/table/CollapsibleTable.vue';
 import { generateTableRows } from '@shared/components/help/multisigSchema/composuables';
 import type { Quorum } from '@shared/types/WalletStructure';
+import type { ScenarioActiveInactiveType } from '@shared/components/help/multisigSchema/types';
 
 const props = defineProps<{
-  activeInactive: string;
+  activeInactive: ScenarioActiveInactiveType;
   keyVariant: string;
   quorum: Quorum;
   scheme?: number[];
 }>();
 
 const tableRows = computed(() =>
-  generateTableRows(props.quorum.m, props.quorum.n, props.activeInactive),
+  generateTableRows(props.quorum.requiredSigners, props.quorum.totalSigners, props.activeInactive),
 );
 </script>

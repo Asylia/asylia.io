@@ -19,9 +19,10 @@ import CollapsibleTable from '@shared/components/help/multisigSchema/table/Colla
 import { generateTableRows } from '@shared/components/help/multisigSchema/composuables';
 import type { Quorum } from '@shared/types/WalletStructure';
 import type { customSchemaType } from '@shared/components/wallet/setup/quorum/Types';
+import type { ScenarioActiveInactiveType } from '@shared/components/help/multisigSchema/types';
 
 const props = defineProps<{
-  activeInactive: string;
+  activeInactive: ScenarioActiveInactiveType;
   keyVariant: string;
   quorum: Quorum;
   customSchema: customSchemaType;
@@ -36,6 +37,6 @@ const tableRows = computed(() => {
       props.customSchema.totalSigners,
       props.activeInactive,
     );
-  return generateTableRows(props.quorum.m, props.quorum.n, props.activeInactive);
+  return generateTableRows(props.quorum.requiredSigners, props.quorum.totalSigners, props.activeInactive);
 });
 </script>
