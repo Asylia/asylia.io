@@ -39,6 +39,8 @@ import FalShieldKeyhole from '@shared/components/ui/font-awesome/light/ShieldKey
 import FalLock from '@shared/components/ui/font-awesome/light/Lock.vue';
 import FalLockOpen from '@shared/components/ui/font-awesome/light/LockOpen.vue';
 import FalKeySkeletonLeftRight from '@shared/components/ui/font-awesome/light/KeySkeletonLeftRight.vue';
+import FalAngleDown from '@shared/components/ui/font-awesome/light/AngleDown.vue';
+import FalAngleUp from '@shared/components/ui/font-awesome/light/AngleUp.vue';
 /*
  * BRANDS icon pack
  */
@@ -101,6 +103,8 @@ const ICONS_LIST: IconListTyp = {
     key: FalKey,
     wallet: FalWallet,
     lock: FalLock,
+    'angle-down': FalAngleDown,
+    'angle-up': FalAngleUp,
     'computer-mouse-scrollwheel': FasComputerMouseScrollwheel,
     'lock-keyhole': FalLockKeyhole,
     'arrow-up': FalArrowUp,
