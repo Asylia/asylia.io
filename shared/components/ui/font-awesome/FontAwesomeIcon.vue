@@ -25,6 +25,7 @@ import FasMobile from '@shared/components/ui/font-awesome/solid/Mobile.vue';
 import FasMobileScreenButton from '@shared/components/ui/font-awesome/solid/MobileScreenButton.vue';
 import SignatureLock from '@shared/components/ui/font-awesome/solid/SignatureLock.vue';
 import FasArrowLeft from '@shared/components/ui/font-awesome/solid/ArrowLeft.vue';
+import FasLock from '@shared/components/ui/font-awesome/solid/Lock.vue';
 /*
  * LIGHT icon pack
  */
@@ -33,7 +34,10 @@ import FalLockKeyhole from '@shared/components/ui/font-awesome/light/LockKeyhole
 import FalArrowUp from '@shared/components/ui/font-awesome/light/ArrowUp.vue';
 import FalKey from '@shared/components/ui/font-awesome/light/Key.vue';
 import FalWallet from '@shared/components/ui/font-awesome/light/Wallet.vue';
-import ShieldKeyhole from '@shared/components/ui/font-awesome/light/ShieldKeyhole.vue';
+import FalShieldKeyhole from '@shared/components/ui/font-awesome/light/ShieldKeyhole.vue';
+import FalLock from '@shared/components/ui/font-awesome/light/Lock.vue';
+import FalLockOpen from '@shared/components/ui/font-awesome/light/LockOpen.vue';
+import FalKeySkeletonLeftRight from '@shared/components/ui/font-awesome/light/KeySkeletonLeftRight.vue';
 /*
  * BRANDS icon pack
  */
@@ -79,6 +83,7 @@ const ICONS_LIST: IconListTyp = {
     xmark: FasXmark,
     user: FasUser,
     mobile: FasMobile,
+    lock: FasLock,
     'angle-down': FasAngleDown,
     'angle-up': FasAngleUp,
     'circle-xmark': FasCircleXmark,
@@ -92,11 +97,14 @@ const ICONS_LIST: IconListTyp = {
   },
   [ICON_PACKS.fal]: {
     key: FalKey,
-    'wallet': FalWallet,
+    wallet: FalWallet,
+    lock: FalLock,
     'computer-mouse-scrollwheel': FasComputerMouseScrollwheel,
     'lock-keyhole': FalLockKeyhole,
     'arrow-up': FalArrowUp,
-    'shield-keyhole': ShieldKeyhole,
+    'shield-keyhole': FalShieldKeyhole,
+    'lock-open': FalLockOpen,
+    'key-skeleton-left-right': FalKeySkeletonLeftRight,
   },
   [ICON_PACKS.fab]: {
     github: FabGithub,
