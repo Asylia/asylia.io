@@ -53,7 +53,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/device',
     '@vueuse/nuxt',
-    '@vueuse/motion/nuxt',
     '@nuxt/eslint',
   ],
   future: {
