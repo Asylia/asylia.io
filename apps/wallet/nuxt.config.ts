@@ -117,6 +117,7 @@ export default defineNuxtConfig({
       strictMessage: false,
       escapeHtml: false,
     },
+    strategy: "no_prefix",
   },
   supabase: {
     redirect: false,
