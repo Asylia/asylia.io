@@ -1,6 +1,7 @@
 .dark body {
 
-  background-color: var(#141e36);
+  background-color: var(--color-dark);
+
   /*background-color: var(--color-slate-900);*/
 
   .master-intro b:hover {

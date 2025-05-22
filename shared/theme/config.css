@@ -34,6 +34,9 @@
   --color-light-bg: #EAE6DF;
   --color-light-bg-550: color-mix(in srgb, #EAE6DF 95%, black 5%);
 
+
+  --color-dark: #141e36;
+
   /*
    * other
    */
