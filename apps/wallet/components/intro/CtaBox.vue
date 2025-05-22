@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-[240px] h-[230px] rounded-lg border-slate-800 flex flex-col items-center justify-center border hover:cursor-pointer hover:border-primary transition-all duration-200 hover:shadow-lg"
+    class="w-[240px] h-[230px] rounded-lg border-slate-800 bg-slate-800 flex flex-col items-center justify-center border hover:cursor-pointer hover:border-primary transition-all duration-200 hover:shadow-lg"
   >
     <span class="text-2xl text-center">
       <slot />
@@ -16,10 +16,3 @@ const props = defineProps<{
   icon: IconType
 }>();
 </script>
-
-<style scoped>
-div {
-  background: rgba(20, 30, 54, 0.2);
-  backdrop-filter: blur(1px);
-}
-</style>

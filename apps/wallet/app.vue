@@ -1,5 +1,5 @@
 <template>
-  <UApp class="w-fit">
+  <UApp class="bg-[#141e36]">
     <CursorGlow />
     <NuxtPage />
   </UApp>

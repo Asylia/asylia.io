@@ -54,6 +54,19 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@vueuse/nuxt',
     '@nuxt/eslint',
+    [
+      '@nuxtjs/google-fonts',
+      {
+        families: {
+          'Roboto Mono': {
+            wght: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+          },
+          'Roboto Flex': {
+            wght: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+          },
+        },
+      },
+    ],
   ],
   future: {
     compatibilityVersion: 4,
@@ -117,7 +130,7 @@ export default defineNuxtConfig({
       strictMessage: false,
       escapeHtml: false,
     },
-    strategy: "no_prefix",
+    strategy: 'no_prefix',
   },
   supabase: {
     redirect: false,
