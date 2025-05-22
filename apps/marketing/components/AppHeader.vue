@@ -1,7 +1,7 @@
 <template>
   <div class="md:flex py-6 items-center justify-between">
     <div class="flex items-center space-x-4 hover:cursor-pointer" @click="setTab('white-paper')">
-      <Logo v-motion-pop-visible class="text-primary w-auto h-[52px] md:h-[64px]" />
+      <Logo class="text-primary w-auto h-[52px] md:h-[64px]" />
       <div>
         <h1 class="text-2xl md:text-4xl text-slate-700 dark:text-gray-300 font-bold">Asylia.io</h1>
         <p class="mt-1 text-xs sm:text-sm italic text-slate-800 dark:text-gray-400">
@@ -12,14 +12,14 @@
     <div
       class="flex items-center space-x-5 grow mt-8 md:mt-0 mx-auto md:mr-0 max-w-full md:max-w-[40%]"
     >
+      <UTabs
+        v-model="localTab"
+        :items="TABS"
+        :size="isMobile ? 'sm' : 'md'"
+        :content="false"
+        class="w-full rounded-full"
+      />
       <client-only>
-        <UTabs
-          v-model="localTab"
-          :items="TABS"
-          :size="isMobile ? 'sm' : 'md'"
-          :content="false"
-          class="w-full rounded-full"
-        />
         <ColorModeButton />
       </client-only>
     </div>
@@ -30,7 +30,6 @@
 import Logo from '@shared/images/logo/AppLogo.vue';
 import ColorModeButton from '@shared/components/ui/ColorModeButton.vue';
 import { useBreakPoints } from '@shared/composuables/ui/breakPoints';
-
 
 const props = defineProps<{
   activeTab: string;

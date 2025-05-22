@@ -1,51 +1,34 @@
 <template>
-  <Suspense>
-    <UApp class="relative">
-      <client-only>
-        <CursorGlow />
-        <ScrollToTop />
-        <ScrollProgress />
-      </client-only>
+  <UApp class="relative">
+    <client-only>
+      <CursorGlow />
+      <ScrollToTop />
+      <ScrollProgress />
+    </client-only>
 
-      <UContainer class="min-h-screen flex flex-col justify-between w-screen">
-        <AppHeader :active-tab="activeTab" @update:tab="activeTab = $event" />
-        <keep-alive>
-          <client-only>
-            <IntroSection v-if="isMainTab" />
-          </client-only>
-        </keep-alive>
-        <LazyRoadMap v-if="!isMainTab" />
-      </UContainer>
-
-      <template v-if="isMainTab">
-        <LazyWhitePaper />
-        <MultisigSchemaSection />
-      </template>
-
-      <UContainer>
-        <TeamSection />
+    <UContainer class="min-h-screen flex flex-col justify-between w-screen">
+      <AppHeader :active-tab="activeTab" @update:tab="activeTab = $event" />
+      <keep-alive>
         <client-only>
-          <ContactAndSupport />
+          <IntroSection v-if="isMainTab" />
         </client-only>
-        <FooterSection />
-      </UContainer>
-    </UApp>
+      </keep-alive>
+      <LazyRoadMap v-if="!isMainTab" />
+    </UContainer>
 
-    <template #fallback>
-      <div class="w-screen h-screen flex items-center justify-center">
-        <Logo class="w-auto max-h-[20vh] text-slate-700 dark:text-primary" />
-        <h1 class="text-3xl md:text-6xl text-primary dark:text-gray-300 font-bold">Asylia.io</h1>
-        <p class="mt-1 text-xs sm:text-sm italic text-slate-800 dark:text-gray-400">
-          “Arx, Imperium, Ostium” – {{ $t('arx_imperium_ostium') }}
-        </p>
-        <!--  afe list - because of broken nuxt/ui with tailwind4 -->
-        <div
-          style="display: none"
-          class="row-span-1 bg-emerald-600 text-slate-600 text-slate-800 border-slate-700 border-gray-300 bg-slate-900 text-gray-300 row-span-2 row-span-3 row-span-4 row-span-5 row-span-6 row-span-7"
-        />
-      </div>
+    <template v-if="isMainTab">
+      <LazyWhitePaper />
+      <MultisigSchemaSection />
     </template>
-  </Suspense>
+
+    <UContainer>
+      <TeamSection />
+      <client-only>
+        <ContactAndSupport />
+      </client-only>
+      <FooterSection />
+    </UContainer>
+  </UApp>
 </template>
 
 <script setup lang="ts">
