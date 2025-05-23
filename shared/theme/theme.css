@@ -24,7 +24,15 @@
 }
 
 .bg-dark {
-  background-color: var(--color-dark);
+  background-color: var(--color-dark) !important;
+}
+
+.bg-dark-secondary {
+  background-color: var(--color-dark-secondary);
+}
+
+.border-dark-secondary {
+  border-color: var(--color-dark-secondary);
 }
 
 .text-btc {

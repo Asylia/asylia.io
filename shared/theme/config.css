@@ -36,12 +36,15 @@
 
 
   --color-dark: #141e36;
+  --color-dark-secondary: #232d4d;
 
   /*
    * other
    */
   --color-btc: #F7931A;
-  --ui-radius: .6rem
+  --ui-radius: .6rem;
+  /*--ui-bg:var(--color-dark);*/
+  /*--ui-bg:#141e3;*/
 }
 
 @theme staic {
@@ -51,5 +54,5 @@
   --ui-info: var(--ui-color-info-600);
   --ui-warning: var(--ui-color-warning-600);
   --ui-error: var(--ui-color-error-500);
-  --ui-neutral: var(--ui-color-neutral-400);
+  --ui-neutral: var(--ui-color-neutral-100);
 }
