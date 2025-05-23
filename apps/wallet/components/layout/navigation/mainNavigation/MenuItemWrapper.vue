@@ -1,9 +1,10 @@
 <template>
   <div
-    class="w-full relative flex border-l border-white/5 group transition-opacity duration-100 hover:opacity-70"
+    class="w-full relative flex border-l border-white/5 group transition-opacity duration-100"
     :class="{
       'rounded-br-md': isFirst,
       'rounded-br-md rounded-bl-md': isLast,
+      'hover:opacity-70': !isSelected,
     }"
   >
     <hr

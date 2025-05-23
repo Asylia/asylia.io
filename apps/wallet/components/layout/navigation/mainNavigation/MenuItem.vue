@@ -12,7 +12,7 @@
       <div class="text-base font-semibold text-btc font-roboto-mono">
         {{ props.wallet.label }}
       </div>
-      <FontAwesomeIcon :icon="['fal', 'key']" class="text-base shrink-0 w-auto text-primary" />
+      <FontAwesomeIcon :icon="['fal', 'lock']" class="text-base shrink-0 w-auto text-primary" />
     </div>
 
     <div class="w-full flex items-center justify-between space-x-2 px-3 py-1">
