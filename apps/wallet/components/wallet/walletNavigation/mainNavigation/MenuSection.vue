@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
-import MenuItemWrapper from '~/components/layout/navigation/mainNavigation/MenuItemWrapper.vue';
+import MenuItemWrapper from '~/components/wallet/walletNavigation/mainNavigation/MenuItemWrapper.vue';
 
 const props = defineProps<{
   wallets: any[];

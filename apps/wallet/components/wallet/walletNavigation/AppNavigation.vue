@@ -28,10 +28,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import ActionNavigationButton from '~/components/layout/navigation/actionNavigation/ActionNavigationButton.vue';
-import SmallMenuLink from '~/components/layout/navigation/smallNavigation/SmallMenuLink.vue';
-import MenuSection from '~/components/layout/navigation/mainNavigation/MenuSection.vue';
-import NavigationHeader from '~/components/layout/navigation/NavigationHeader.vue';
+import ActionNavigationButton from '~/components/wallet/walletNavigation/actionNavigation/ActionNavigationButton.vue';
+import SmallMenuLink from '~/components/wallet/walletNavigation/smallNavigation/SmallMenuLink.vue';
+import MenuSection from '~/components/wallet/walletNavigation/mainNavigation/MenuSection.vue';
+import NavigationHeader from '~/components/wallet/walletNavigation/NavigationHeader.vue';
 
 const privateMode = ref(false);
 

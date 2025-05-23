@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import MenuItem from '~/components/layout/navigation/mainNavigation/MenuItem.vue';
+import MenuItem from '~/components/wallet/walletNavigation/mainNavigation/MenuItem.vue';
 
 const props = defineProps<{
   item: {
