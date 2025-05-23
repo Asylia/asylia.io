@@ -1,4 +1,4 @@
-@config "./tailwind.config.ts";
+@config "./_tailwind.config.ts";
 
 /*
  * Library imports
@@ -8,10 +8,21 @@
 
 /*
  * Config
- *  - colors
- *  - nuxt/ui
+ *  - colors: Define custom colors
+ *  - nuxt/ui: Setup colors the nuxt/ui library
  */
 @import "./config.css";
+
+/*
+ * Backgrounds, Text colors,  Borders color from custom colors
+ */
+@import "./colors.css";
+
+/*
+ * Fonts
+ *  - Setup custom fonts
+ */
+@import "./fonts.css";
 
 /*
  * Light / Dark mode
@@ -19,39 +30,5 @@
 @import "./color-modes/light.css";
 @import "./color-modes/dark.css";
 
-.text-dark {
-  color: var(--color-dark);
-}
 
-.bg-dark {
-  background-color: var(--color-dark) !important;
-}
-
-.bg-dark-secondary {
-  background-color: var(--color-dark-secondary);
-}
-
-.border-dark-secondary {
-  border-color: var(--color-dark-secondary);
-}
-
-.text-btc {
-  color: var(--color-btc);
-}
-
-.text-xs {
-  font-size: 0.75rem;
-}
-
-.text-xxs {
-  font-size: 0.625rem;
-}
-
-.font-roboto-mono {
-  font-family: 'Roboto Mono', monospace;
-}
-
-.font-roboto-flex {
-  font-family: 'Roboto Flex', monospace;
-}
 

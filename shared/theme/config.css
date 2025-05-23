@@ -13,15 +13,7 @@
   --color-primary-700: color-mix(in srgb, black 20%, var(--primary) 80%);
   --color-primary-800: color-mix(in srgb, black 30%, var(--primary) 70%);
   --color-primary-900: color-mix(in srgb, black 40%, var(--primary) 60%);
-
-  .text-primary-100 {
-    color: var(--color-primary-300);
-  }
-
-  .hover-text-primary-100:hover {
-    color: var(--color-primary-100);
-  }
-
+  
   /*
    * Colors
    * - colors

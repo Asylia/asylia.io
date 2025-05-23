@@ -1,0 +1,15 @@
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-xxs {
+  font-size: 0.625rem;
+}
+
+.font-roboto-mono {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.font-roboto-flex {
+  font-family: 'Roboto Flex', monospace;
+}
