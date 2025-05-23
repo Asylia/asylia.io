@@ -43,6 +43,8 @@ import FalAngleDown from '@shared/components/ui/font-awesome/light/AngleDown.vue
 import FalAngleUp from '@shared/components/ui/font-awesome/light/AngleUp.vue';
 import FalGear from '@shared/components/ui/font-awesome/light/Gear.vue';
 import FalSliders from '@shared/components/ui/font-awesome/light/Sliders.vue';
+import ArrowDownLeft from '@shared/components/ui/font-awesome/light/ArrowDownLeft.vue';
+import ArrowUpRight from '@shared/components/ui/font-awesome/light/ArrowUpRight.vue';
 /*
  * BRANDS icon pack
  */
@@ -128,6 +130,8 @@ const ICONS_LIST: IconListTyp = {
     'shield-keyhole': FalShieldKeyhole,
     'lock-open': FalLockOpen,
     'key-skeleton-left-right': FalKeySkeletonLeftRight,
+    'arrow-down-left': ArrowDownLeft,
+    'arrow-up-right': ArrowUpRight,
   },
   [ICON_PACKS.fab]: {
     github: FabGithub,
