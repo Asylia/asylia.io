@@ -41,6 +41,8 @@ import FalLockOpen from '@shared/components/ui/font-awesome/light/LockOpen.vue';
 import FalKeySkeletonLeftRight from '@shared/components/ui/font-awesome/light/KeySkeletonLeftRight.vue';
 import FalAngleDown from '@shared/components/ui/font-awesome/light/AngleDown.vue';
 import FalAngleUp from '@shared/components/ui/font-awesome/light/AngleUp.vue';
+import FalGear from '@shared/components/ui/font-awesome/light/Gear.vue';
+import FalSliders from '@shared/components/ui/font-awesome/light/Sliders.vue';
 /*
  * BRANDS icon pack
  */
@@ -55,12 +57,25 @@ import FabLinkedin from '@shared/components/ui/font-awesome/brands/LinkedIn.vue'
  * DUOTONE - SOLID icon pack
  */
 import FadsWallet from '@shared/components/ui/font-awesome/duotone/solid/Wallet.vue';
+import FadsGear from '@shared/components/ui/font-awesome/duotone/solid/Gear.vue';
+import FadsHelp from '@shared/components/ui/font-awesome/duotone/solid/Help.vue';
+import FadsEye from '@shared/components/ui/font-awesome/duotone/solid/Eye.vue';
+/*
+ * DUOTONE - REGULAR icon pack
+ */
+import FadrGear from '@shared/components/ui/font-awesome/duotone/regular/Gear.vue';
+/*
+ * DUOTONE - THIN icon pack
+ */
+import FadtGear from '@shared/components/ui/font-awesome/duotone/thin/Gear.vue';
 
 const ICON_PACKS = {
   fas: 'fas',
   fal: 'fal',
   fab: 'fab',
   fads: 'fads',
+  fadr: 'fadr',
+  fadt: 'fadt',
 };
 
 type IconPack = keyof typeof ICON_PACKS;
@@ -103,6 +118,8 @@ const ICONS_LIST: IconListTyp = {
     key: FalKey,
     wallet: FalWallet,
     lock: FalLock,
+    gear: FalGear,
+    sliders: FalSliders,
     'angle-down': FalAngleDown,
     'angle-up': FalAngleUp,
     'computer-mouse-scrollwheel': FasComputerMouseScrollwheel,
@@ -123,6 +140,15 @@ const ICONS_LIST: IconListTyp = {
   },
   [ICON_PACKS.fads]: {
     wallet: FadsWallet,
+    gear: FadsGear,
+    help: FadsHelp,
+    eye: FadsEye,
+  },
+  [ICON_PACKS.fadr]: {
+    gear: FadrGear,
+  },
+  [ICON_PACKS.fadt]: {
+    gear: FadtGear,
   },
 };
 
