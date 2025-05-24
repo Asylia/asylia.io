@@ -1,5 +1,5 @@
-import path from 'path'
-import type { Config } from 'tailwindcss'
+import path from 'path';
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -7,7 +7,7 @@ const config: Config = {
      * Monorepo
      */
     path.resolve(__dirname, '../**/*.{vue,js,ts}'),
-  ]
-}
+  ],
+};
 
-export default config
+export default config;

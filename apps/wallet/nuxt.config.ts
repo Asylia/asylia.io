@@ -11,13 +11,14 @@ export default defineNuxtConfig({
     client: 'hidden',
     server: false,
   },
-  nitro: {
-    compressPublicAssets: true,
-    prerender: {
-      crawlLinks: true,
-    },
-    serveStatic: true,
-  },
+  ssr: true,
+  // nitro: {
+  //   compressPublicAssets: true,
+  //   prerender: {
+  //     crawlLinks: true,
+  //   },
+  //   serveStatic: true,
+  // },
   app: {
     head: {
       title: 'Asylia.io',
@@ -80,6 +81,7 @@ export default defineNuxtConfig({
   alias: {
     '@content': resolve(__dirname, '../../content'),
     '@shared': resolve(__dirname, '../../shared'),
+    '@packages': resolve(__dirname, '../../packages'),
   },
   // assetsInclude: ['**/*.json'],
   vite: {

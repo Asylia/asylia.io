@@ -3,7 +3,7 @@
     <NavigationHeader />
 
     <div class="flex flex-col mt-5 space-y-2">
-      <MenuSection :wallets="walletList" />
+      <MenuSection :wallets="mappedWalletList" />
     </div>
 
     <div class="flex-1 h-full"></div>
@@ -33,12 +33,35 @@ import SmallMenuLink from '~/components/wallet/walletNavigation/smallNavigation/
 import MenuSection from '~/components/wallet/walletNavigation/mainNavigation/MenuSection.vue';
 import NavigationHeader from '~/components/wallet/walletNavigation/NavigationHeader.vue';
 
+import {
+  // localStorageWalletList,
+  getEncryptedWalletList,
+  type EncryptedWalletListItem,
+  type DecryptedWalletListItem,
+} from '@packages/asylia-wallets/WalletStorage';
+
 const privateMode = ref(false);
 
-const walletList = ref([
-  { id: 'wallet-1', label: 'Wallet 1' },
-  { id: 'wallet-2', label: 'Wallet 2' },
-  { id: 'wallet-3', label: 'Wallet 3' },
-  { id: 'wallet-4', label: 'Wallet 4' },
-]);
+/*
+ * store prepare
+ */
+
+const _walletList = ref<EncryptedWalletListItem[] | DecryptedWalletListItem[]>([]);
+
+const storeInitialized = ref(false);
+const initStore = () => {
+  _walletList.value = getEncryptedWalletList();
+  storeInitialized.value = true;
+};
+
+const walletList = computed(() => _walletList.value);
+
+const mappedWalletList = computed(() => {
+  return walletList.value.map((wallet, i) => ({
+    id: wallet.id,
+    label: wallet.name || `Wallet ${i + 1}`,
+  }));
+});
+
+initStore();
 </script>

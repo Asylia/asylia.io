@@ -1,7 +1,9 @@
 <template>
   <UApp class="bg-[#141e36]">
     <CursorGlow />
-    <NuxtPage />
+    <client-only>
+      <NuxtPage />
+    </client-only>
   </UApp>
 </template>
 

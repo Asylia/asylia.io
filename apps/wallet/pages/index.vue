@@ -69,6 +69,9 @@
       </div>
     </div>
   </div>
+  <div class="w-full h-screen flex items-center justify-center">
+    <span class="text-gray-300 text-2xl">Loading...</span>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -79,6 +82,11 @@ import SelectLanguage from '@shared/components/ui/SelectLanguage.vue';
 import SocialLinks from '@shared/components/marketing/SocialLinks.vue';
 import CtaBox from '~/components/intro/CtaBox.vue';
 import SetupNameAdnQuorum from '~/components/actions/createNewWallet/setUpNameAndQuorum/SetupNameAdnQuorum.vue';
+import { MiddlewareName as RediredctIfAsAnyWalletMiddleware } from '~/middleware/redirectIfAnyWalletExistsInLocalStorage.client';
 
 const createNewWallet = ref(false);
+
+definePageMeta({
+  middleware: [RediredctIfAsAnyWalletMiddleware],
+});
 </script>

@@ -25,15 +25,44 @@
           :quorum="multisigQuorum"
           :custom-schema="customSchema"
         />
-
       </div>
     </template>
 
     <template #footer>
+      <UModal
+        v-model:open="createWalletPassword.show"
+        title="Set wallet password"
+        :ui="{ footer: 'justify-end' }"
+      >
+        <template #body>
+          <div class="w-full">
+            <PasswordInput
+              v-model="createWalletPassword.password"
+              v-model:show="createWalletPassword.showPassword"
+            />
+            <PasswordInput
+              v-model="createWalletPassword.confirmPassword"
+              v-model:show="createWalletPassword.showConfirmPassword"
+              class="mt-4"
+            />
+          </div>
+        </template>
+        <template #footer>
+          <UButton
+            label="Create"
+            :disabled="!createWalletPassword.passwordValid"
+            color="primary"
+            trailing-icon="material-symbols:arrow-right-alt"
+            @click="createNewWalletAction"
+          />
+        </template>
+      </UModal>
+
       <ModalActionBaseFooter
         :actionDisabled="!canCreateWallet"
         @cancel="show = false"
         @help="helpOpened = true"
+        @action="createWalletPassword.show = true"
       />
     </template>
   </UModal>
@@ -45,6 +74,7 @@ import CreateWalletBackupAndCosig from '~/components/actions/createNewWallet/set
 import CreateWalletMultiSig from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/MultiSig.vue';
 import TypeNameQuorumPicker from '~/components/actions/createNewWallet/setUpNameAndQuorum/TypeNameQuorumPicker.vue';
 import ModalActionBaseFooter from '@shared/components/wallet/modal/ModalActionBaseFooter.vue';
+import PasswordInput from '@/components/ui/inputs/PasswordInput.vue';
 import {
   EMPTY_SIGN_DEVICE_METHOD,
   EMPTY_WALLET_ASYLIA_EXTENDED_PUBLIC_KEY,
@@ -62,6 +92,7 @@ import type {
   WalletQuorumPreSetSchemaOptionsType,
   customSchemaType,
 } from '@shared/components/wallet/setup/quorum/Types';
+import { createNewWallet } from '@packages/asylia-wallets/WalletStorage';
 
 const show = defineModel<boolean>();
 const helpOpened = ref<boolean>(false);
@@ -163,6 +194,30 @@ const allKeysSelected = computed<boolean>(() => {
 const canCreateWallet = computed<boolean>(() => {
   return walletNameValid.value && allKeysSelected.value;
 });
+
+const createWalletPassword = reactive({
+  show: false,
+  password: '',
+  showPassword: false,
+  confirmPassword: '',
+  showConfirmPassword: false,
+  passwordValid: computed((): boolean => {
+    return (
+      createWalletPassword.password.length > 0 &&
+      createWalletPassword.password === createWalletPassword.confirmPassword
+    );
+  }),
+});
+
+const createNewWalletAction = async () => {
+  const walletConfig: WalletConfigType = { ...stateValue.value };
+
+  const status = await createNewWallet({
+    name: walletConfig.name,
+    config: walletConfig,
+    password: createWalletPassword.password,
+  });
+};
 
 // on close clear state
 watch(show, (v) => {
