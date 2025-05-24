@@ -1,13 +1,12 @@
 <template>
   <div class="flex flex-col items-start w-full justify-start space-x-4 rounded-md">
     <div
-      class="w-full relative bg-dark-secondary rounded-t-md pl-6 pr-4 py-2  cursor-pointer"
+      class="w-full relative bg-dark-secondary rounded-t-md pl-6 pr-4 py-2 cursor-pointer"
       :class="{
         'rounded-br-md': isFirstSelected || !isExpanded,
         'rounded-bl-md': !isExpanded,
       }"
     >
-
       <hr
         v-if="!isFirstSelected && isExpanded"
         class="border-t bottom-0 left-0 w-full absolute border-white/10"
@@ -52,9 +51,10 @@
 <script setup lang="ts">
 import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import MenuItemWrapper from '~/components/wallet/walletNavigation/mainNavigation/MenuItemWrapper.vue';
+import { type WalletListItem } from '@packages/asylia-wallets/WalletStorage';
 
 const props = defineProps<{
-  wallets: any[];
+  wallets: WalletListItem[];
 }>();
 
 const isExpanded = ref(true);

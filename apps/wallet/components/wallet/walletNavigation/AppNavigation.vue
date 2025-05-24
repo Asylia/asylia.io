@@ -1,5 +1,7 @@
 <template>
   <div class="w-64 flex flex-col h-full shrink-0">
+    <SetupNameAdnQuorum v-model="createNewWallet" />
+
     <NavigationHeader />
 
     <div class="flex flex-col mt-5 space-y-2">
@@ -17,7 +19,12 @@
     </div>
 
     <div class="flex shrink-0 justify-end w-full mt-5 rounded-md border-white/5 cursor-pointer">
-      <ActionNavigationButton :icon="['fas', 'shield-plus']" title="Create" class="rounded-l-md" />
+      <ActionNavigationButton
+        @click="createNewWallet = true"
+        :icon="['fas', 'shield-plus']"
+        title="Create"
+        class="rounded-l-md"
+      />
       <ActionNavigationButton :icon="['fas', 'file-import']" title="Import" divider-x />
       <ActionNavigationButton :icon="['fas', 'globe']" title="Connect" class="rounded-r-md" />
     </div>
@@ -36,17 +43,18 @@ import NavigationHeader from '~/components/wallet/walletNavigation/NavigationHea
 import {
   // localStorageWalletList,
   getEncryptedWalletList,
-  type EncryptedWalletListItem,
-  type DecryptedWalletListItem,
+  type WalletListItem,
 } from '@packages/asylia-wallets/WalletStorage';
+import SetupNameAdnQuorum from '~/components/actions/createNewWallet/setUpNameAndQuorum/SetupNameAdnQuorum.vue';
 
 const privateMode = ref(false);
+
+const createNewWallet = ref(false);
 
 /*
  * store prepare
  */
-
-const _walletList = ref<EncryptedWalletListItem[] | DecryptedWalletListItem[]>([]);
+const _walletList = ref<WalletListItem[]>([]);
 
 const storeInitialized = ref(false);
 const initStore = () => {
@@ -58,8 +66,8 @@ const walletList = computed(() => _walletList.value);
 
 const mappedWalletList = computed(() => {
   return walletList.value.map((wallet, i) => ({
-    id: wallet.id,
-    label: wallet.name || `Wallet ${i + 1}`,
+    ...wallet,
+    name: wallet.name || `Wallet ${i + 1}`,
   }));
 });
 

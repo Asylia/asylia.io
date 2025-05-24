@@ -212,11 +212,16 @@ const createWalletPassword = reactive({
 const createNewWalletAction = async () => {
   const walletConfig: WalletConfigType = { ...stateValue.value };
 
-  const status = await createNewWallet({
-    name: walletConfig.name,
-    config: walletConfig,
-    password: createWalletPassword.password,
-  });
+  try {
+    const wallet = await createNewWallet({
+      name: walletConfig.name,
+      config: walletConfig,
+      password: createWalletPassword.password,
+    });
+  } catch (e) {
+
+  }
+
 };
 
 // on close clear state

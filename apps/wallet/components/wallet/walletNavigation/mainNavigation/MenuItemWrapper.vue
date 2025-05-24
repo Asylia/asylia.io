@@ -37,14 +37,10 @@
 
 <script setup lang="ts">
 import MenuItem from '~/components/wallet/walletNavigation/mainNavigation/MenuItem.vue';
+import { type WalletListItem } from '@packages/asylia-wallets/WalletStorage';
 
 const props = defineProps<{
-  item: {
-    id: string;
-    label: string;
-    icon: string[];
-    isActive?: boolean;
-  };
+  item: WalletListItem;
   index: number;
   totalLength: number;
   selectedIndex: number;

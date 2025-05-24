@@ -10,12 +10,12 @@
   >
     <div class="flex py-1 grow items-center justify-between px-3">
       <div class="text-base font-semibold text-btc font-roboto-mono">
-        {{ props.wallet.label }}
+        {{ props.wallet.name }}
       </div>
       <FontAwesomeIcon :icon="['fal', 'lock']" class="text-base shrink-0 w-auto text-primary" />
     </div>
 
-    <div class="w-full flex items-center justify-between space-x-2 px-3 py-1">
+    <div v-if="isDecrypted" class="w-full flex items-center justify-between space-x-2 px-3 py-1">
       <div class="flex items-center space-x-1">
         <UIcon name="ic:outline-shield" class="size-4" />
         <span class="text-sm">Backup</span>
@@ -32,15 +32,25 @@
         />
       </div>
     </div>
+
+    <div v-else>
+
+    </div>
+
   </div>
 </template>
 
 <script setup lang="ts">
 import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
+import { type WalletListItem } from '@packages/asylia-wallets/WalletStorage';
 
 const props = defineProps<{
-  wallet: any;
+  wallet: WalletListItem;
   isSelected: boolean;
   isLast: boolean;
 }>();
+
+const isDecrypted = computed<boolean>(() => {
+  return props.wallet.config.isDecrypted;
+});
 </script>

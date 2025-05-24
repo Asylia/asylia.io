@@ -52,56 +52,65 @@ export type EncryptedWalletListItem = {
   };
 };
 
+export type WalletListItem = DecryptedWalletListItem | EncryptedWalletListItem;
+
 type CreateNewWalletType = {
   name: string;
   password: string;
   config: WalletConfigType;
 };
 
-export const createNewWallet = async (params: CreateNewWalletType) => {
-  const { name, password, config } = params;
+export const createNewWallet = async (
+  params: CreateNewWalletType,
+): Promise<DecryptedWalletListItem> => {
+  try {
+    const { name, password, config } = params;
 
-  const newDecryptedWalletListItem: DecryptedWalletListItem = {
-    id: crypto.randomUUID(),
-    name,
-    version: 1,
-    config: {
-      isDecrypted: true,
-      config,
-    },
-  };
+    const newDecryptedWalletListItem: DecryptedWalletListItem = {
+      id: crypto.randomUUID(),
+      name,
+      version: 1,
+      config: {
+        isDecrypted: true,
+        config,
+      },
+    };
 
-  console.log('newDecryptedWalletListItem', newDecryptedWalletListItem);
+    console.log('newDecryptedWalletListItem', newDecryptedWalletListItem);
 
-  const { encrypted, salt, iv } = await encryptJson(config, password);
+    const { encrypted, salt, iv } = await encryptJson(config, password);
 
-  const encryptedWalletListItem: EncryptedWalletListItem = {
-    id: newDecryptedWalletListItem.id,
-    version: 1,
-    name,
-    config: {
-      isDecrypted: false,
-      encrypted,
-      salt,
-      iv,
-    },
-  };
+    const encryptedWalletListItem: EncryptedWalletListItem = {
+      id: newDecryptedWalletListItem.id,
+      version: 1,
+      name,
+      config: {
+        isDecrypted: false,
+        encrypted,
+        salt,
+        iv,
+      },
+    };
 
-  console.log('encryptedWalletListItem', encryptedWalletListItem);
+    console.log('encryptedWalletListItem', encryptedWalletListItem);
 
-  addEncryptedWalletToLocalStorageList(encryptedWalletListItem);
+    addEncryptedWalletToLocalStorageList(encryptedWalletListItem);
 
-  // console.log(
-  //   'decrypted tset',
-  //   await decryptJson(
-  //     {
-  //       encrypted: encryptedWalletListItem.config.encrypted,
-  //       salt: encryptedWalletListItem.config.salt,
-  //       iv: encryptedWalletListItem.config.iv,
-  //     },
-  //     password,
-  //   ),
-  // );
+    // console.log(
+    //   'decrypted tset',
+    //   await decryptJson(
+    //     {
+    //       encrypted: encryptedWalletListItem.config.encrypted,
+    //       salt: encryptedWalletListItem.config.salt,
+    //       iv: encryptedWalletListItem.config.iv,
+    //     },
+    //     password,
+    //   ),
+    // );
 
-  return true;
+    return newDecryptedWalletListItem;
+  } catch (e) {
+    console.error('Error creating new wallet:', e);
+    throw e; // Re-throw the error to handle it in the calling context<
+  }
 };
