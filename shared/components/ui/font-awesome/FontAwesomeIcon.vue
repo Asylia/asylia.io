@@ -27,6 +27,7 @@ import SignatureLock from '@shared/components/ui/font-awesome/solid/SignatureLoc
 import FasArrowLeft from '@shared/components/ui/font-awesome/solid/ArrowLeft.vue';
 import FasLock from '@shared/components/ui/font-awesome/solid/Lock.vue';
 import FasWallet from '@shared/components/ui/font-awesome/solid/Wallet.vue';
+import FasLink from '@shared/components/ui/font-awesome/solid/Link.vue';
 /*
  * LIGHT icon pack
  */
@@ -106,6 +107,7 @@ const ICONS_LIST: IconListTyp = {
     mobile: FasMobile,
     lock: FasLock,
     wallet: FasWallet,
+    link: FasLink,
     'angle-down': FasAngleDown,
     'angle-up': FasAngleUp,
     'circle-xmark': FasCircleXmark,
