@@ -25,30 +25,29 @@ import LockedWalletView from '~/components/wallet/LockedWalletView.vue';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
 import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
 
+const route = useRoute();
 const walletListStore = useWalletListStore();
 const walletInstanceStore = useWalletInstanceStore();
 walletListStore.initStore();
 
-const route = useRoute();
-
+const selectedWalletId = computed<string>(() => {
+  return (route.params.walletId ?? '').toString();
+});
 const selectedWalletIsLocked = computed(() => {
   return walletListStore.selectedWallet && !walletListStore.selectedWalletIsUnlocked;
 });
 
 watch(
-  () => route.params.walletId,
-  (walletId) => {
+  selectedWalletId,
+  (walletId, o) => {
     walletListStore.setSelectedWalletId(walletId as string);
   },
   { immediate: true },
 );
 
-
 watch(
   selectedWalletIsLocked,
   (locked) => {
-    console.log('Selected wallet is locked:', locked);
-    console.log('walletListStore.selectedWallet.config', walletListStore.selectedWallet.config);
     if (locked) return;
     walletInstanceStore.initWallet(walletListStore.selectedWallet.config);
   },

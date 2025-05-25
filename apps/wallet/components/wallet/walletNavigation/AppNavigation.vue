@@ -39,37 +39,18 @@ import ActionNavigationButton from '~/components/wallet/walletNavigation/actionN
 import SmallMenuLink from '~/components/wallet/walletNavigation/smallNavigation/SmallMenuLink.vue';
 import MenuSection from '~/components/wallet/walletNavigation/mainNavigation/MenuSection.vue';
 import NavigationHeader from '~/components/wallet/walletNavigation/NavigationHeader.vue';
-
-import {
-  // localStorageWalletList,
-  getEncryptedWalletList,
-  type WalletListItem,
-} from '@packages/asylia-wallets/WalletStorage';
 import SetupNameAdnQuorum from '~/components/actions/createNewWallet/setUpNameAndQuorum/SetupNameAdnQuorum.vue';
+import { useWalletListStore } from '~/stores/wallet/WalletListStore';
 
 const privateMode = ref(false);
-
 const createNewWallet = ref(false);
 
-/*
- * store prepare
- */
-const _walletList = ref<WalletListItem[]>([]);
-
-const storeInitialized = ref(false);
-const initStore = () => {
-  _walletList.value = getEncryptedWalletList();
-  storeInitialized.value = true;
-};
-
-const walletList = computed(() => _walletList.value);
+const walletListStore = useWalletListStore();
 
 const mappedWalletList = computed(() => {
-  return walletList.value.map((wallet, i) => ({
+  return walletListStore.walletList.map((wallet, i) => ({
     ...wallet,
     name: wallet.name || `Wallet ${i + 1}`,
   }));
 });
-
-initStore();
 </script>

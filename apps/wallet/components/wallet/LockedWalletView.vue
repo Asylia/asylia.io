@@ -32,7 +32,7 @@
       </div>
       <div class="flex items-center mt-5 justify-center">
         <UButton
-          @click="unlockModal = true"
+          @click="openUnlockModal"
           :loading="loading"
           label="Unlock Wallet"
           color="primary"
@@ -53,6 +53,7 @@ import { decryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
 import cloneDeep from 'lodash/cloneDeep';
 import { useWalletPasswordHolderStore } from '~/stores/wallet/WalletPasswordHolderStore';
 
+const route = useRoute();
 const walletListStore = useWalletListStore();
 const walletPasswordHolderStore = useWalletPasswordHolderStore();
 
@@ -61,14 +62,20 @@ const password = ref('');
 const showPassword = ref(false);
 const loading = ref(false);
 
-watch(
-  () => walletListStore.selectedWallet,
-  (wallet) => {
-    if (!wallet || wallet.isDecrypted) return;
-    unlockModal.value = true;
-  },
-  { immediate: true },
-);
+const openUnlockModal = () => {
+  unlockModal.value = true;
+  password.value = '';
+  showPassword.value = false;
+};
+
+// watch(
+//   () => walletListStore.selectedWallet,
+//   (wallet) => {
+//     if (!wallet || wallet.isDecrypted) return;
+//     unlockModal.value = true;
+//   },
+//   { immediate: true },
+// );
 
 const toast = useToast();
 

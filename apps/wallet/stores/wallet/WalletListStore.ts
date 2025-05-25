@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import {
-  type EncryptedWalletListItem,
   getEncryptedWalletList,
+  type EncryptedWalletListItem,
   type WalletListItem,
 } from '@packages/asylia-wallets/WalletStorage';
 import cloneDeep from 'lodash.clonedeep';
@@ -43,9 +43,10 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
     _walletList.value.push(wallet);
   };
 
-  const selectedWalletId = ref<string | undefined>();
+  const _selectedWalletId = ref<string | undefined>();
+  const selectedWalletId = computed(() => _selectedWalletId.value);
   const setSelectedWalletId = (id: string) => {
-    selectedWalletId.value = id;
+    _selectedWalletId.value = id;
   };
 
   const selectedWallet = computed<WalletListItem | undefined>(() => {
@@ -68,8 +69,11 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
     const walletLockedConfig = cloneDeep(
       _originalLocalStorageWalletListMap.value[selectedWalletId.value ?? -1],
     );
+    console.log('walletLockedConfig', walletLockedConfig);
     if (!walletLockedConfig) {
-      console.error(`lockWallet: No original wallet config found for walletId: ${selectedWalletId.value}`);
+      console.error(
+        `lockWallet: No original wallet config found for walletId: ${selectedWalletId.value}`,
+      );
       return;
     }
     updateSelectedWallet(walletLockedConfig);
@@ -80,6 +84,7 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
     walletList,
     selectedWallet,
     selectedWalletIsUnlocked,
+    selectedWalletId,
     initStore,
     setSelectedWalletId,
     updateSelectedWallet,
