@@ -23,6 +23,9 @@
     "format": "prettier --write \"{apps,packages}/**/*.{js,ts,vue,json,css,md}\"",
     "prepare": "husky install"
   },
+  "overrides": {
+    "vue": "latest"
+  },
   "lint-staged": {
     "{apps,packages,shared}/**/*.{js,ts,vue}": [
       "eslint --fix",
@@ -41,15 +44,20 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "^9.5.3",
     "@nuxtjs/supabase": "^1.5.0",
+    "@pinia/nuxt": "^0.11.0",
     "@tailwindcss/postcss": "^4.1.6",
     "@tailwindcss/vite": "^4.1.6",
+    "@types/lodash.clonedeep": "^4.5.9",
     "@vesp/nuxt-fontawesome": "^1.2.1",
     "@vueuse/nuxt": "^13.2.0",
     "argon2-browser": "^1.18.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "eslint-define-config": "^2.1.0",
+    "lodash": "^4.17.21",
+    "lodash.clonedeep": "^4.5.0",
     "nuxt": "^3.17.4",
+    "pinia": "^3.0.2",
     "tailwindcss": "^4.1.6",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1"
