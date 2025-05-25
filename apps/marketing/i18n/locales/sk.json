@@ -59,8 +59,8 @@
         },
         "p3": {
           "title": "Asylia ako spolupodpisovateľ",
-          "p1": "Platforma drží iba záložný kľúč a nikdy nie väčšinu.",
-          "p2": "Bez vášho podpisu sa s bitcoinmi nepohne, no v kríze vám pomôže transakciu dokončiť."
+          "p1": "Tým, že použiješ typ wallet backup, stáva sa konfiguračný súbor wallet ďalším kľúčom v schéme M-z-N.",
+          "p2": "Prostriedky sú stále pod tvojou kontrolou a môžeš stratiť podpisový kľúč 1 alebo 2, pokiaľ máš k dispozícii konfiguračný súbor wallet (je to alternatíva k zálohe, ktorú možno použiť v prípade straty kľúča). Takpovediac si vytvoríš jeden softvérový kľúč, ktorý slúži ako záloha pre tvoje hardvérové kľúče."
         }
       },
       "visual": {
@@ -136,20 +136,20 @@
         "title": "4.3 Transakčný tok",
         "point_1": "PSBT (BIP-174) vytvorená vo webovom/mobilnom kliente.",
         "point_2": "Prenos podpisových dát cez platformu, QR kód, NFC a iné metódy.",
-        "point_3": "Finálnu transakciu vysiela verejný Bitcoin node."
+        "point_3": "Peer to peer podpisovanie. Vy máte kontrolu nad tým s kým zdieľate podpisy."
       },
       "list4": {
         "title": "4.4 Recovery režimy",
         "p1": {
           "title": "No-KYC recovery:",
-          "p1": "Offline PDF backup (vytlačte a uložte).",
-          "p2": "Sociálna obnova & časové zámky (CLTV/CSV) – v pripravovanej verzii.",
-          "p3": "Dobrovoľné KYC recovery – budúca firemná verzia; možnosť no-KYC zostáva zachovaná."
+          "p1": "Offline PDF/JSON/ZIP backup.",
+          "p2": "Multisig - partneri podľa schémy M-z-N.",
+          "p3": "BACKUP - Wallet config je jeden alebo viac podľa schémy z kľúčov v M-z-N."
         }
       },
       "list5": {
         "title": "4.5 Technická architektúra",
-        "p1": "Platform wallet: serverless backend na Supabase (Postgres + Edge Functions / Node.js).",
+        "p1": "Serverless aplikacia na P2P komunikáciu medzi klientmi sa použiva NOSTR (decentralizzovaný) protokol.",
         "p2": "Self-custody režim: žiadny centrálny backend; dáta sa ukladajú iba do zašifrovanej localStorage prehliadača.",
         "p3": "Stack je kompletne open-source – audit vítaný."
       }
@@ -172,10 +172,6 @@
           "td2": "<strong>0 % poplatok</strong> – dobrovoľný tip v transakcii"
         },
         "row2": {
-          "td1": "Obnova záložným kľúčom Asylie",
-          "td2": "2,1 % z odosielanej sumy (účtované len pri využití kľúča platformy)"
-        },
-        "row3": {
           "td1": "Open-source kód",
           "td2": "MIT licencia, komunitné príspevky"
         }
@@ -197,7 +193,7 @@
       "point3": "Supply-chain útok na HW peňaženku → kontrola hashov, odporúčaný oficiálny firmware.",
       "point4": "Sociálne inžinierstvo & phishing → FIDO2/U2F prihlásenie, edukačný obsah, dva nezávislé kanály potvrdenia.",
       "point5": "Výpadok infraštruktúry → offline PSBT, IPFS mirror, možnosť migrácie do iných klientov.",
-      "point6": "Regulačný tlak → primárne non-custodial SW (MiCA § 4), voliteľné KYC recovery."
+      "point6": "Regulačný tlak → primárne non-custodial SW (MiCA § 4)"
     },
     "wp8": {
       "title": "8. Komunita a spolupráca",

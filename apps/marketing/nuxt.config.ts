@@ -55,8 +55,7 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@vesp/nuxt-fontawesome',
     '@vueuse/nuxt',
-    '@vueuse/motion/nuxt',
-    '@nuxt/eslint',
+    // '@packanuxt/eslint',
   ],
 
   compatibilityDate: '2024-11-01',

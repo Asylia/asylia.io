@@ -1,7 +1,8 @@
 {
+
   "seo": {
     "title": "Asylia.io – Bitcoin Fortress",
-    "description": "Asylia.io is a Bitcoin fortress built on multi-signature, giving users full control over their keys while offering a dependable co-signer for critical situations. The Collaborative Partial Custody (CPC) model minimises trust in third parties, fees are voluntary and open source guarantees auditability."
+    "description": "Asylia.io is a Bitcoin fortress built on multisignature, giving users full control over their keys while providing a reliable co-signer for critical situations. The Collaborative Partial Custody (CPC) model minimizes trust in third parties, fees are voluntary, and open-source code ensures auditability."
   },
   "of": "of",
   "copy_address": "Copy",
@@ -9,253 +10,219 @@
   "arx_imperium_ostium": "Fortress, power, gate.",
   "white_paper": "Whitepaper",
   "roadmap": "Roadmap",
-  "your_keys_your_kingdom": "Your keys. Your Bitcoins. Your kingdom.",
+  "your_keys_your_kingdom": "Your keys. Your bitcoins. Your kingdom.",
   "immortal_legacy": "Immortal legacy.",
-  "read_white_paper": "Read the whitepaper",
-  "inspect_multisig_button": "Inspect the multi-sig scheme in detail",
+  "read_white_paper": "Read whitepaper",
+  "inspect_multisig_button": "Thoroughly inspect the multisig scheme",
   "join_beta_button": "Stay in touch",
   "email": {
     "copy": {
-      "success": "Email copied to clipboard",
+      "success": "Email has been copied to clipboard",
       "error": "Failed to copy email to clipboard"
     }
   },
-  "introMessage": "“<b class=\"text-slate-600 dark:text-gray-200\">Bitcoin Fortress</b>, where sovereignty meets <b class=\"text-slate-600 dark:text-gray-200\">security</b>. Protect your digital <b class=\"text-slate-600 dark:text-gray-200\">wealth</b> with proven <em class=\"text-slate-600 dark:text-gray-400\">multi-signature</em> technology. Because true <b class=\"text-slate-600 dark:text-gray-200\">ownership</b> means <b class=\"text-slate-600 dark:text-gray-200\">responsibility</b> – today, and for the <b class=\"text-slate-600 dark:text-gray-200\">generations</b> to come.”",
+  "introMessage": "\u201c<b class=\"text-slate-600 dark:text-gray-200\">The Bitcoin Fortress</b>, where sovereignty meets <b class=\"text-slate-600 dark:text-gray-200\">security</b>. Protect your digital <b class=\"text-slate-600 dark:text-gray-200\">wealth</b> with proven <em class=\"text-slate-600 dark:text-gray-400\">multisignature</em>. Because true <b class=\"text-slate-600 dark:text-gray-200\">ownership</b> means <b class=\"text-slate-600 dark:text-gray-200\">responsibility</b>—today and for <b class=\"text-slate-600 dark:text-gray-200\">generations</b> to come.\u201d",
   "white_paper_content": {
     "toc": {
-      "wp": "Quick overview (plain English)",
-      "wp1": "1. Why a Bitcoin fortress?",
+      "wp": "Quick overview (plainly)",
+      "wp1": "1. Why a Bitcoin Fortress?",
       "wp2": "2. Why Asylia.io?",
-      "wp3": "3. Vision and values",
-      "wp4": "4. Technical architecture",
-      "wp5": "5. Who it’s for",
-      "wp6": "6. Business model",
-      "wp7": "7. Risk analysis",
-      "wp8": "8. Collaboration",
-      "wp9": "9. Legal framework",
-      "wp10": "10. Our promises"
+      "wp3": "3. Vision & Values",
+      "wp4": "4. Technical Architecture",
+      "wp5": "5. Who It’s For",
+      "wp6": "6. Business Model",
+      "wp7": "7. Risk Analysis",
+      "wp8": "8. Community & Collaboration",
+      "wp9": "9. Legal Framework",
+      "wp10": "10. Our Promises"
     },
     "title": "Asylia.io — Whitepaper",
     "wp": {
-      "title": "QUICK OVERVIEW (plain English)",
-      "p1": "What is multi-signature and why do you need it?",
-      "p2": "Multi-signature (multi-sig) is a proven security mechanism that distributes control over bitcoins among multiple independent keys. A transaction only executes when authorised by at least M of N keys (M-of-N scheme).",
-      "point1": "No single key holds enough power. Neither an attacker nor a negligent user can move funds alone.",
-      "point2": "Key loss ≠ bitcoin loss. You only need M functioning keys.",
-      "point3": "Flexibility of the model. You can include hardware wallets, family, a lawyer or the Asylia vault in the signing process.",
-      "point4": "Customisable permissions. Define how many keys and which combination is required—2-of-3, 3-of-5, 5-of-7…",
-      "q1": "Multi-sig in one sentence:",
-      "q2": "Unlocking a bitcoin wallet requires more keys than any single party possesses alone.",
+      "title": "Quick overview (plainly)",
+      "p1": "What is multisignature and why do you need it?",
+      "p2": "Multisignature (multi-signature, or multisig) is a proven security mechanism that distributes control over bitcoins among multiple independent keys. A transaction only executes when at least M out of N keys authorize it (M-of-N scheme).",
+      "point1": "No single key holds too much power—neither an attacker nor a negligent user can spend funds alone.",
+      "point2": "Key loss ≠ bitcoin loss. As long as M keys remain accessible, you retain control.",
+      "point3": "Model flexibility. Involve hardware wallets, family, legal counsel, or Asylia’s vault.",
+      "point4": "Custom permissions. Define how many and which combination of keys is required—2-of-3, 3-of-5, 5-of-7…",
+      "q1": "Multisig in one sentence:",
+      "q2": "Unlocking a Bitcoin wallet requires more keys than any single party holds independently.",
       "table": {
         "p1": {
           "title": "Private key / seed:",
-          "p1": "The secret code that generates and secures your wallet.",
-          "p2": "Never share it and store it offline (paper, safe, vault)."
+          "p1": "The secret code that generates and manages your wallet.",
+          "p2": "Never share it; store it offline (paper, safe, vault)."
         },
         "p2": {
-          "title": "Multi-signature (multi-sig)",
-          "p1": "An M-of-N rule is set. E.g., 2-of-3 signatures → any two of three keys are required to spend.",
-          "p2": "Losing one key doesn’t cost you bitcoins; an attacker with a single key can’t spend them."
+          "title": "Multisignature (multisig)",
+          "p1": "Sets an M-of-N rule. E.g., 2-of-3 signatures means any two out of three keys can spend.",
+          "p2": "Losing one key doesn’t cost you your bitcoins; one key alone can’t spend."
         },
         "p3": {
           "title": "Asylia as co-signer",
-          "p1": "The platform holds only a backup key and never the majority.",
-          "p2": "Without your signature, funds won’t move, but in a crisis we help finalise the transaction."
+          "p1": "By using the wallet backup type, the wallet config file becomes another key in the M-of-N scheme.",
+          "p2": "Funds remain under your control even if you lose Key 1 or Key 2, provided you have the config file. It acts as a software backup key for your hardware keys."
         }
       },
       "visual": {
-        "title": "Visual representation of multi-sig",
-        "p": "For clarity, we’ve prepared a visual of a multi-sig wallet. Imagine our BTC wallet as a chest (with treasure/bitcoins). There are multiple ways to open it, and even through one opening you can access all contents.",
-        "b1": "Traditional secure wallets as most people know them.",
-        "b2": "<b>Multi-signature</b> <span class=\"font-light\">security. Requires</span> <b>2 keys</b> (of 2) to open.",
-        "b3": "<b>Multi-signature</b> <span class=\"font-light\">security. Requires</span> <b>3 keys</b> (of 3) to open.",
-        "b4": "<b>Multi-signature</b> <span class=\"font-light\">security. Requires at least</span> <b>2 keys</b> (of 3) to open.",
-        "b5": "<b>Multi-signature</b> <span class=\"font-light\">security. Requires at least</span> <b>3 keys</b> (of 5) to open.",
+        "title": "Visual representation of multisig",
+        "p": "To illustrate, imagine our BTC wallet as a treasure chest. There are multiple ways to open it, and any single opening can empty the chest.",
+        "b1": "Traditional secure wallets as most know them.",
+        "b2": "<b>Multisignature</b> security requiring <b>2 keys</b> (of 2).",
+        "b3": "<b>Multisignature</b> security requiring <b>3 keys</b> (of 3).",
+        "b4": "<b>Multisignature</b> security requiring at least <b>2 keys</b> (of 3).",
+        "b5": "<b>Multisignature</b> security requiring at least <b>3 keys</b> (of 5).",
         "q1": "In short:",
-        "q2": "More keys = less risk of loss or theft. Your bitcoins stay in your hands; Asylia is just an insurance policy."
+        "q2": "More keys = less risk of loss or theft. Bitcoin stays in your hands; Asylia is just the safety net."
       }
     },
     "wp1": {
-      "title": "1. Introduction: Why a fortress for Bitcoin?",
-      "p1": "Phishing, malware, coercion, regulatory pressure and, above all, human error threaten sovereignty over private keys. Multi-signature has historically shown that distributing power among independent parties eliminates a single point of failure and handles unforeseen scenarios (lost key or passphrase, kidnapping, extortion, death, inheritance). Asylia draws inspiration from medieval fortresses—sturdy walls, clear rules and minimal blind trust."
+      "title": "1. Introduction: Why a Bitcoin Fortress?",
+      "p1": "Phishing, malware, coercion, regulatory pressure, and human error threaten private key sovereignty. Historically, multisig has shown that distributing authority among independent parties removes a single point of failure and handles unexpected scenarios (key loss, kidnapping, extortion, death, inheritance). Asylia draws inspiration from medieval fortresses—strong walls, clear rules, and minimal blind trust."
     },
     "wp2": {
       "title": "2. Why Asylia.io?",
-      "p1": "Etymology: Asylia (Greek ἄσυλος) = “sanctuary beyond reach”. Symbolises a place immune to unauthorised intervention. The .io domain alludes to input/output and emphasises reliable, continuous access to your bitcoins."
+      "p1": "Etymology: Asylia (Greek ἄσυλος) means 'territorial inviolability.' It symbolizes a place beyond unauthorized reach. The .io domain evokes input/output, emphasizing reliable, uninterrupted access to your bitcoins."
     },
     "wp3": {
-      "title": "3. Vision and values",
+      "title": "3. Vision & Values",
       "list1": {
         "title": "We believe in:",
-        "p1": "Sovereignty and self-sufficiency – keys belong to the user.",
-        "p2": "Security first – design over speed.",
-        "p3": "Interoperability – respecting open Bitcoin standards (BIP-32/39/43/48, PSBT/BIP-174, Descriptors).",
-        "p4": "Open source & auditability – 100 % MIT licence.",
-        "p5": "Integrity – doing the right thing, even when no one’s watching."
+        "p1": "Sovereignty & self-sovereignty—keys belong to the user.",
+        "p2": "Security first—design over speed.",
+        "p3": "Interoperability—honoring open Bitcoin standards (BIP-32/39/43/48, PSBT/BIP-174, Descriptors).",
+        "p4": "Open source & auditability—100% open-source under MIT.",
+        "p5": "Integrity—doing things right, even when no one is watching."
       },
       "list2": {
-        "title": "We will never allow:",
-        "p1": "Compromises in security or corruption.",
-        "p2": "Speed at the expense of quality.",
-        "p3": "Centralised control or invasion of privacy."
+        "title": "We will never compromise:",
+        "p1": "Security or corruption.",
+        "p2": "Quality for speed.",
+        "p3": "Decentralization or privacy."
       },
       "list3": {
         "title": "Our promises",
-        "p1": "Independence – free migration to another platform; keys and bitcoins are yours.",
-        "p2": "Security – no compromises; auditable code, verified hardware modules.",
-        "p3": "Transparency – open processes, public roadmap, prompt disclosure of issues."
+        "p1": "Independence—migrate freely to another platform; keys and bitcoins remain yours.",
+        "p2": "Security—no compromises; auditable code, proven hardware modules.",
+        "p3": "Transparency—open processes, public roadmaps, prompt issue disclosures."
       }
     },
     "wp4": {
-      "title": "4. Technical architecture",
+      "title": "4. Technical Architecture",
       "list1": {
-        "title": "4.1 Types of multi-sig wallets",
+        "title": "4.1 Types of multisig wallets",
         "p1": {
           "title": "Backup:",
           "p1": "2-of-3: 2 user keys, 1 Asylia key.",
           "p2": "Recovery if one user key is lost."
         },
         "p2": {
-          "title": "Collaborative signature:",
-          "p1": "2-of-3 or 3-of-5, keys split among multiple co-signers (family, lawyer, Asylia).",
+          "title": "Collaborative Signature:",
+          "p1": "2-of-3 or 3-of-5, keys shared among multiple co-signers (family, lawyer, Asylia).",
           "p2": "Family/business accounts, inheritance, escrow."
         },
         "p3": {
-          "title": "Advanced multi-sig:",
-          "p1": "Any M-of-N via descriptor.",
-          "p2": "Experienced users with bespoke threat models."
+          "title": "Advanced multisig:",
+          "p1": "Any M-of-N as defined by descriptor.",
+          "p2": "For power users with custom threat models."
         },
-        "p": "Best practice: 2-of-3 for personal use or 3-of-5 for significant sums. Asylia never holds the quorum—funds cannot move without your participation."
+        "p": "Best practice: 2-of-3 for personal use or 3-of-5 for larger amounts. Asylia never holds quorum—funds cannot be spent without your consent."
       },
       "list2": {
         "title": "4.2 Keys & hardware",
         "point_1": "Supported HW wallets in MVP: Trezor, Ledger.",
-        "point_2": "Asylia’s internal keys: 2-of-3 multi-sig, each key Shamir’s Secret Sharing backed and stored in offline HSM vaults."
+        "point_2": "Asylia’s internal keys: 2-of-3 multisig, each backed up via Shamir’s Secret Sharing and stored in offline HSM vaults."
       },
       "list3": {
         "title": "4.3 Transaction flow",
         "point_1": "PSBT (BIP-174) generated in web/mobile client.",
-        "point_2": "Signature data transfer via platform, QR code, NFC and more.",
-        "point_3": "Final transaction broadcast by a public Bitcoin node."
+        "point_2": "Signature data transmitted via platform, QR codes, NFC, etc.",
+        "point_3": "Peer-to-peer signing. You control who receives signatures."
       },
       "list4": {
         "title": "4.4 Recovery modes",
         "p1": {
           "title": "No-KYC recovery:",
-          "p1": "Offline PDF backup (print and store).",
-          "p2": "Social recovery & time locks (CLTV/CSV) – planned release.",
-          "p3": "Optional KYC recovery – future enterprise edition; no-KYC remains available."
+          "p1": "Offline PDF/JSON/ZIP backup.",
+          "p2": "Multisig partners according to M-of-N scheme.",
+          "p3": "BACKUP: Wallet config serves as one or more keys in the M-of-N scheme."
         }
       },
       "list5": {
-        "title": "4.5 Technical stack",
-        "p1": "Platform wallet: serverless backend on Supabase (Postgres + Edge Functions / Node.js).",
+        "title": "4.5 Architecture details",
+        "p1": "Serverless P2P communication using the decentralized NOSTR protocol.",
         "p2": "Self-custody mode: no central backend; data stored only in encrypted browser localStorage.",
-        "p3": "Fully open source – audits welcome."
+        "p3": "Entire stack is open-source—audits welcome."
       }
     },
     "wp5": {
-      "title": "5. Who is Asylia.io for?",
-      "point1": "Long-term hodlers and responsible asset stewards.",
-      "point2": "Security-focused professionals and discerning enthusiasts.",
-      "point3": "Families, businesses and trusts requiring collective signing.",
-      "point4": "Anyone seeking uncompromising protection for heirloom assets."
+      "title": "5. Who It’s For",
+      "point1": "Long-term hodlers and responsible stewards of digital assets.",
+      "point2": "Security-conscious professionals and demanding enthusiasts.",
+      "point3": "Families, businesses, and trusts needing collective signing.",
+      "point4": "Anyone who wants to safeguard wealth for future generations without compromise."
     },
     "wp6": {
-      "title": "6. Business model & fees",
-      "p1": "Asylia.io operates with no upfront or ongoing monthly fees. Users may <strong>voluntarily</strong> include a tip in the transaction as a Bitcoin output.",
+      "title": "6. Business Model & Fees",
+      "p1": "Asylia.io operates with zero upfront or subscription fees. Users may <strong>optionally</strong> add support via a bitcoin output when sending a transaction.",
       "table": {
         "th1": "Item",
         "th2": "Model",
-        "row1": {
-          "td1": "Basic usage",
-          "td2": "<strong>0 % fee</strong> – voluntary transaction tip"
-        },
-        "row2": {
-          "td1": "Recovery via Asylia backup key",
-          "td2": "2.1 % of the spent amount (charged only when platform key used)"
-        },
-        "row3": {
-          "td1": "Open-source code",
-          "td2": "MIT licence, community contributions"
-        }
+        "row1": { "td1": "Basic usage", "td2": "<strong>0% fee</strong> – voluntary tip in transaction" },
+        "row2": { "td1": "Open-source code", "td2": "MIT license, community contributions" }
       },
       "poc": {
         "title": "Proof-of-Concept (PoC) ⚠",
-        "text": "Functional but <em>non-production</em> code available at <a href=\"https://poc.asylia.io\" class=\"text-primary hover:cursor-pointer hover:opacity-75\"  target=\"_blank\">poc.asylia.io</a> and <a href=\"https://github.com/Asylia/poc\" target=\"_blank\">Asylia/poc</a>.<br/><strong>DO NOT USE with real funds.</strong>"
+        "text": "Functional but <em>non-production</em> code is available at <a href=\"https://poc.asylia.io\" class=\"text-primary hover:cursor-pointer hover:opacity-75\" target=\"_blank\">poc.asylia.io</a> and in the <a href=\"https://github.com/Asylia/poc\" target=\"_blank\">Asylia/poc</a> repo.<br/><strong>DO NOT USE for real funds.</strong>"
       },
       "legal": {
-        "title": "Legal framework",
+        "title": "Legal Framework",
         "point1": "<strong>MiCA:</strong> Asylia is a non-custodial software provider and not subject to CASP registration.",
-        "point2": "<strong>GDPR:</strong> IP logs and timestamps retained for 30 days, pseudonymised."
+        "point2": "<strong>GDPR:</strong> IP logs and timestamps are pseudonymized and retained for 30 days."
       }
     },
     "wp7": {
-      "title": "7. Threat modelling",
-      "point1": "Quorum compromise → multi-sig prevents unilateral loss.",
-      "point2": "Insider threat → open-source, HSM, code reviews, asymmetric signing protocols.",
-      "point3": "Supply-chain attack on HW wallet → hash verification, recommended official firmware.",
-      "point4": "Social engineering & phishing → FIDO2/U2F login, educational content, independent confirmation channels.",
-      "point5": "Infrastructure outage → offline PSBT, IPFS mirror, migration options to other clients.",
-      "point6": "Regulatory pressure → primarily non-custodial SW (MiCA § 4), optional KYC recovery."
+      "title": "7. Risk Analysis (Threat Model)",
+      "point1": "Key quorum compromise → multisig prevents unilateral fund escape.",
+      "point2": "Insider risk at Asylia → open-source, HSMs, code reviews, asymmetric signing protocols.",
+      "point3": "Supply-chain attack on HW wallet → hash checks, recommended official firmware.",
+      "point4": "Social engineering & phishing → FIDO2/U2F auth, educational content, dual-channel confirmations.",
+      "point5": "Infrastructure outage → offline PSBT, IPFS mirror, client migration options.",
+      "point6": "Regulatory pressure → primarily non-custodial software (MiCA §4)."
     },
     "wp8": {
-      "title": "8. Community & collaboration",
-      "point1": "Developers & code reviewers – pull requests welcome.",
-      "point2": "BTC & multi-sig experts – BIP standard consultations.",
-      "point3": "Security auditors – bug bounty programme.",
+      "title": "8. Community & Collaboration",
+      "point1": "Developers & code reviewers – PRs welcome.",
+      "point2": "BTC & multisig experts – BIP standard consultations.",
+      "point3": "Security auditors – bug bounty program.",
       "point4": "UX beta testers – iterative client improvements.",
       "point5": "Sponsors supporting a secure Bitcoin ecosystem.",
       "email": "- <a href=\"mailto:info{'@'}asylia.io\">info{'@'}asylia.io</a>"
     },
     "wp9": {
       "title": "9. Disclaimer",
-      "p1": "Asylia.io provides software “as is”. Users bear full responsibility for private key management and legal compliance. Nothing here constitutes legal, tax or investment advice.",
-      "p2": "Legal context: Asylia is a non-custodial software provider. Under MiCA, not subject to CASP registration."
+      "p1": "Asylia.io provides software 'as is.' Users bear full responsibility for private key management and legal compliance. Nothing here constitutes legal, tax, or investment advice.",
+      "p2": "Legal context: Asylia is a non-custodial software provider and is not required to register as a CASP under MiCA."
     },
     "wp10": {
-      "title": "10. Conclusion: The future is secure",
-      "p1": "Fortresses of old stood for centuries thanks to strong walls and honourable builders. Asylia adapts this traditional philosophy for the digital age – security, sovereignty and preparedness for generations to come.",
-      "q1": "“Fiat castrum securitatis, et portae fluctuum non praevalebunt.”<br/>(Let the fortress of security stand, and the gates of storms shall not prevail.)",
+      "title": "10. Conclusion: The Future Is Secure",
+      "p1": "Medieval fortresses stood for centuries thanks to robust walls and honorable builders. Asylia brings that tradition to the digital age—security, sovereignty, and readiness for future generations.",
+      "q1": "“Fiat castrum securitatis, et portae fluctuum non praevalebunt.”<br/>(Let the fortress of safety stand firm, and the gates of storms shall not prevail.)",
       "q2": "“Asylia is not here to grow fast. Asylia is here to endure.”"
     }
   },
   "multisig_schema": {
-    "title": "Multi-sig scheme",
-    "p": "Backup, co-sig and multi-sig are effectively the same, adhering to the Bitcoin multi-sig standard. The only difference is how they’re used in your wallet.",
+    "title": "Multisig scheme",
+    "p": "Backup, Co-sig, and multisig follow the same Bitcoin standard. The difference lies in their wallet use case.",
     "backToWhitePaper": "Back to whitepaper",
     "aside": {
-      "backup": {
-        "title": "Backup",
-        "p": "A backup wallet scheme where the user holds the majority of keys and Asylia holds a minority key. If the user loses one key, the Asylia backup key can be used."
-      },
-      "cosig": {
-        "title": "Co-sig",
-        "p": "Collaborative signature wallet where one or more owners hold majority keys and the backup is distributed among multiple parties."
-      },
-      "multisig": {
-        "title": "Multi-sig",
-        "p": "A multi-signature wallet where the signing structure follows a defined scheme."
-      },
-      "custom": {
-        "title": "Note",
-        "p": "Recommended security standard is 2-of-3 or 3-of-5.",
-        "button": "Custom scheme",
-        "required": "Required",
-        "total": "Total"
-      }
+      "backup": { "title": "Backup", "p": "A wallet type where the user holds the majority of keys and Asylia holds a minority. If the user loses one key, the platform backup key can restore access." },
+      "cosig": { "title": "Co-sig", "p": "Collaborative signature where majority keys belong to owners and backup is distributed among multiple parties." },
+      "multisig": { "title": "Multisig", "p": "A signing structure governed by a defined M-of-N scheme." },
+      "custom": { "title": "Attention", "p": "Recommended security standard is 2-of-3 or 3-of-5.", "button": "Custom scheme", "required": "Required", "total": "Total" }
     },
-    "filter": {
-      "p1": "Backup",
-      "p2": "Co-sig",
-      "p3": "Multi-sig"
-    },
-    "header": {
-      "title": "Multi-sig scheme",
-      "key": "Key",
-      "owner": "Owner",
-      "operational": "Operational"
-    },
+    "filter": { "p1": "Backup", "p2": "Co-sig", "p3": "Multisig" },
+    "header": { "title": "Multisig scheme", "key": "Key", "owner": "Owner", "operational": "Operational" },
     "show_more": "Show more",
     "hide": "Hide",
     "body": {

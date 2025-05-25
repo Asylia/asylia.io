@@ -416,13 +416,6 @@
                         v-html="$t('white_paper_content.wp6.table.row2.td2')"
                       />
                     </tr>
-                    <tr>
-                      <td class="py-1" v-html="$t('white_paper_content.wp6.table.row3.td1')"/>
-                      <td
-                        class="text-right py-1"
-                        v-html="$t('white_paper_content.wp6.table.row3.td2')"
-                      />
-                    </tr>
                   </tbody>
                 </table>
               </div>
