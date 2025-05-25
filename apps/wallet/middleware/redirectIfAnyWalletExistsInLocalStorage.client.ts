@@ -4,6 +4,7 @@ import {
 } from '@packages/asylia-wallets/WalletStorage';
 
 export default defineNuxtRouteMiddleware((to, from) => {
+  if (!import.meta.client) return;
   if (hasAnyWalletsInLocalStorage()) {
     const firstWallet = getFirstEncryptedWallet();
     return navigateTo({

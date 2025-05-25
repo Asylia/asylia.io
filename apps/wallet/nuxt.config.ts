@@ -51,6 +51,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/fonts',
     '@nuxtjs/supabase',
+    '@pinia/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/device',
     '@vueuse/nuxt',
@@ -69,6 +70,9 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
   future: {
     compatibilityVersion: 4,
   },

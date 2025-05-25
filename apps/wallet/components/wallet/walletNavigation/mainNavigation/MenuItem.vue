@@ -12,7 +12,14 @@
       <div class="text-base font-semibold text-btc font-roboto-mono">
         {{ props.wallet.name }}
       </div>
-      <FontAwesomeIcon :icon="['fal', 'lock']" class="text-base shrink-0 w-auto text-primary" />
+      <FontAwesomeIcon
+        :icon="['fal', 'lock']"
+        class="text-base shrink-0 w-auto"
+        :clas="{
+          'text-success': isDecrypted,
+          'text-primary': !isDecrypted,
+        }"
+      />
     </div>
 
     <div v-if="isDecrypted" class="w-full flex items-center justify-between space-x-2 px-3 py-1">
@@ -33,10 +40,10 @@
       </div>
     </div>
 
-    <div v-else>
-
+    <div v-else class="flex px-3 py-1 items-center justify-between">
+      <span class="text-gray-500">-</span>
+      <span class="text-sm text-primary opacity-75">Wallet is locked</span>
     </div>
-
   </div>
 </template>
 
@@ -51,6 +58,6 @@ const props = defineProps<{
 }>();
 
 const isDecrypted = computed<boolean>(() => {
-  return props.wallet.config.isDecrypted;
+  return props.wallet.isDecrypted;
 });
 </script>

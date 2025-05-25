@@ -16,3 +16,5 @@ export const EMPTY_WALLET_CONFIG_STATE: WalletConfigType = {
   extendedPublicKeys: [],
   startingAddressIndex: 0,
 };
+
+export const getEmptyWalletConfig = (): WalletConfigType => ({ ...EMPTY_WALLET_CONFIG_STATE });

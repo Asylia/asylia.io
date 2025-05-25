@@ -3,7 +3,9 @@
     <div class="flex items-center justify-between px-7 pt-2 pb-2">
       <div class="flex items-center space-x-4">
         <BitcoinIcon class="h-5 w-auto" />
-        <div class="text-btc font-roboto-mono text-2xl font-semibold">Wallet 1</div>
+        <div class="text-btc font-roboto-mono text-2xl font-semibold">
+          {{ walletName}}
+        </div>
       </div>
       <FontAwesomeIcon :icon="['fal', 'wallet']" class="text-2xl shrink-0 text-primary" />
     </div>
@@ -38,4 +40,8 @@
 <script setup lang="ts">
 import BitcoinIcon from '@shared/images/icons/BitcoinIcon.vue';
 import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
+import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
+
+const walletInstance = useWalletInstanceStore();
+const walletName = computed(()=>walletInstance.walletConfig?.name ?? 'Unnamed Wallet');
 </script>

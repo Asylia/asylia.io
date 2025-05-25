@@ -54,6 +54,7 @@
             color="primary"
             trailing-icon="material-symbols:arrow-right-alt"
             @click="createNewWalletAction"
+            :loading="creating"
           />
         </template>
       </UModal>
@@ -69,6 +70,7 @@
 </template>
 
 <script setup lang="ts">
+import { toRaw } from 'vue';
 import CreateNewWalletExplainWindow from '@shared/components/help/createNewWallet/ExplainWindow.vue';
 import CreateWalletBackupAndCosig from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/BackupAndCosig.vue';
 import CreateWalletMultiSig from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/MultiSig.vue';
@@ -81,7 +83,7 @@ import {
   EMPTY_WALLET_EXTENDED_PUBLIC_KEY,
 } from '@shared/types/SignKeys';
 import { WALLET_STRUCTURE_TYPE } from '@shared/types/Wallet';
-import { EMPTY_WALLET_CONFIG_STATE } from '@shared/consts/Wallet';
+import { EMPTY_WALLET_CONFIG_STATE, getEmptyWalletConfig } from '@shared/consts/Wallet';
 import {
   WALLET_PRESET_QUORUM,
   WALLET_QUORUM_PRE_SET_SCHEMA_OPTIONS,
@@ -93,6 +95,11 @@ import type {
   customSchemaType,
 } from '@shared/components/wallet/setup/quorum/Types';
 import { createNewWallet } from '@packages/asylia-wallets/WalletStorage';
+import cloneDeep from 'lodash.cloneDeep';
+import { useWalletListStore } from '~/stores/wallet/WalletListStore';
+
+const toast = useToast();
+const walletListStore = useWalletListStore();
 
 const show = defineModel<boolean>();
 const helpOpened = ref<boolean>(false);
@@ -137,10 +144,10 @@ const multisigQuorum = computed<Quorum>(() => {
  * - reactive getters for wallet structure to get data
  * - watch for multisig quorum to set extended public keys in reactive state
  */
-const state = reactive<WalletConfigType>({ ...EMPTY_WALLET_CONFIG_STATE });
+const state = ref<WalletConfigType>({ ...getEmptyWalletConfig() });
 
 const stateValue = computed<WalletConfigType>(() => ({
-  ...state,
+  ...state.value,
   quorum: {
     requiredSigners: multisigQuorum.value.requiredSigners,
     totalSigners: multisigQuorum.value.totalSigners,
@@ -153,12 +160,12 @@ watch(
     const q = multisigQuorum.value;
     const requiredSigners = q.requiredSigners;
     const totalSigners = q.totalSigners;
-    state.extendedPublicKeys = [];
+    state.value.extendedPublicKeys = [];
 
     if (walletType.value === WALLET_STRUCTURE_TYPE.MULTISIG) {
-      state.extendedPublicKeys = [];
+      state.value.extendedPublicKeys = [];
       for (let i = 0; i < totalSigners; i++) {
-        state.extendedPublicKeys.push({
+        state.value.extendedPublicKeys.push({
           ...EMPTY_WALLET_EXTENDED_PUBLIC_KEY,
         });
       }
@@ -166,14 +173,14 @@ watch(
     }
 
     for (let i = 0; i < requiredSigners; i++) {
-      state.extendedPublicKeys.push({
+      state.value.extendedPublicKeys.push({
         ...EMPTY_WALLET_EXTENDED_PUBLIC_KEY,
       });
     }
 
     const diff = totalSigners - requiredSigners;
     for (let i = 0; i < diff; i++) {
-      state.extendedPublicKeys.push({
+      state.value.extendedPublicKeys.push({
         ...EMPTY_WALLET_ASYLIA_EXTENDED_PUBLIC_KEY,
       });
     }
@@ -209,8 +216,10 @@ const createWalletPassword = reactive({
   }),
 });
 
+const creating = ref(false);
 const createNewWalletAction = async () => {
-  const walletConfig: WalletConfigType = { ...stateValue.value };
+  creating.value = true;
+  const walletConfig: WalletConfigType = cloneDeep(stateValue.value);
 
   try {
     const wallet = await createNewWallet({
@@ -218,10 +227,30 @@ const createNewWalletAction = async () => {
       config: walletConfig,
       password: createWalletPassword.password,
     });
+
+    walletListStore.addWalletToList(wallet);
+
+    toast.add({
+      title: 'Wallet created successfully',
+      description: `Wallet "${wallet.name}" has been created.`,
+      color: 'success',
+    });
+
+    navigateTo({
+      name: 'wallet-walletId',
+      params: {
+        walletId: wallet.id,
+      },
+    });
   } catch (e) {
-
+    toast.add({
+      title: 'Error creating wallet',
+      description: (e as Error).message,
+      color: 'error',
+    });
+  } finally {
+    creating.value = false;
   }
-
 };
 
 // on close clear state

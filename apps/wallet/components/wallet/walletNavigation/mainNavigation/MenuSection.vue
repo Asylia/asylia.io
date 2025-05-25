@@ -40,7 +40,6 @@
             :index="index"
             :totalLength="props.wallets.length"
             :selectedIndex="selectedIndex"
-            @click="selectWalletOnInex(index)"
           />
         </template>
       </template>
@@ -57,14 +56,18 @@ const props = defineProps<{
   wallets: WalletListItem[];
 }>();
 
+const route = useRoute();
 const isExpanded = ref(true);
-const selectedIndex = ref<number>(0);
+const selectedIndex = computed(() => {
+  const walletsIdList = props.wallets.map((wallet) => wallet.id);
+  return walletsIdList.indexOf(route.params.walletId as string) ?? 0;
+});
 
 const isFirstSelected = computed(() => {
   return selectedIndex.value === 0;
 });
 
-const selectWalletOnInex = (index: number) => {
-  selectedIndex.value = index;
-};
+// const selectWalletOnInex = (index: number) => {
+//   selectedIndex.value = index;
+// };
 </script>

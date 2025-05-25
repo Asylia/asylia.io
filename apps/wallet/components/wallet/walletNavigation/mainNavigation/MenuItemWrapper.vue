@@ -1,5 +1,7 @@
 <template>
   <div
+    @click="walletListItemClicked"
+    ref="walletListItemEl"
     class="w-full relative flex border-l border-white/5 group transition-opacity duration-100"
     :class="{
       'rounded-br-md': isFirst,
@@ -69,4 +71,17 @@ const isNextSelected = computed(() => {
 const isLastSelected = computed(() => {
   return props.selectedIndex === props.totalLength - 1;
 });
+
+const walletListItemEl = ref<HTMLElement>();
+const walletListItemClicked = () => {
+  navigateTo({
+    name: 'wallet-walletId',
+    params: {
+      walletId: props.item?.id,
+    },
+  })
+
+  // if (!walletListItemEl.value?.walletClicked) return;
+  // walletListItemEl.value.walletClicked();
+};
 </script>

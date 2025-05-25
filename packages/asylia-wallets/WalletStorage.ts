@@ -1,55 +1,70 @@
-import { onMounted } from 'vue';
-import { useStorage } from '@vueuse/core';
-import { WALLET_CLIENT_TYPES, type WalletConfigType } from '@shared/types/WalletStructure';
-import { encryptJson, decryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
+import { type WalletConfigType } from '@shared/types/WalletStructure';
+import { encryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
 
 const LOCAL_STORAGE_WALLETS_LIST_KEY = 'ASYLIA_LOCAL_STORAGE_WALLETS_LIST_KEY';
 
-const _localStorageWalletList = useStorage<EncryptedWalletListItem[]>(
-  LOCAL_STORAGE_WALLETS_LIST_KEY,
-  [],
-);
+function getRawFromStorage(): EncryptedWalletListItem[] {
+  try {
+    const raw = localStorage.getItem(LOCAL_STORAGE_WALLETS_LIST_KEY);
+    if (!raw) return [];
+    return JSON.parse(raw);
+  } catch (e) {
+    localStorage.removeItem(LOCAL_STORAGE_WALLETS_LIST_KEY);
+    return [];
+  }
+}
 
-export const localStorageWalletList = computed<EncryptedWalletListItem[]>(
-  () => _localStorageWalletList.value,
-);
+function setRawToStorage(list: EncryptedWalletListItem[]) {
+  localStorage.setItem(LOCAL_STORAGE_WALLETS_LIST_KEY, JSON.stringify(list));
+}
 
-export const hasAnyWalletsInLocalStorage = () => {
-  return localStorageWalletList.value.length > 0;
-};
+export function getEncryptedWalletList(): EncryptedWalletListItem[] {
+  return getRawFromStorage();
+}
 
-const addEncryptedWalletToLocalStorageList = (wallet: EncryptedWalletListItem) => {
-  localStorageWalletList.value.push(wallet);
-};
+export function getFirstEncryptedWallet(): EncryptedWalletListItem | undefined {
+  return getRawFromStorage()[0];
+}
 
-export const getEncryptedWalletList = (): EncryptedWalletListItem[] => {
-  return localStorageWalletList.value;
-};
+export function hasAnyWalletsInLocalStorage(): boolean {
+  return getRawFromStorage().length > 0;
+}
 
-export const getFirstEncryptedWallet = (): EncryptedWalletListItem | undefined => {
-  return localStorageWalletList.value[0];
-};
+export function addEncryptedWalletToLocalStorageList(wallet: EncryptedWalletListItem): void {
+  const list = getRawFromStorage();
+  list.push(wallet);
+  setRawToStorage(list);
+}
+
+export function removeEncryptedWalletFromLocalStorageList(walletId: string): void {
+  const list = getRawFromStorage().filter((w) => w.id !== walletId);
+  setRawToStorage(list);
+}
+
+export function clearEncryptedWalletList(): void {
+  localStorage.removeItem(LOCAL_STORAGE_WALLETS_LIST_KEY);
+}
 
 export type DecryptedWalletListItem = {
   id: string;
   name: string;
   version: number;
-  config: {
-    isDecrypted: true;
-    config: WalletConfigType;
-  };
+  isDecrypted: true;
+  config: WalletConfigType;
+};
+
+export type EncryptedWalletConfigType = {
+  encrypted: string; // Encrypted config
+  salt: string; // Salt used for encryption
+  iv: string; // IV used for encryption
 };
 
 export type EncryptedWalletListItem = {
   id: string;
   version: number;
   name: string;
-  config: {
-    isDecrypted: false;
-    encrypted: string; // Encrypted config
-    salt: string; // Salt used for encryption
-    iv: string; // IV used for encryption
-  };
+  isDecrypted: false;
+  config: EncryptedWalletConfigType;
 };
 
 export type WalletListItem = DecryptedWalletListItem | EncryptedWalletListItem;
@@ -70,10 +85,8 @@ export const createNewWallet = async (
       id: crypto.randomUUID(),
       name,
       version: 1,
-      config: {
-        isDecrypted: true,
-        config,
-      },
+      isDecrypted: true,
+      config,
     };
 
     console.log('newDecryptedWalletListItem', newDecryptedWalletListItem);
@@ -84,8 +97,8 @@ export const createNewWallet = async (
       id: newDecryptedWalletListItem.id,
       version: 1,
       name,
+      isDecrypted: false,
       config: {
-        isDecrypted: false,
         encrypted,
         salt,
         iv,
@@ -95,18 +108,6 @@ export const createNewWallet = async (
     console.log('encryptedWalletListItem', encryptedWalletListItem);
 
     addEncryptedWalletToLocalStorageList(encryptedWalletListItem);
-
-    // console.log(
-    //   'decrypted tset',
-    //   await decryptJson(
-    //     {
-    //       encrypted: encryptedWalletListItem.config.encrypted,
-    //       salt: encryptedWalletListItem.config.salt,
-    //       iv: encryptedWalletListItem.config.iv,
-    //     },
-    //     password,
-    //   ),
-    // );
 
     return newDecryptedWalletListItem;
   } catch (e) {
