@@ -14,7 +14,7 @@ function getRawFromStorage(): EncryptedWalletListItem[] {
   }
 }
 
-function setRawToStorage(list: EncryptedWalletListItem[]) {
+export function setRawToStorage(list: EncryptedWalletListItem[]) {
   localStorage.setItem(LOCAL_STORAGE_WALLETS_LIST_KEY, JSON.stringify(list));
 }
 
@@ -45,11 +45,13 @@ export function clearEncryptedWalletList(): void {
   localStorage.removeItem(LOCAL_STORAGE_WALLETS_LIST_KEY);
 }
 
-export type DecryptedWalletListItem = {
+export type DecryptedWalletListItemMetaType = {
   id: string;
   name: string;
   version: number;
   isDecrypted: true;
+};
+export type DecryptedWalletListItem = DecryptedWalletListItemMetaType & {
   config: WalletConfigType;
 };
 
@@ -79,10 +81,12 @@ export const createNewWallet = async (
   params: CreateNewWalletType,
 ): Promise<DecryptedWalletListItem> => {
   try {
+    const id = crypto.randomUUID();
     const { name, password, config } = params;
+    config['id'] = id;
 
     const newDecryptedWalletListItem: DecryptedWalletListItem = {
-      id: crypto.randomUUID(),
+      id,
       name,
       version: 1,
       isDecrypted: true,

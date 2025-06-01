@@ -11,7 +11,14 @@
         <LockWalletButton />
       </div>
 
-      <div class="flex-1"></div>
+      <div class="flex-1">
+        <pre>
+        allUsersKeysAreFullySetUp:  {{ walletInstanceStore.allUsersKeysAreFullySetUp }}
+        </pre>
+        <pre>
+          {{ walletInstanceStore.walletConfig }}
+        </pre>
+      </div>
     </template>
   </div>
 </template>
@@ -24,6 +31,7 @@ import LockWalletButton from '~/components/wallet/LockWalletButton.vue';
 import LockedWalletView from '~/components/wallet/LockedWalletView.vue';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
 import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
+import { MiddlewareName } from '~/middleware/redirectToHomeIfNoWalletInLocalStorage.client';
 
 const route = useRoute();
 const walletListStore = useWalletListStore();
@@ -33,8 +41,8 @@ walletListStore.initStore();
 const selectedWalletId = computed<string>(() => {
   return (route.params.walletId ?? '').toString();
 });
-const selectedWalletIsLocked = computed(() => {
-  return walletListStore.selectedWallet && !walletListStore.selectedWalletIsUnlocked;
+const selectedWalletIsLocked = computed<boolean>((): boolean => {
+  return !!(walletListStore?.selectedWallet && !walletListStore?.selectedWalletIsUnlocked);
 });
 
 watch(
@@ -47,10 +55,20 @@ watch(
 
 watch(
   selectedWalletIsLocked,
-  (locked) => {
-    if (locked) return;
-    walletInstanceStore.initWallet(walletListStore.selectedWallet.config);
+  () => {
+    // if (locked) return;
+    // if (selectedWalletIsLocked.value) return;
+    if (!walletListStore.selectedWallet?.isDecrypted) return;
+
+    walletInstanceStore.initWallet(
+      walletListStore.selectedWallet.config,
+      walletListStore.selectedWallet.version,
+    );
   },
   { immediate: true },
 );
+
+definePageMeta({
+  middleware: [MiddlewareName],
+});
 </script>

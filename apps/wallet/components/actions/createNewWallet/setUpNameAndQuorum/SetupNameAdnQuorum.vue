@@ -70,7 +70,6 @@
 </template>
 
 <script setup lang="ts">
-import { toRaw } from 'vue';
 import CreateNewWalletExplainWindow from '@shared/components/help/createNewWallet/ExplainWindow.vue';
 import CreateWalletBackupAndCosig from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/BackupAndCosig.vue';
 import CreateWalletMultiSig from '~/components/actions/createNewWallet/setUpNameAndQuorum/table/MultiSig.vue';
@@ -97,9 +96,11 @@ import type {
 import { createNewWallet } from '@packages/asylia-wallets/WalletStorage';
 import cloneDeep from 'lodash.cloneDeep';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
+import { useWalletPasswordHolderStore } from '~/stores/wallet/WalletPasswordHolderStore';
 
 const toast = useToast();
 const walletListStore = useWalletListStore();
+const walletPasswordHolderStore = useWalletPasswordHolderStore();
 
 const show = defineModel<boolean>();
 const helpOpened = ref<boolean>(false);
@@ -229,6 +230,7 @@ const createNewWalletAction = async () => {
     });
 
     walletListStore.addWalletToList(wallet);
+    walletPasswordHolderStore.setTempPasswordHolder(wallet.id, createWalletPassword.password);
 
     toast.add({
       title: 'Wallet created successfully',

@@ -1,4 +1,14 @@
-import { EMPTY_SIGN_DEVICE_METHOD, type WalletExtendedPublicKey } from '@shared/types/SignKeys';
+import {
+  EMPTY_SIGN_DEVICE_METHOD,
+  SIGN_DEVICES_LIST,
+  type WalletExtendedPublicKey,
+} from '@shared/types/SignKeys';
+
+export const USER_KEYS_LIST = [
+  SIGN_DEVICES_LIST.TREZOR,
+  SIGN_DEVICES_LIST.LEDGER,
+  SIGN_DEVICES_LIST.MOBILE_APP,
+];
 
 export const extendedPublicKeyIsSetUp = (key: WalletExtendedPublicKey): boolean => {
   const methodOk = key?.method !== EMPTY_SIGN_DEVICE_METHOD;

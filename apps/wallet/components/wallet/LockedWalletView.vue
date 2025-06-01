@@ -50,7 +50,7 @@ import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.
 import PasswordInput from '~/components/ui/inputs/PasswordInput.vue';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
 import { decryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
-import cloneDeep from 'lodash/cloneDeep';
+import cloneDeep from 'lodash.cloneDeep';
 import { useWalletPasswordHolderStore } from '~/stores/wallet/WalletPasswordHolderStore';
 
 const route = useRoute();
@@ -87,17 +87,19 @@ const unlockAction = async () => {
       if (!walletListStore.selectedWallet?.config) return;
       const result = await decryptJson(walletListStore.selectedWallet.config, password.value);
 
+      const walletListItem = cloneDeep(walletListStore.selectedWallet);
       walletListStore.updateSelectedWallet({
-        ...cloneDeep(walletListStore.selectedWallet),
+        ...walletListItem,
         isDecrypted: true,
         config: result,
       });
 
       // todo only if wallet no fully setup
-      walletPasswordHolderStore.setTempPasswordHolder(
-        walletListStore.selectedWallet.id,
-        password.value,
-      );
+      console.log('SSSSPPS', {
+        walletId: walletListItem.id,
+        password: password.value,
+      });
+      walletPasswordHolderStore.setTempPasswordHolder(walletListItem.id, password.value);
 
       toast.add({
         title: 'Wallet Unlocked',

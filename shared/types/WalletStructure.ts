@@ -21,6 +21,7 @@ type WalletClientTypes = keyof typeof WALLET_CLIENT_TYPES;
  * Wallet config structure schema
  */
 export type WalletConfigType = {
+  id: string;
   name: string;
   addressType: WalletAddressTypes;
   network: BitcoinNetworkTypes;

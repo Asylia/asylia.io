@@ -20,10 +20,12 @@
       <div class="flex items-center justify-center">
         <UButton
           v-if="!keyIsFullySetUp && !isAsylia"
+          :loading="loading"
           label="Add"
           size="xs"
           color="info"
           class="!rounded-sm hover:cursor-pointer"
+          @click="addKey"
         >
           <template #trailing>
             <FontAwesomeIcon :icon="['fas', 'link']" class="text-xs" />
@@ -47,6 +49,10 @@ import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.
 import LedgerDeviceIcon from '@shared/images/icons/LedgerDeviceIcon.vue';
 import { SIGN_DEVICES_LIST, type WalletExtendedPublicKey } from '@shared/types/SignKeys';
 import { extendedPublicKeyIsSetUp } from '@packages/asylia-wallets/CreateWallet';
+import TrezorInteraction from '@packages/asylia-hw-wallets/Trezor';
+import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
+import cloneDeep from 'lodash.cloneDeep';
+import { useWalletListStore } from '~/stores/wallet/WalletListStore';
 
 const props = withDefaults(
   defineProps<{
@@ -59,17 +65,82 @@ const props = withDefaults(
   },
 );
 
+const method = computed(() => props.extendedPubKey.method);
 const isTrezor = computed(() => {
-  return props.extendedPubKey.method === SIGN_DEVICES_LIST.TREZOR;
+  return method.value === SIGN_DEVICES_LIST.TREZOR;
 });
 
 const isLedger = computed(() => {
-  return props.extendedPubKey.method === SIGN_DEVICES_LIST.LEDGER;
+  return method.value === SIGN_DEVICES_LIST.LEDGER;
 });
 
 const isAsylia = computed(() => {
-  return props.extendedPubKey.method === SIGN_DEVICES_LIST.ASYLIA;
+  return method.value === SIGN_DEVICES_LIST.ASYLIA;
 });
 
 const keyIsFullySetUp = computed(() => extendedPublicKeyIsSetUp(props.extendedPubKey));
+
+const walletInstanceStore = useWalletInstanceStore();
+const walletListStore = useWalletListStore();
+
+const loading = ref(false);
+const addKey = async () => {
+  loading.value = true;
+
+  const originalKey = cloneDeep(props.extendedPubKey);
+
+  // if (isTrezor.value) {
+  //   loading.value = true;
+  //   const payload = await TrezorInteraction.exportPublicKey();
+  //   console.log('payload', payload);
+  //
+  //   if (payload.success) {
+  //   } else {
+  //   }
+  //   loading.value = false;
+  // }
+  // const key = {
+  //   path: "m/48'/0'/0'/1'",
+  //   xfp: '96c0539d',
+  //   xpub: 'xpub6FFFY2Sox4SB86s45tRQu189vqNG7UyPA3xRekpKSRZLG4TMF36RhyHTkKnJ4ZLdjxmLr1QMcwAiW9goXSewpbGaqEz9J1amkkDQPCPrzBy',
+  // };
+
+  try {
+    // const key = {
+    //   name: props.extendedPubKey.name || `Sign key ${props.index}`,
+    //   bip32Path: "m/48'/0'/0'/1'",
+    //   xfp: '96c0539d',
+    //   xpub: 'xpub6FFFY2Sox4SB86s45tRQu189vqNG7UyPA3xRekpKSRZLG4TMF36RhyHTkKnJ4ZLdjxmLr1QMcwAiW9goXSewpbGaqEz9J1amkkDQPCPrzBy',
+    //   method: props.extendedPubKey.method,
+    // };
+
+    const key = {
+      name: props.extendedPubKey.name || `Sign key ${props.index}`,
+      bip32Path: "m/48'/0'/0'/1'",
+      xfp: '9ea6b6de',
+      xpub: 'xpub6DqsZhS2knACUFefZDC8SQ26avw8ZiThx1NebtFcF8sF6Nuiie77dNwb9s9Ho6ZmDvKfqiDdiadM1RWwiC2HVbb8ptS44MXqaUPcAeuYkMb',
+      method: props.extendedPubKey.method,
+    };
+
+    const keyUpdated = walletInstanceStore.updateKey({
+      index: props.index,
+      key,
+    });
+    if (!keyUpdated) throw new Error('Failed to update key');
+
+    const updateConfig = await walletInstanceStore.saveWalletConfig();
+    if (!updateConfig) throw new Error('Failed to update wallet config');
+
+    walletListStore.syncWalletListToLocalStorage();
+  } catch (e) {
+    console.error(e);
+
+    walletInstanceStore.updateKey({
+      index: props.index,
+      key: originalKey,
+    });
+  } finally {
+    loading.value = false;
+  }
+};
 </script>

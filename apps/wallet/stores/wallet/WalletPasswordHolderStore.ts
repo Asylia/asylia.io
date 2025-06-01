@@ -8,7 +8,9 @@ export const useWalletPasswordHolderStore = defineStore(STORE_KEY, () => {
   const setTempPasswordHolder = (walletId: string, password: string) => {
     _tempPasswordHolder.value[walletId] = password;
   };
-  const getTempPasswordHolder = (walletId: string) => {
+
+  type GetTempPasswordHolderType = (walletId: string) => string | undefined;
+  const getTempPasswordHolder: GetTempPasswordHolderType = (walletId: string) => {
     return _tempPasswordHolder.value[walletId];
   };
   const clearTempPasswordHolder = (walletId: string) => {

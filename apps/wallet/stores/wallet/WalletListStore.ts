@@ -4,9 +4,12 @@ import {
   getEncryptedWalletList,
   type EncryptedWalletListItem,
   type WalletListItem,
+  type DecryptedWalletListItem,
+  setRawToStorage,
 } from '@packages/asylia-wallets/WalletStorage';
 import cloneDeep from 'lodash.clonedeep';
 import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
+import { encryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
 
 const STORE_KEY = 'WALLET_LIST_STORE';
 
@@ -56,9 +59,21 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
     return walletList.value.findIndex((wallet) => wallet.id === selectedWalletId.value);
   });
 
-  const updateSelectedWallet = (updatedWallet: WalletListItem) => {
-    if (selectedWalletIndex.value === undefined) return;
-    _walletList.value[selectedWalletIndex.value] = updatedWallet;
+  const updateSelectedWallet = (
+    decryptedWallet: DecryptedWalletListItem,
+    encryptedWallet?: EncryptedWalletListItem,
+  ): boolean => {
+    if (selectedWalletIndex.value === undefined) return false;
+    _walletList.value[selectedWalletIndex.value] = decryptedWallet;
+
+    if (!encryptedWallet) return true;
+    _originalLocalStorageWalletListMap.value[decryptedWallet.id] = encryptedWallet;
+    return true;
+  };
+
+  const syncWalletListToLocalStorage = () => {
+    const encryptedWalletList = Object.values(_originalLocalStorageWalletListMap.value);
+    setRawToStorage(encryptedWalletList);
   };
 
   const selectedWalletIsUnlocked = computed(() => {
@@ -70,13 +85,13 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
       _originalLocalStorageWalletListMap.value[selectedWalletId.value ?? -1],
     );
     console.log('walletLockedConfig', walletLockedConfig);
-    if (!walletLockedConfig) {
+    if (!walletLockedConfig || selectedWalletIndex.value === undefined) {
       console.error(
         `lockWallet: No original wallet config found for walletId: ${selectedWalletId.value}`,
       );
       return;
     }
-    updateSelectedWallet(walletLockedConfig);
+    _walletList.value[selectedWalletIndex.value] = walletLockedConfig;
     walletInstanceStore.clearWalletInstanceStore();
   };
 
@@ -88,6 +103,7 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
     initStore,
     setSelectedWalletId,
     updateSelectedWallet,
+    syncWalletListToLocalStorage,
     addWalletToList,
     lockSelectedWallet,
   };
