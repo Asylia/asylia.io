@@ -29,6 +29,7 @@ export type WalletExtendedPublicKey = {
   xpub: string;
   xfp: string;
   method: SignDevicesListType;
+  xpriv?: string | undefined; // Optional, used for private keys if needed
 };
 
 export const EMPTY_WALLET_EXTENDED_PUBLIC_KEY: WalletExtendedPublicKey = {
@@ -37,6 +38,7 @@ export const EMPTY_WALLET_EXTENDED_PUBLIC_KEY: WalletExtendedPublicKey = {
   xpub: '',
   xfp: '',
   method: null,
+  xpriv: undefined, // Optional, can be undefined if not needed
 };
 
 export const EMPTY_WALLET_ASYLIA_EXTENDED_PUBLIC_KEY: WalletExtendedPublicKey = {
@@ -45,4 +47,5 @@ export const EMPTY_WALLET_ASYLIA_EXTENDED_PUBLIC_KEY: WalletExtendedPublicKey = 
   xpub: '',
   xfp: '',
   method: SIGN_DEVICES_LIST.ASYLIA,
+  xpriv: undefined, // Optional, can be undefined if not needed
 };
