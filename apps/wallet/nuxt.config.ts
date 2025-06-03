@@ -1,7 +1,10 @@
 /// <reference types="nuxt/schema" />
 import { defineNuxtConfig } from 'nuxt/config';
-import { resolve } from 'pathe';
+import { resolve } from 'path';
 import { execSync } from 'child_process';
+import wasm from 'vite-plugin-wasm';
+import topLevelAwait from 'vite-plugin-top-level-await';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 const debug = process.env.NODE_ENV === 'development';
 
@@ -89,6 +92,27 @@ export default defineNuxtConfig({
   },
   // assetsInclude: ['**/*.json'],
   vite: {
+    plugins: [
+      nodePolyfills({
+        protocolImports: true, // polyfilluje „node:buffer“ a pod.
+        globals: {
+          Buffer: true, // pridá window.Buffer
+          process: true,
+        },
+      }),
+      wasm(), // načíta .wasm ako url + init wrapper
+      topLevelAwait(),
+    ],
+    resolve: {
+      alias: {},
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        define: { global: 'globalThis' },
+      },
+      include: [],
+      exclude: [],
+    },
     // assetsInclude: ['**/*.json'],
     define: {
       'import.meta.env.VITE_GIT_COMMIT_HASH': JSON.stringify(
