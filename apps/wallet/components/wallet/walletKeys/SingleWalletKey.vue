@@ -51,8 +51,8 @@ import { SIGN_DEVICES_LIST, type WalletExtendedPublicKey } from '@shared/types/S
 import { extendedPublicKeyIsSetUp } from '@packages/asylia-wallets/CreateWallet';
 import TrezorInteraction from '@packages/asylia-hw-wallets/Trezor';
 import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
-import cloneDeep from 'lodash.cloneDeep';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
+import deepClone from 'deep-clone'
 
 const props = withDefaults(
   defineProps<{
@@ -87,7 +87,7 @@ const loading = ref(false);
 const addKey = async () => {
   loading.value = true;
 
-  const originalKey = cloneDeep(props.extendedPubKey);
+  const originalKey = deepClone(props.extendedPubKey);
 
   // if (isTrezor.value) {
   //   loading.value = true;

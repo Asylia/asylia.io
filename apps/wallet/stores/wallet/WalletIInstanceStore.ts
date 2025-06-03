@@ -1,13 +1,8 @@
 import { defineStore } from 'pinia';
 import { ref, watch, computed } from 'vue';
-import cloneDeep from 'lodash.clonedeep';
 import type { WalletConfigType } from '@shared/types/WalletStructure';
-import type { WalletExtendedPublicKey } from '@shared/types/SignKeys';
-import {
-  allKeysAreFullySetUp as _allKeysAreFullySetUp,
-  extendedPublicKeyIsSetUp,
-  USER_KEYS_LIST,
-} from '@packages/asylia-wallets/CreateWallet';
+import { SIGN_DEVICES_LIST, type WalletExtendedPublicKey } from '@shared/types/SignKeys';
+import { extendedPublicKeyIsSetUp, USER_KEYS_LIST } from '@packages/asylia-wallets/CreateWallet';
 import type {
   EncryptedWalletListItem,
   DecryptedWalletListItem,
@@ -15,6 +10,17 @@ import type {
 import { useWalletPasswordHolderStore } from '~/stores/wallet/WalletPasswordHolderStore';
 import { encryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
+import {
+  type AddressPath,
+  createP2shP2wshWallet,
+  generateSignKey,
+  type MultisigWalletDescriptor,
+} from '@packages/asylia-wallets/p2wsh';
+import {
+  walletUserKeysAreFullySetUp,
+  allWalletKeysAreFullySetUp,
+} from '@packages/asylia-wallets/WalletKeys';
+import deepClone from 'deep-clone';
 
 const STORE_KEY = 'WALLET_INSTANCE_STORE';
 
@@ -40,7 +46,7 @@ export const useWalletInstanceStore = defineStore(STORE_KEY, () => {
       console.error('initWalletConfig: config is undefined');
       return;
     }
-    _walletConfig.value = cloneDeep(config);
+    _walletConfig.value = deepClone(config);
     walletConfigVersion.value = version;
   };
 
@@ -51,7 +57,7 @@ export const useWalletInstanceStore = defineStore(STORE_KEY, () => {
       return undefined;
     }
 
-    const config = cloneDeep(walletConfig.value);
+    const config = deepClone(walletConfig.value);
     const decryptedWallet: DecryptedWalletListItem = {
       id: walletConfig.value.id,
       name: walletConfig.value.name,
@@ -133,23 +139,66 @@ export const useWalletInstanceStore = defineStore(STORE_KEY, () => {
   };
 
   const allKeysAreFullySetUp = computed<boolean>(() => {
-    return _allKeysAreFullySetUp(walletKeysList.value);
+    return allWalletKeysAreFullySetUp(walletKeysList.value);
   });
 
   const allUsersKeysAreFullySetUp = computed<boolean>(() => {
-    const userKeys =
-      walletKeysList.value?.filter(
-        (key) => extendedPublicKeyIsSetUp(key) && USER_KEYS_LIST.includes(key.method),
-      ) ?? [];
-
-    return userKeys?.length === walletConfig.value?.quorum.requiredSigners;
+    const userWalletKeys = walletKeysList.value ?? [];
+    const requiredSigners = walletConfig.value?.quorum?.requiredSigners ?? 0;
+    return walletUserKeysAreFullySetUp(userWalletKeys, requiredSigners);
   });
 
-  watch(allUsersKeysAreFullySetUp, (setup) => {
+  watch(allUsersKeysAreFullySetUp, async (setup) => {
     if (!setup) return;
 
+    if (!allKeysAreFullySetUp.value) {
+      console.info('All user keys are set up, but not all keys are fully set up.');
 
+      if (!walletKeysList.value) {
+        console.error('No walletKeysList.value');
+        return;
+      }
 
+      for (let i = 0; i < walletKeysList.value.length; i++) {
+        const singleKey = walletKeysList.value[i];
+        if (!singleKey) continue;
+        if (singleKey.method === SIGN_DEVICES_LIST.ASYLIA) {
+          const generatedAsyliaKey = await generateSignKey();
+          console.info('generatedAsyliaKey', generatedAsyliaKey);
+          const newKey = {
+            name: singleKey.name || `Asylia Sign Key ${i + 1}`,
+            bip32Path: singleKey.bip32Path || "m/48'/0'/0'/1'",
+            xfp: generatedAsyliaKey.xfp,
+            xpub: generatedAsyliaKey.xpub,
+            method: SIGN_DEVICES_LIST.ASYLIA,
+            xpriv: generatedAsyliaKey.xpriv,
+          };
+          updateKey({
+            index: i,
+            key: newKey,
+          });
+
+          const updateConfig = await saveWalletConfig();
+          if (!updateConfig) throw new Error('Failed to update wallet config');
+
+          walletListStore.syncWalletListToLocalStorage();
+          return 1;
+        }
+      }
+
+      // updateKey()
+      // setup Asylia sign keys
+
+      return;
+    }
+
+    const m = walletConfig.value?.quorum.requiredSigners ?? 0;
+    const cosignerXpubs = walletKeysList.value ?? [];
+    const derivePath: AddressPath = [0, 0];
+
+    const w: MultisigWalletDescriptor = createP2shP2wshWallet(m, cosignerXpubs, derivePath);
+
+    console.log('w', w);
   });
 
   /*

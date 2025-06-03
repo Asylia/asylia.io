@@ -94,9 +94,9 @@ import type {
   customSchemaType,
 } from '@shared/components/wallet/setup/quorum/Types';
 import { createNewWallet } from '@packages/asylia-wallets/WalletStorage';
-import cloneDeep from 'lodash.cloneDeep';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
 import { useWalletPasswordHolderStore } from '~/stores/wallet/WalletPasswordHolderStore';
+import deepClone from 'deep-clone'
 
 const toast = useToast();
 const walletListStore = useWalletListStore();
@@ -220,7 +220,7 @@ const createWalletPassword = reactive({
 const creating = ref(false);
 const createNewWalletAction = async () => {
   creating.value = true;
-  const walletConfig: WalletConfigType = cloneDeep(stateValue.value);
+  const walletConfig: WalletConfigType = deepClone(stateValue.value);
 
   try {
     const wallet = await createNewWallet({

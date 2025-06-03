@@ -50,8 +50,8 @@ import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.
 import PasswordInput from '~/components/ui/inputs/PasswordInput.vue';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
 import { decryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
-import cloneDeep from 'lodash.cloneDeep';
 import { useWalletPasswordHolderStore } from '~/stores/wallet/WalletPasswordHolderStore';
+import deepClone from 'deep-clone'
 
 const route = useRoute();
 const walletListStore = useWalletListStore();
@@ -87,7 +87,7 @@ const unlockAction = async () => {
       if (!walletListStore.selectedWallet?.config) return;
       const result = await decryptJson(walletListStore.selectedWallet.config, password.value);
 
-      const walletListItem = cloneDeep(walletListStore.selectedWallet);
+      const walletListItem = deepClone(walletListStore.selectedWallet);
       walletListStore.updateSelectedWallet({
         ...walletListItem,
         isDecrypted: true,

@@ -7,9 +7,9 @@ import {
   type DecryptedWalletListItem,
   setRawToStorage,
 } from '@packages/asylia-wallets/WalletStorage';
-import cloneDeep from 'lodash.clonedeep';
 import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
 import { encryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
+import deepClone from 'deep-clone'
 
 const STORE_KEY = 'WALLET_LIST_STORE';
 
@@ -30,7 +30,7 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
 
   const initStore = () => {
     if (_storeInitialized.value) return;
-    const walletListFromLocalStorage = cloneDeep(getEncryptedWalletList()) || [];
+    const walletListFromLocalStorage = deepClone(getEncryptedWalletList()) || [];
     const alreadyLoadedIdList = _walletList.value.map((wallet) => wallet.id);
 
     for (let singleWallet of walletListFromLocalStorage) {
@@ -81,7 +81,7 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
   });
 
   const lockSelectedWallet = () => {
-    const walletLockedConfig = cloneDeep(
+    const walletLockedConfig = deepClone(
       _originalLocalStorageWalletListMap.value[selectedWalletId.value ?? -1],
     );
     console.log('walletLockedConfig', walletLockedConfig);
