@@ -16,7 +16,7 @@ const bip32 = BIP32Factory(ecc);
 /**
  * Generates a *brand‑new* mnemonic and returns the derived multisig account.
  */
-export async function generateMultisigAccount(): Promise<GeneratedMultisigAccount> {
+export async function generateSignKey(): Promise<GeneratedMultisigAccount> {
   const mnemonic = bip39.generateMnemonic();
   const seed = await bip39.mnemonicToSeed(mnemonic);
   const root = bip32.fromSeed(seed);

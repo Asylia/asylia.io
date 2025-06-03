@@ -3,4 +3,4 @@ export const BITCOIN_NETWORK = Object.freeze({
   TESTNET: 'testnet',
 });
 
-export type BitcoinNetworkTypes = keyof typeof BitcoinNetworkTypes;
+export type BitcoinNetworkTypes = keyof typeof BITCOIN_NETWORK;

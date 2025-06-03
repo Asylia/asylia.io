@@ -28,9 +28,9 @@ export type DerivedPublicKey = WalletExtendedPublicKey & {
 export interface SortedDerivedPublicKeys {
   /** Sorted list of cosigner keys */
   keys: DerivedPublicKey[];
-  /** Convenience buffer list – in the same order as `keys` */
+  /** Convenience buffer list – in the same order as `keys` */
   buffers: Buffer[];
-  /** Convenience hex list – in the same order as `keys` */
+  /** Convenience hex list – in the same order as `keys` */
   hexes: string[];
 }
 
