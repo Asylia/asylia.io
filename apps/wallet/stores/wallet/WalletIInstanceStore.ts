@@ -1,223 +1,191 @@
 import { defineStore } from 'pinia';
-import { ref, watch, computed } from 'vue';
+import { ref, computed, reactive } from 'vue';
 import type { WalletConfigType } from '@shared/types/WalletStructure';
-import { SIGN_DEVICES_LIST, type WalletExtendedPublicKey } from '@shared/types/SignKeys';
-import { extendedPublicKeyIsSetUp, USER_KEYS_LIST } from '@packages/asylia-wallets/CreateWallet';
-import type {
-  EncryptedWalletListItem,
-  DecryptedWalletListItem,
-} from '@packages/asylia-wallets/WalletStorage';
-import { useWalletPasswordHolderStore } from '~/stores/wallet/WalletPasswordHolderStore';
-import { encryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
-import { useWalletListStore } from '~/stores/wallet/WalletListStore';
+import type { WalletExtendedPublicKey } from '@shared/types/SignKeys';
 import {
-  type AddressPath,
-  createP2shP2wshWallet,
-  generateSignKey,
-  type MultisigWalletDescriptor,
-} from '@packages/asylia-wallets/p2wsh';
-import {
-  walletUserKeysAreFullySetUp,
-  allWalletKeysAreFullySetUp,
-} from '@packages/asylia-wallets/WalletKeys';
+  Wallet,
+  type WalletState,
+  type WalletKeysState,
+  extendedPublicKeyIsSetUp,
+} from '@packages/asylia-wallets/CreateWallet';
 import deepClone from 'deep-clone';
 
-const STORE_KEY = 'WALLET_INSTANCE_STORE';
+// --- TYPES ---
+interface WalletStoreState {
+  id: string;
+  name: string;
+  walletConfig: WalletConfigType | undefined;
+}
 
-export const useWalletInstanceStore = defineStore(STORE_KEY, () => {
-  // store
-  const walletListStore = useWalletListStore();
+interface WalletKeysStoreState {
+  allWalletKeysAreFullySetUp: boolean;
+  allUsersKeysAreFullySetUp: boolean;
+  hasEmptyAnyBackupKey: boolean;
+  walletKeys: WalletExtendedPublicKey[];
+}
 
+interface UpdateKeyParams {
+  index: number;
+  key: WalletExtendedPublicKey;
+}
+
+// --- STORE ---
+export const useWalletInstanceStore = defineStore('WALLET_INSTANCE_STORE', () => {
+  // --- STATE ---
   const walletInstanceLoading = ref(false);
-  const initWallet = (config: WalletConfigType, version: number) => {
+  const walletState = reactive<WalletStoreState>({
+    id: '',
+    name: '',
+    walletConfig: undefined,
+  });
+
+  const walletKeysState = reactive<WalletKeysStoreState>({
+    allWalletKeysAreFullySetUp: false,
+    allUsersKeysAreFullySetUp: false,
+    hasEmptyAnyBackupKey: false,
+    walletKeys: [],
+  });
+
+  // Instance reference
+  let walletInstance: Wallet | null = null;
+
+  // --- COMPUTED ---
+  const allUsersKeysAreFullySetUp = computed(() => walletKeysState.allUsersKeysAreFullySetUp);
+
+  const allKeysAreFullySetUp = computed(() => walletKeysState.allWalletKeysAreFullySetUp);
+
+  const walletConfig = computed(() => walletState.walletConfig);
+
+  const walletKeysList = computed(() => walletKeysState.walletKeys);
+
+  const isInitialized = computed(() => walletInstance !== null);
+
+  // --- ACTIONS ---
+  const updateKeyOnIndex = async (params: UpdateKeyParams): Promise<boolean> => {
+    if (!walletInstance) {
+      console.error('updateKeyOnIndex: wallet not initialized');
+      return false;
+    }
+
+    // Update key - auto-generation of backup keys is handled internally by WalletKeysManager
+    return await walletInstance.getKeysManager().updateKey(params.index, params.key);
+  };
+
+  const generateBackupKeys = async (): Promise<boolean> => {
+    if (!walletInstance) {
+      console.error('generateBackupKeys: wallet not initialized');
+      return false;
+    }
+
+    return walletInstance.getKeysManager().generateBackupKeys();
+  };
+
+  const updateWalletName = (name: string): void => {
+    if (!walletInstance) {
+      console.error('updateWalletName: wallet not initialized');
+      return;
+    }
+    walletInstance.updateName(name);
+  };
+
+  const initWalletConfig = (config: WalletConfigType): void => {
     walletInstanceLoading.value = true;
-    initWalletConfig(config, version);
+
+    try {
+      if (!config) {
+        throw new Error('Config is required');
+      }
+
+      // Clear previous instance if exists
+      if (walletInstance) {
+        clearWalletInstanceStore();
+      }
+
+      // Create new wallet instance
+      const initialConfig = deepClone(config);
+      walletInstance = new Wallet(initialConfig);
+
+      // Setup state update handlers
+      const updateWalletState = (state: WalletState) => {
+        walletState.id = state.id;
+        walletState.name = state.name;
+        walletState.walletConfig = state.config;
+      };
+
+      const updateKeysState = (keysState: WalletKeysState) => {
+        walletKeysState.allWalletKeysAreFullySetUp = keysState.allWalletKeysAreFullySetUp;
+        walletKeysState.allUsersKeysAreFullySetUp = keysState.allUsersKeysAreFullySetUp;
+        walletKeysState.hasEmptyAnyBackupKey = keysState.hasEmptyAnyBackupKey;
+        walletKeysState.walletKeys = [...keysState.walletKeys];
+      };
+
+      // Set initial state
+      const initialState = walletInstance.getState();
+      updateWalletState(initialState);
+      updateKeysState(initialState.keysState);
+
+      // Subscribe to future changes
+      walletInstance.addObserver({
+        update: updateWalletState,
+      });
+
+      walletInstance.getKeysManager().addObserver({
+        update: updateKeysState,
+      });
+    } catch (error) {
+      console.error('Failed to initialize wallet:', error);
+      clearWalletInstanceStore();
+    } finally {
+      walletInstanceLoading.value = false;
+    }
+  };
+
+  const clearWalletInstanceStore = (): void => {
+    // Clear wallet instance
+    if (walletInstance) {
+      walletInstance.clear();
+      walletInstance = null;
+    }
+
+    // Reset state
+    walletState.id = '';
+    walletState.name = '';
+    walletState.walletConfig = undefined;
+
+    walletKeysState.allWalletKeysAreFullySetUp = false;
+    walletKeysState.allUsersKeysAreFullySetUp = false;
+    walletKeysState.hasEmptyAnyBackupKey = false;
+    walletKeysState.walletKeys = [];
+
     walletInstanceLoading.value = false;
   };
 
-  /*
-   * Wallet config
-   */
-  const _walletConfig = ref<WalletConfigType | undefined>(undefined);
-  const walletConfig = computed<WalletConfigType | undefined>(() => _walletConfig.value);
-  const walletConfigVersion = ref(0);
-  const initWalletConfig = (config: WalletConfigType, version: number) => {
-    if (!config) {
-      console.error('initWalletConfig: config is undefined');
-      return;
-    }
-    _walletConfig.value = deepClone(config);
-    walletConfigVersion.value = version;
+  // Utility function to get raw wallet instance (if needed)
+  const getWalletInstance = (): Wallet | null => {
+    return walletInstance;
   };
 
-  type GetDecryptedWalletConfigType = () => DecryptedWalletListItem | undefined;
-  const getDecryptedWalletConfig: GetDecryptedWalletConfigType = () => {
-    if (!walletConfig.value) {
-      console.error('getEncryptedWalletConfig: walletConfig is undefined');
-      return undefined;
-    }
-
-    const config = deepClone(walletConfig.value);
-    const decryptedWallet: DecryptedWalletListItem = {
-      id: walletConfig.value.id,
-      name: walletConfig.value.name,
-      version: walletConfigVersion.value,
-      isDecrypted: true,
-      config,
-    };
-
-    return decryptedWallet;
-  };
-
-  type GetEncryptedWalletConfigType = () => Promise<EncryptedWalletListItem | undefined>;
-  const getEncryptedWalletConfig: GetEncryptedWalletConfigType = async () => {
-    const decryptedWalletConfig = getDecryptedWalletConfig();
-    if (!decryptedWalletConfig) {
-      console.error('getEncryptedWalletConfig: decryptedWallet is undefined');
-      return undefined;
-    }
-
-    const walletPasswordStore = useWalletPasswordHolderStore();
-    console.log('decryptedWalletConfig.id', decryptedWalletConfig.id);
-    const walletPassword = walletPasswordStore.getTempPasswordHolder(decryptedWalletConfig.id);
-
-    if (!walletPassword) {
-      console.error('getEncryptedWalletConfig: walletPassword is undefined');
-      return undefined;
-    }
-
-    console.log('decryptedWallet', decryptedWalletConfig);
-
-    try {
-      const { encrypted, salt, iv } = await encryptJson(
-        decryptedWalletConfig.config,
-        walletPassword,
-      );
-
-      const encryptedWalletListItem: EncryptedWalletListItem = {
-        id: decryptedWalletConfig.id,
-        version: decryptedWalletConfig.version,
-        name: decryptedWalletConfig.name,
-        isDecrypted: false,
-        config: {
-          encrypted,
-          salt,
-          iv,
-        },
-      };
-
-      return encryptedWalletListItem;
-    } catch (e) {
-      console.error('getEncryptedWalletConfig: Error during encryption', e);
-      return undefined;
-    }
-  };
-
-  const saveWalletConfig = async (): Promise<boolean> => {
-    const encryptedWalletConfig = await getEncryptedWalletConfig();
-    const decryptedWalletConfig = getDecryptedWalletConfig();
-    if (!encryptedWalletConfig || !decryptedWalletConfig) {
-      console.error(
-        'saveWalletConfig: encryptedWalletConfig or decryptedWalletConfig is undefined',
-      );
-      return false;
-    }
-    return walletListStore.updateSelectedWallet(decryptedWalletConfig, encryptedWalletConfig);
-  };
-
-  /*
-   * Wallet Keys
-   */
-  const walletKeysList = computed<WalletExtendedPublicKey[] | undefined>(
-    () => walletConfig.value?.extendedPublicKeys,
-  );
-
-  const updateKey = (payload: { index: number; key: WalletExtendedPublicKey }): boolean => {
-    if (!_walletConfig.value?.extendedPublicKeys?.[payload.index]) return false;
-    _walletConfig.value.extendedPublicKeys[payload.index] = payload.key;
-    return true;
-  };
-
-  const allKeysAreFullySetUp = computed<boolean>(() => {
-    return allWalletKeysAreFullySetUp(walletKeysList.value);
-  });
-
-  const allUsersKeysAreFullySetUp = computed<boolean>(() => {
-    const userWalletKeys = walletKeysList.value ?? [];
-    const requiredSigners = walletConfig.value?.quorum?.requiredSigners ?? 0;
-    return walletUserKeysAreFullySetUp(userWalletKeys, requiredSigners);
-  });
-
-  watch(allUsersKeysAreFullySetUp, async (setup) => {
-    if (!setup) return;
-
-    if (!allKeysAreFullySetUp.value) {
-      console.info('All user keys are set up, but not all keys are fully set up.');
-
-      if (!walletKeysList.value) {
-        console.error('No walletKeysList.value');
-        return;
-      }
-
-      for (let i = 0; i < walletKeysList.value.length; i++) {
-        const singleKey = walletKeysList.value[i];
-        if (!singleKey) continue;
-        if (singleKey.method === SIGN_DEVICES_LIST.ASYLIA) {
-          const generatedAsyliaKey = await generateSignKey();
-          console.info('generatedAsyliaKey', generatedAsyliaKey);
-          const newKey = {
-            name: singleKey.name || `Asylia Sign Key ${i + 1}`,
-            bip32Path: singleKey.bip32Path || "m/48'/0'/0'/1'",
-            xfp: generatedAsyliaKey.xfp,
-            xpub: generatedAsyliaKey.xpub,
-            method: SIGN_DEVICES_LIST.ASYLIA,
-            xpriv: generatedAsyliaKey.xpriv,
-          };
-          updateKey({
-            index: i,
-            key: newKey,
-          });
-
-          const updateConfig = await saveWalletConfig();
-          if (!updateConfig) throw new Error('Failed to update wallet config');
-
-          walletListStore.syncWalletListToLocalStorage();
-          return 1;
-        }
-      }
-
-      // updateKey()
-      // setup Asylia sign keys
-
-      return;
-    }
-
-    const m = walletConfig.value?.quorum.requiredSigners ?? 0;
-    const cosignerXpubs = walletKeysList.value ?? [];
-    const derivePath: AddressPath = [0, 0];
-
-    const w: MultisigWalletDescriptor = createP2shP2wshWallet(m, cosignerXpubs, derivePath);
-
-    console.log('w', w);
-  });
-
-  /*
-   * Clear the wallet instance store
-   */
-  const clearWalletInstanceStore = () => {
-    _walletConfig.value = undefined;
-  };
-
+  // --- RETURN PUBLIC API ---
   return {
-    initWallet,
-    clearWalletInstanceStore,
-    updateKey,
-    getDecryptedWalletConfig,
-    getEncryptedWalletConfig,
-    saveWalletConfig,
+    // State
+    walletInstanceLoading,
+    isInitialized,
+
+    // Computed
+    allKeysAreFullySetUp,
     allUsersKeysAreFullySetUp,
     walletKeysList,
-    allKeysAreFullySetUp,
     walletConfig,
+
+    // Actions
+    initWallet: initWalletConfig,
+    updateKeyOnIndex,
+    generateBackupKeys,
+    updateWalletName,
+    clearWalletInstanceStore,
+    getWalletInstance,
+
+    // Utility export
+    extendedPublicKeyIsSetUp,
   };
 });

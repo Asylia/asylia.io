@@ -48,11 +48,14 @@ import TrezorDeviceIcon from '@shared/images/icons/TrezorDeviceIcon.vue';
 import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import LedgerDeviceIcon from '@shared/images/icons/LedgerDeviceIcon.vue';
 import { SIGN_DEVICES_LIST, type WalletExtendedPublicKey } from '@shared/types/SignKeys';
-import { extendedPublicKeyIsSetUp } from '@packages/asylia-wallets/CreateWallet';
+import { WalletKeyValidator } from '@packages/asylia-wallets/CreateWallet';
 import TrezorInteraction from '@packages/asylia-hw-wallets/Trezor';
 import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
-import deepClone from 'deep-clone'
+import deepClone from 'deep-clone';
+
+// const g = new WalletKeyValidator();
+// const extendedPublicKeyIsSetUp = g.extendedPublicKeyIsSetUp;
 
 const props = withDefaults(
   defineProps<{
@@ -78,7 +81,8 @@ const isAsylia = computed(() => {
   return method.value === SIGN_DEVICES_LIST.ASYLIA;
 });
 
-const keyIsFullySetUp = computed(() => extendedPublicKeyIsSetUp(props.extendedPubKey));
+const keyIsFullySetUp = computed(() => WalletKeyValidator.isFullySetUp(props.extendedPubKey));
+// const keyIsFullySetUp = computed(() => extendedPublicKeyIsSetUp(props.extendedPubKey));
 
 const walletInstanceStore = useWalletInstanceStore();
 const walletListStore = useWalletListStore();
@@ -106,29 +110,34 @@ const addKey = async () => {
   // };
 
   try {
-    // const key = {
-    //   name: props.extendedPubKey.name || `Sign key ${props.index}`,
-    //   bip32Path: "m/48'/0'/0'/1'",
-    //   xfp: '96c0539d',
-    //   xpub: 'xpub6FFFY2Sox4SB86s45tRQu189vqNG7UyPA3xRekpKSRZLG4TMF36RhyHTkKnJ4ZLdjxmLr1QMcwAiW9goXSewpbGaqEz9J1amkkDQPCPrzBy',
-    //   method: props.extendedPubKey.method,
-    // };
-
     const key = {
       name: props.extendedPubKey.name || `Sign key ${props.index}`,
       bip32Path: "m/48'/0'/0'/1'",
-      xfp: '9ea6b6de',
-      xpub: 'xpub6DqsZhS2knACUFefZDC8SQ26avw8ZiThx1NebtFcF8sF6Nuiie77dNwb9s9Ho6ZmDvKfqiDdiadM1RWwiC2HVbb8ptS44MXqaUPcAeuYkMb',
+      xfp: '96c0539d',
+      xpub: 'xpub6FFFY2Sox4SB86s45tRQu189vqNG7UyPA3xRekpKSRZLG4TMF36RhyHTkKnJ4ZLdjxmLr1QMcwAiW9goXSewpbGaqEz9J1amkkDQPCPrzBy',
       method: props.extendedPubKey.method,
     };
 
-    const keyUpdated = walletInstanceStore.updateKey({
+    // const key = {
+    //   name: props.extendedPubKey.name || `Sign key ${props.index}`,
+    //   bip32Path: "m/48'/0'/0'/1'",
+    //   xfp: '9ea6b6de',
+    //   xpub: 'xpub6DqsZhS2knACUFefZDC8SQ26avw8ZiThx1NebtFcF8sF6Nuiie77dNwb9s9Ho6ZmDvKfqiDdiadM1RWwiC2HVbb8ptS44MXqaUPcAeuYkMb',
+    //   method: props.extendedPubKey.method,
+    // };
+
+    const keyUpdated = walletInstanceStore.updateKeyOnIndex({
       index: props.index,
       key,
     });
     if (!keyUpdated) throw new Error('Failed to update key');
 
-    const updateConfig = await walletInstanceStore.saveWalletConfig();
+    if (!walletInstanceStore.walletConfig) {
+      throw new Error('Wallet config not found dewdew');
+    }
+
+    const updateConfig = await walletListStore.saveWalletConfig(walletInstanceStore.walletConfig);
+    // const updateConfig = await walletInstanceStore.saveWalletConfig();
     if (!updateConfig) throw new Error('Failed to update wallet config');
 
     walletListStore.syncWalletListToLocalStorage();

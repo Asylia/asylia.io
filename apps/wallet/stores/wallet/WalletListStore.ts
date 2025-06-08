@@ -9,7 +9,9 @@ import {
 } from '@packages/asylia-wallets/WalletStorage';
 import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
 import { encryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
-import deepClone from 'deep-clone'
+import deepClone from 'deep-clone';
+import type { WalletConfigType } from '@shared/types/WalletStructure';
+import { useWalletPasswordHolderStore } from '~/stores/wallet/WalletPasswordHolderStore';
 
 const STORE_KEY = 'WALLET_LIST_STORE';
 
@@ -95,6 +97,94 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
     walletInstanceStore.clearWalletInstanceStore();
   };
 
+  // ec
+
+  type GetDecryptedWalletConfigType = (
+    walletConfig: WalletConfigType,
+    version?: number,
+  ) => DecryptedWalletListItem | undefined;
+
+  const getDecryptedWalletConfig: GetDecryptedWalletConfigType = (walletConfig, version) => {
+    if (!walletConfig) {
+      console.error('getEncryptedWalletConfig: walletConfig is undefined');
+      return undefined;
+    }
+
+    const config = deepClone(walletConfig);
+    const decryptedWallet: DecryptedWalletListItem = {
+      id: walletConfig.id,
+      name: walletConfig.name,
+      version: version || 1,
+      isDecrypted: true,
+      config,
+    };
+
+    return decryptedWallet;
+  };
+
+  type GetEncryptedWalletConfigType = (
+    walletConfig: WalletConfigType,
+    version?: number,
+  ) => Promise<EncryptedWalletListItem | undefined>;
+
+  const getEncryptedWalletConfig: GetEncryptedWalletConfigType = async (walletConfig, version) => {
+    const decryptedWalletConfig = getDecryptedWalletConfig(walletConfig, version);
+    if (!decryptedWalletConfig) {
+      console.error('getEncryptedWalletConfig: decryptedWallet is undefined');
+      return undefined;
+    }
+
+    const walletPasswordStore = useWalletPasswordHolderStore();
+    console.log('decryptedWalletConfig.id', decryptedWalletConfig.id);
+    const walletPassword = walletPasswordStore.getTempPasswordHolder(decryptedWalletConfig.id);
+
+    if (!walletPassword) {
+      console.error('getEncryptedWalletConfig: walletPassword is undefined');
+      return undefined;
+    }
+
+    console.log('decryptedWallet', decryptedWalletConfig);
+
+    try {
+      const { encrypted, salt, iv } = await encryptJson(
+        decryptedWalletConfig.config,
+        walletPassword,
+      );
+
+      const encryptedWalletListItem: EncryptedWalletListItem = {
+        id: decryptedWalletConfig.id,
+        version: decryptedWalletConfig.version,
+        name: decryptedWalletConfig.name,
+        isDecrypted: false,
+        config: {
+          encrypted,
+          salt,
+          iv,
+        },
+      };
+
+      return encryptedWalletListItem;
+    } catch (e) {
+      console.error('getEncryptedWalletConfig: Error during encryption', e);
+      return undefined;
+    }
+  };
+
+  const saveWalletConfig = async (
+    walletConfig: WalletConfigType,
+    version?: number,
+  ): Promise<boolean> => {
+    const encryptedWalletConfig = await getEncryptedWalletConfig(walletConfig, version);
+    const decryptedWalletConfig = getDecryptedWalletConfig(walletConfig, version);
+    if (!encryptedWalletConfig || !decryptedWalletConfig) {
+      console.error(
+        'saveWalletConfig: encryptedWalletConfig or decryptedWalletConfig is undefined',
+      );
+      return false;
+    }
+    return updateSelectedWallet(decryptedWalletConfig, encryptedWalletConfig);
+  };
+
   return {
     walletList,
     selectedWallet,
@@ -106,5 +196,9 @@ export const useWalletListStore = defineStore(STORE_KEY, () => {
     syncWalletListToLocalStorage,
     addWalletToList,
     lockSelectedWallet,
+    //
+    getDecryptedWalletConfig,
+    getEncryptedWalletConfig,
+    saveWalletConfig,
   };
 });
