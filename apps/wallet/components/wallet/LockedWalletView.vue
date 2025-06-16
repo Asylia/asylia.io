@@ -46,16 +46,15 @@
 </template>
 
 <script setup lang="ts">
-import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import PasswordInput from '~/components/ui/inputs/PasswordInput.vue';
-import { useWalletListStore } from '~/stores/wallet/WalletListStore';
-import { decryptJson } from '@packages/asylia-wallets/WalletStorageEncryption';
-import { useWalletPasswordHolderStore } from '~/stores/wallet/WalletPasswordHolderStore';
-import deepClone from 'deep-clone'
-
-const route = useRoute();
-const walletListStore = useWalletListStore();
-const walletPasswordHolderStore = useWalletPasswordHolderStore();
+import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
+import { decryptWalletConfig } from '~/stores/wallet/storage/encryption/EncryptWallet';
+import {
+  useWalletStorageListStore,
+  type EncryptedWalletListItemType,
+} from '~/stores/wallet/storage/list';
+import PasswordHolder from '~/stores/wallet/storage/list/src/PasswordHolder';
+import { useActiveWalletStore } from '~/stores/wallet/ActiveWalletStore';
 
 const unlockModal = ref(false);
 const password = ref('');
@@ -68,38 +67,43 @@ const openUnlockModal = () => {
   showPassword.value = false;
 };
 
-// watch(
-//   () => walletListStore.selectedWallet,
-//   (wallet) => {
-//     if (!wallet || wallet.isDecrypted) return;
-//     unlockModal.value = true;
-//   },
-//   { immediate: true },
-// );
-
 const toast = useToast();
+
+const walletStorageListStore = useWalletStorageListStore();
+const activeWalletStore = useActiveWalletStore();
 
 const unlockAction = async () => {
   loading.value = true;
   unlockModal.value = false;
   setTimeout(async () => {
     try {
-      if (!walletListStore.selectedWallet?.config) return;
-      const result = await decryptJson(walletListStore.selectedWallet.config, password.value);
+      if (!activeWalletStore.activeWallet) {
+        throw new Error('Wallet is not active - SHOULD NOT HAPPEN');
+      }
 
-      const walletListItem = deepClone(walletListStore.selectedWallet);
-      walletListStore.updateSelectedWallet({
-        ...walletListItem,
-        isDecrypted: true,
-        config: result,
-      });
+      const selectedWalletData = activeWalletStore.activeWallet as EncryptedWalletListItemType;
 
-      // todo only if wallet no fully setup
-      console.log('SSSSPPS', {
-        walletId: walletListItem.id,
-        password: password.value,
-      });
-      walletPasswordHolderStore.setTempPasswordHolder(walletListItem.id, password.value);
+      if (!selectedWalletData) {
+        toast.add({
+          title: 'Error',
+          description: 'No wallet selected or wallet data is missing.',
+          color: 'error',
+        });
+        return;
+      }
+
+      const decryptedWalletConfig = await decryptWalletConfig(
+        selectedWalletData.config,
+        password.value,
+      );
+
+      const success = walletStorageListStore.unlock(decryptedWalletConfig);
+
+      if (!success) {
+        throw new Error('Failed to unlock wallet');
+      }
+
+      PasswordHolder.set(decryptedWalletConfig.id, password.value);
 
       toast.add({
         title: 'Wallet Unlocked',
@@ -107,6 +111,7 @@ const unlockAction = async () => {
         color: 'success',
       });
     } catch (e) {
+      console.error(e);
       toast.add({
         title: 'Unlock Failed',
         description: 'The password you entered is incorrect.',

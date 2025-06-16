@@ -3,6 +3,7 @@ import { WALLET_ADDRESS_TYPES } from '@shared/types/WalletAddress';
 import { BTC_NETWORK } from '@shared/Config';
 
 export const EMPTY_WALLET_CONFIG_STATE: WalletConfigType = {
+  id: '',
   name: '',
   addressType: WALLET_ADDRESS_TYPES.P2SH_P2WSH,
   network: BTC_NETWORK,

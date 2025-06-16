@@ -1,6 +1,7 @@
 <template>
   <div class="w-full">
-    <SetupNameAdnQuorum v-model="createNewWallet" />
+    <SetupNameAdnQuorum2 v-model="createNewWallet" />
+    <!--    <SetupNameAdnQuorum v-model="createNewWallet" />-->
     <div class="mx-auto w-full max-w-6xl pt-4 px-8 flex flex-col h-screen justify-between">
       <div class="w-full flex-1">
         <div class="w-full flex items-center justify-between">
@@ -81,10 +82,14 @@ import ColorModeButton from '@shared/components/ui/ColorModeButton.vue';
 import SelectLanguage from '@shared/components/ui/SelectLanguage.vue';
 import SocialLinks from '@shared/components/marketing/SocialLinks.vue';
 import CtaBox from '~/components/intro/CtaBox.vue';
-import SetupNameAdnQuorum from '~/components/actions/createNewWallet/setUpNameAndQuorum/SetupNameAdnQuorum.vue';
+import SetupNameAdnQuorum2 from '~/components/actions/createNewWallet2/setUpNameAndQuorum/SetupNameAdnQuorum.vue';
 import { MiddlewareName as RediredctIfAsAnyWalletMiddleware } from '~/middleware/redirectIfAnyWalletExistsInLocalStorage.client';
+import { useWalletStorageListStore } from '~/stores/wallet/storage/list';
 
 const createNewWallet = ref(false);
+
+const walletStorageListStore = useWalletStorageListStore();
+walletStorageListStore.load();
 
 definePageMeta({
   middleware: [RediredctIfAsAnyWalletMiddleware],

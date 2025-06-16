@@ -48,7 +48,7 @@ import TrezorDeviceIcon from '@shared/images/icons/TrezorDeviceIcon.vue';
 import FontAwesomeIcon from '@shared/components/ui/font-awesome/FontAwesomeIcon.vue';
 import LedgerDeviceIcon from '@shared/images/icons/LedgerDeviceIcon.vue';
 import { SIGN_DEVICES_LIST, type WalletExtendedPublicKey } from '@shared/types/SignKeys';
-import { WalletKeyValidator } from '@packages/asylia-wallets/CreateWallet';
+import { extendedPublicKeyIsSetUp } from '@packages/asylia-wallets/CreateWallet';
 import TrezorInteraction from '@packages/asylia-hw-wallets/Trezor';
 import { useWalletInstanceStore } from '~/stores/wallet/WalletIInstanceStore';
 import { useWalletListStore } from '~/stores/wallet/WalletListStore';
@@ -81,7 +81,7 @@ const isAsylia = computed(() => {
   return method.value === SIGN_DEVICES_LIST.ASYLIA;
 });
 
-const keyIsFullySetUp = computed(() => WalletKeyValidator.isFullySetUp(props.extendedPubKey));
+const keyIsFullySetUp = computed(() => extendedPublicKeyIsSetUp(props.extendedPubKey));
 // const keyIsFullySetUp = computed(() => extendedPublicKeyIsSetUp(props.extendedPubKey));
 
 const walletInstanceStore = useWalletInstanceStore();

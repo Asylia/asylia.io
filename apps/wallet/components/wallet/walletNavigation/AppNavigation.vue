@@ -5,7 +5,7 @@
     <NavigationHeader />
 
     <div class="flex flex-col mt-5 space-y-2">
-      <MenuSection :wallets="mappedWalletList" />
+      <MenuSection :wallets="walletList" />
     </div>
 
     <div class="flex-1 h-full"></div>
@@ -39,18 +39,23 @@ import ActionNavigationButton from '~/components/wallet/walletNavigation/actionN
 import SmallMenuLink from '~/components/wallet/walletNavigation/smallNavigation/SmallMenuLink.vue';
 import MenuSection from '~/components/wallet/walletNavigation/mainNavigation/MenuSection.vue';
 import NavigationHeader from '~/components/wallet/walletNavigation/NavigationHeader.vue';
-import SetupNameAdnQuorum from '~/components/actions/createNewWallet/setUpNameAndQuorum/SetupNameAdnQuorum.vue';
-import { useWalletListStore } from '~/stores/wallet/WalletListStore';
+import SetupNameAdnQuorum from '~/components/actions/createNewWallet2/setUpNameAndQuorum/SetupNameAdnQuorum.vue';
+import { useWalletStorageListStore, type WalletListItemType } from '~/stores/wallet/storage/list';
 
 const privateMode = ref(false);
 const createNewWallet = ref(false);
 
-const walletListStore = useWalletListStore();
+const walletStorageListStore = useWalletStorageListStore();
 
-const mappedWalletList = computed(() => {
-  return walletListStore.walletList.map((wallet, i) => ({
-    ...wallet,
-    name: wallet.name || `Wallet ${i + 1}`,
-  }));
+const walletList = computed(() => {
+  const keys = Object.keys(walletStorageListStore.walletMap);
+  let walletList: WalletListItemType[] = [];
+  for (const key of keys) {
+    const wallet = walletStorageListStore.walletMap[key];
+    if (wallet) {
+      walletList.push(wallet);
+    }
+  }
+  return walletList;
 });
 </script>
